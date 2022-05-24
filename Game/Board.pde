@@ -15,7 +15,7 @@ public class Board{
     {1,1,1,1,1,0,1,1,1,1,1,2,2},
     {2,2,2,2,1,0,1,1,2,2,2,2,2},
     {2,2,2,2,1,0,1,1,2,2,1,1,1}, //cage starts with the ending 1,1,1 for the ghosts
-    {1,1,1,1,1,0,1,1,2,2,1,0,0}}; //cage here w/ 1,0,0; row below this will be goin off the screen time
+    {1,1,1,1,1,0,1,1,2,2,1,2,2}}; //cage here w/ 1,2,2; row below this will be goin off the screen time
     if (mode == 0){//classic
       for (int i = 14; i < 27; i++){
       //only neeed to make 1/4 of map and can copy it 4 times; fix indices
