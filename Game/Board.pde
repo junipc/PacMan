@@ -3,7 +3,7 @@ public class Board{
   int score = 0; //do i need to make static or
   
   public Board(int mode){
-    map = new int[27][27];
+    map = new int[27][23];
     int[][] helperFourth = new int[][]{// 0 pellet; 1 wall; 2 place w/ no pellet;
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1}, //this will be one fourth of the board to
     {1,0,0,0,0,0,0,0,0,0,0,0,0,1}, //copy by symmetry w/ for loops
@@ -20,7 +20,12 @@ public class Board{
     };
     if (mode == 0){//classic
       for (int i = 0; i < 14; i++){
-      //only neeed to make 1/4 of map and can copy it 4 times; fix indices
+        for (int j = 0; j < 12; j++){
+          map[i][j] = helperFourth[i][j];//only neeed to make 1/4 of map and can copy it 4 times; fix indices
+          map[i][22-j] = helperFourth[i][j];
+          map[26-i][j] = helperFourth[i][j];
+          map[26-i][22-j] = helperFourth[i][j];
+        }
       }
     }
     if (mode == 1){//survival rng
