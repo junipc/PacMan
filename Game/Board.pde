@@ -1,9 +1,10 @@
+import java.util.*;
 public class Board{
   int[][] map;
   int score = 0; //do i need to make static or
   
   public Board(int mode){
-    map = new int[27][23];
+    map = new int[23][27];
     int[][] helperFourth = new int[][]{// 0 pellet; 1 wall; 2 place w/ no pellet;
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1}, //this will be one fourth of the board to
     {1,0,0,0,0,0,0,0,0,0,0,0,0,1}, //copy by symmetry w/ for loops
@@ -19,12 +20,12 @@ public class Board{
     {2,2,2,2,2,0,2,2,2,2,1,2,2,2} // tp/going off board on this row
     };
     if (mode == 0){//classic
-      for (int i = 0; i < 14; i++){
-        for (int j = 0; j < 12; j++){
+      for (int i = 0; i < 12; i++){
+        for (int j = 0; j < 14; j++){
           map[i][j] = helperFourth[i][j];//only neeed to make 1/4 of map and can copy it 4 times; fix indices
-          map[i][22-j] = helperFourth[i][j];
-          map[26-i][j] = helperFourth[i][j];
-          map[26-i][22-j] = helperFourth[i][j];
+          map[i][26-j] = helperFourth[i][j];
+          map[22-i][j] = helperFourth[i][j];
+          map[22-i][26-j] = helperFourth[i][j];
         }
       }
     }
@@ -33,7 +34,14 @@ public class Board{
     }
   }
   
-  public void preset(){ //very similar to this:SQUARESIZE = height/ROWS;//side length
+  public String getMap(){
+    return Arrays.deepToString(map); 
+  }
+  
+  public void preset(){
+    
+    
+    //very similar to this:SQUARESIZE = height/ROWS;//side length
   //void stringToSquares(String[]lines) {
   //  for (int i = 0; i < lines.length; i++){
   //    for (int j = 0; j < (lines[i]).length(); j++){
