@@ -12,6 +12,6 @@ public class PacMan{
   void display(){
     noStroke();
     fill(c);
-    arc(x,y,35,35,QUARTER_PI, 2*PI-QUARTER_PI);
+    arc(x,y,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
   }
 }
