@@ -9,5 +9,9 @@ public class PacMan{
     y = y_;
   }
   
-  
+  void display(){
+    noStroke();
+    fill(c);
+    arc(x,y,35,35,QUARTER_PI, 2*PI-QUARTER_PI);
+  }
 }
