@@ -17,9 +17,13 @@ public class PacMan{
     arc(x,y,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
     if(dir == 1)
     arc(x,y,33,33,QUARTER_PI+HALF_PI, 2*PI-QUARTER_PI+HALF_PI);
-    if(dir == 0)
+    if(dir == 2)
     arc(x,y,33,33,QUARTER_PI+PI, 2*PI-QUARTER_PI+PI);
-    if(dir == 0)
+    if(dir == 3)
     arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
+  }
+  
+  void setDir(int d){
+    dir = d;
   }
 }
