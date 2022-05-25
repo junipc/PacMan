@@ -34,7 +34,11 @@ public class Board{
     }
   }
   
-  public String getMap(){
+  public int[][] getMap(){
+    return map;
+  }
+  
+  public String getMapString(){
     return Arrays.deepToString(map); 
   }
   
@@ -45,6 +49,10 @@ public class Board{
         if (map[i][j] == 0 || map[i][j] == 2){
           fill(0,0,0);
           square(j*sideLength, i*sideLength, sideLength);
+          if (map[i][j] == 0){ //pellet display
+            fill(255,255,0);
+            circle(j*sideLength + sideLength/2.0, i*sideLength+ sideLength/2.0, 10);
+          }
         }
         else if (map[i][j] == 1){
           fill(33, 33, 222);

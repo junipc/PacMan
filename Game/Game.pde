@@ -6,7 +6,7 @@ int screen = 0;
 void setup(){
   size(1080,920);
   Board test = new Board(0);
-  println(test.getMap());
+  println(test.getMapString());
   test.display();
   //int sideLength = height/23; //shld be 40
   //for (int i = 0; i < 23; i++){ //test, smth seems to not work
