@@ -34,17 +34,13 @@ public class Board{
     }
   }
   
-  public int[][] getMap(){
-    return map;
-  }
-  
   public String getMapString(){
     return Arrays.deepToString(map); 
   }
   
   public void display(){
     int sideLength = height/23; //shld be 40
-    for (int i = 0; i < 23; i++){ //test, smth seems to not work
+    for (int i = 0; i < 23; i++){
       for (int j = 0; j < 27; j++){
         if (map[i][j] == 0 || map[i][j] == 2){
           fill(0,0,0);

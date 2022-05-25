@@ -1,11 +1,11 @@
 String playerName;
 int screen = 0;
-
+public Board test = new Board(0);
+ArrayList<Pellet> notEaten = new ArrayList<Pellet>();
 
 
 void setup(){
   size(1080,920);
-  Board test = new Board(0);
   println(test.getMapString());
   test.display();
   //int sideLength = height/23; //shld be 40
