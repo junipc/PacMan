@@ -34,12 +34,28 @@ public class Board{
     }
   }
   
-  public String getMap(){
+  public String getMapString(){
     return Arrays.deepToString(map); 
   }
   
   public void display(){
-  
+    int sideLength = height/23; //shld be 40
+    for (int i = 0; i < 23; i++){
+      for (int j = 0; j < 27; j++){
+        if (map[i][j] == 0 || map[i][j] == 2){
+          fill(0,0,0);
+          square(j*sideLength, i*sideLength, sideLength);
+          if (map[i][j] == 0){ //pellet display
+            fill(255,255,0);
+            circle(j*sideLength + sideLength/2.0, i*sideLength+ sideLength/2.0, 10);
+          }
+        }
+        else if (map[i][j] == 1){
+          fill(33, 33, 222);
+          square(j*sideLength, i*sideLength, sideLength);
+        }
+      }
+    }
   }
   
   public void preset(){
