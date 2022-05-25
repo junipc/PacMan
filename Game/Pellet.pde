@@ -3,7 +3,6 @@ public class Pellet{
   int value = 10;
   
   public void add(){
-    // 
     for (int i = 0; i < 23; i++){ //test, smth seems to not work
       for (int j = 0; j < 27; j++){
         if (test.map[i][j] == 0){
@@ -18,8 +17,7 @@ public class Pellet{
     notEaten.remove(0);
     if (notEaten.size() == 0){
       //level up; if level == 10, go to congrats screen
-    }
-  
+    } 
   }
   
   
