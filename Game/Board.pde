@@ -38,6 +38,10 @@ public class Board{
     return Arrays.deepToString(map); 
   }
   
+  public void display(){
+  
+  }
+  
   public void preset(){
     
     
