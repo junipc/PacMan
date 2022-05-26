@@ -2,6 +2,7 @@ String playerName;
 int screen = 0;
 public Board test = new Board(0);
 ArrayList<Pellet> notEaten = new ArrayList<Pellet>();
+Keyboard keyIn = new Keyboard();
 
 void setup(){
   size(1080,920);
@@ -12,11 +13,12 @@ void draw(){
 }
 
 void keyPressed() {
-  keyboardInput.press(keyCode);
+  keyIn.press(keyCode);
+  println(Arrays.toString(keyIn.inputs));
 }
 
 void keyReleased() {
-  keyboardInput.release(keyCode);
+  //keyIn.release(keyCode);
 }
 
 
