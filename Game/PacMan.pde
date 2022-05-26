@@ -5,8 +5,9 @@ public class PacMan{
   float dx = 1;
   float dy = 0;
   float speed = 40/9; //40 must be divisible by it (just change the second number)
-  
-  PacMan(color c_, int x_, int y_){
+  int bx;
+  int by;
+  PacMan(color c_, int x_, int y_){ //x_ and y_ must be 40n+20
     c = c_;
     x = x_;
     y = y_;
@@ -31,8 +32,8 @@ public class PacMan{
   }
   void move(float x_, float y_){
     setDir(x_,y_);
-    x += dx;
-    y += dy; 
+    x = (x + dx) % width;
+    y = (y+ dy) % height;
   }
   void move(){
     if(x % 40 == 20 && y % 40 == 20){
