@@ -1,9 +1,10 @@
 public class PacMan{
   color c;
-  int x;
-  int y;
-  int dx = 1;
-  int dy = 0;
+  float x;
+  float y;
+  float dx = 1;
+  float dy = 0;
+  float speed = 2;
   
   PacMan(color c_, int x_, int y_){
     c = c_;
@@ -24,25 +25,28 @@ public class PacMan{
     arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
   }
   
-  void setDir(int x, int y){
+  void setDir(float x, float y){
     dx = x;
     dy = y;
   }
-  void move(int x_, int y_){
+  void move(float x_, float y_){
     setDir(x_,y_);
     x += dx;
     y += dy; 
   }
   void move(){
-    int d = 0;
-    if(keyIn.isPressed(Keyboard.K_RT)){
-      move(1,0);
-    }else if(keyIn.isPressed(Keyboard.K_LT)){
-      move(-1,0);
-    }else if(keyIn.isPressed(Keyboard.K_UP)){
-      move(0,-1);
-    }else if(keyIn.isPressed(Keyboard.K_DN)){
-      move(0,1);
+    if(x % 40 == 20 && y % 40 == 20){
+      if(keyIn.isPressed(Keyboard.K_RT)){
+        move(speed,0);
+      }else if(keyIn.isPressed(Keyboard.K_LT)){
+        move(speed*-1,0);
+      }else if(keyIn.isPressed(Keyboard.K_UP)){
+        move(0,speed*-1);
+      }else if(keyIn.isPressed(Keyboard.K_DN)){
+        move(0,1);
+      }
+    }else{
+      move(dx,dy);
     }
   }
 }
