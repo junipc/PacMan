@@ -3,7 +3,6 @@ int screen = 0;
 public Board test = new Board(0);
 ArrayList<Pellet> notEaten = new ArrayList<Pellet>();
 
-
 void setup(){
   size(1080,920);
   println(test.getMapString());
@@ -18,7 +17,6 @@ void setup(){
 }
 
 void draw(){
-
 }
 
 void keyPressed(){
