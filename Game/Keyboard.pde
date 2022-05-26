@@ -14,24 +14,24 @@ public class Keyboard{
   }
   void press(int code){
     println(code);
-    if(code == LEFT)
+    if(code == LEFT || code == 'A' || code == 'a')
     inputs[K_LT] = true;
-    if(code == RIGHT)
+    if(code == RIGHT || code == 'D' || code == 'd')
     inputs[K_RT] = true;
-    if(code == UP)
+    if(code == UP || code == 'W' || code == 'w')
     inputs[K_UP] = true;
-    if(code == DOWN)
+    if(code == DOWN || code == 'S' || code == 's')
     inputs[K_DN] = true;
   }
   void release(int code){
     println(code);
-    if(code == LEFT)
+    if(code == LEFT || code == 'A' || code == 'a')
     inputs[K_LT] = false;
-    if(code == RIGHT)
+    if(code == RIGHT || code == 'D' || code == 'd')
     inputs[K_RT] = false;
-    if(code == UP)
+    if(code == UP || code == 'W' || code == 'w')
     inputs[K_UP] = false;
-    if(code == DOWN)
+    if(code == DOWN || code == 'S' || code == 's')
     inputs[K_DN] = false;
   }
   
