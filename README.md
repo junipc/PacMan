@@ -22,6 +22,21 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - working move method for PacMan that doesn't conform to a grid yet
 
 ### Maya
+5/23:
+- tested merge conflict with Juniper in class
+- added signatures/outlines for methods in Game
+- began the Board class, default constructor
+
+5/24:
+- created Board class
+- made 1/4th of the Classic mode int[][] map in Board based off google image
+- decided dimensions of screen based off [r][c] of map;
+
+5/25:
+- finished map[][] in Board using for loops
+- animated/display for Board class
+- began Pellet class with an arrayList of Pellets in Game
+- displayed pellets on the board for Classic mode
 
 ## Design Document:
 https://docs.google.com/document/d/1o4uHIYr6bDUU8YjrVuAWTHnPCBCr8zDS339r6GEzFfo/edit?usp=sharing

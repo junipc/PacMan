@@ -2,6 +2,7 @@ String playerName;
 int screen = 0;
 public Board test = new Board(0);
 ArrayList<Pellet> notEaten = new ArrayList<Pellet>();
+ArrayList<PowerPellet> powerNotEaten = new ArrayList<PowerPellet>();
 
 void setup(){
   size(1080,920);
