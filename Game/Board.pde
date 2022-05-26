@@ -8,7 +8,7 @@ public class Board{
     int[][] helperFourth = new int[][]{// 0 pellet; 1 wall; 2 place w/ no pellet;
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1}, //this will be one fourth of the board to
     {1,0,0,0,0,0,0,0,0,0,0,0,0,1}, //copy by symmetry w/ for loops
-    {1,0,1,1,1,0,0,1,1,1,1,0,0,1}, // then the center col/row will be added if odd row/c
+    {1,3,1,1,1,0,0,1,1,1,1,0,0,1}, // then the center col/row will be added if odd row/c
     {1,0,1,1,1,0,0,1,1,1,1,0,0,1}, // bot row and right most col will be repeated 
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0},
     {1,0,1,1,1,0,1,0,1,1,1,1,1,1},
@@ -42,12 +42,16 @@ public class Board{
     int sideLength = height/23; //shld be 40
     for (int i = 0; i < 23; i++){
       for (int j = 0; j < 27; j++){
-        if (map[i][j] == 0 || map[i][j] == 2){
+        if (map[i][j] == 0 || map[i][j] == 2 || map[i][j] == 3){
           fill(0,0,0);
           square(j*sideLength, i*sideLength, sideLength);
           if (map[i][j] == 0){ //pellet display
+            fill(249,216,203);
+            square(j*sideLength + sideLength/2.0 - 4, i*sideLength+ sideLength/2.0 - 4, 8);
+          }
+          if (map[i][j] == 3){ //pellet display
             fill(255,255,0);
-            circle(j*sideLength + sideLength/2.0, i*sideLength+ sideLength/2.0, 10);
+            circle(j*sideLength + sideLength/2.0, i*sideLength+ sideLength/2.0, 25);
           }
         }
         else if (map[i][j] == 1){
