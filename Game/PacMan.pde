@@ -2,7 +2,8 @@ public class PacMan{
   color c;
   int x;
   int y;
-  int dir;
+  int dx;
+  int dy;
   
   PacMan(color c_, int x_, int y_){
     c = c_;
@@ -23,7 +24,12 @@ public class PacMan{
     arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
   }
   
-  void setDir(int d){
-    dir = d;
+  void setDir(int x, int y){
+    dx = x;
+    dy = y;
+  }
+  void move(int d){
+    setDir(d);
+    x += 
   }
 }
