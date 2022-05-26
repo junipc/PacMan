@@ -31,7 +31,16 @@ public class PacMan{
   void move(int x_, int y_){
     setDir(x_,y_);
     x += dx;
-    y += dy;
-    
+    y += dy; 
+  }
+  void move(){
+    if(keyIn.isPressed(Keyboard.K_RT))
+    move(40,0);
+    if(keyIn.isPressed(Keyboard.K_LT))
+    move(-40,0);
+    if(keyIn.isPressed(Keyboard.K_UP))
+    move(0,-40);
+    if(keyIn.isPressed(Keyboard.K_DN))
+    move(0,40);
   }
 }
