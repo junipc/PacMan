@@ -23,5 +23,16 @@ public class Keyboard{
     if(code == DOWN)
     inputs[DN] = true;
   }
+  void release(int code){
+    println(code);
+    if(code == LEFT)
+    inputs[LT] = false;
+    if(code == RIGHT)
+    inputs[RT] = false;
+    if(code == UP)
+    inputs[UP_] = false;
+    if(code == DOWN)
+    inputs[DN] = false;
+  }
   
 }

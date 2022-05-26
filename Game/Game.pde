@@ -14,11 +14,10 @@ void draw(){
 
 void keyPressed() {
   keyIn.press(keyCode);
-  println(Arrays.toString(keyIn.inputs));
 }
 
 void keyReleased() {
-  //keyIn.release(keyCode);
+  keyIn.release(keyCode);
 }
 
 
