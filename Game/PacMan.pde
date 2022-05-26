@@ -4,7 +4,7 @@ public class PacMan{
   float y;
   float dx = 1;
   float dy = 0;
-  float speed = 2;
+  float speed = 40/9; //40 must be divisible by it (just change the second number)
   
   PacMan(color c_, int x_, int y_){
     c = c_;
@@ -43,7 +43,7 @@ public class PacMan{
       }else if(keyIn.isPressed(Keyboard.K_UP)){
         move(0,speed*-1);
       }else if(keyIn.isPressed(Keyboard.K_DN)){
-        move(0,1);
+        move(0,speed);
       }
     }else{
       move(dx,dy);
