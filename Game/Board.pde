@@ -5,10 +5,10 @@ public class Board{
   
   public Board(int mode){
     map = new int[23][27];
-    int[][] helperFourth = new int[][]{// 0 pellet; 1 wall; 2 place w/ no pellet;
+    int[][] helperFourth = new int[][]{// 0 pellet; 1 wall; 2 place w/ no pellet; 3 powerpellet; 4 will be cherry added to map; not to 1/4th helper
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1}, //this will be one fourth of the board to
     {1,0,0,0,0,0,0,0,0,0,0,0,0,1}, //copy by symmetry w/ for loops
-    {1,3,1,1,1,0,0,1,1,1,1,0,0,1}, // then the center col/row will be added if odd row/c
+    {1,0,1,1,1,0,0,1,1,1,1,0,0,1}, // then the center col/row will be added if odd row/c
     {1,0,1,1,1,0,0,1,1,1,1,0,0,1}, // bot row and right most col will be repeated 
     {1,0,0,0,0,0,0,0,0,0,0,0,0,0},
     {1,0,1,1,1,0,1,0,1,1,1,1,1,1},
@@ -28,6 +28,8 @@ public class Board{
           map[22-i][26-j] = helperFourth[i][j];
         }
       }
+      map[2][1] = 3;
+      map[2][25] = 3;
     }
     if (mode == 1){//survival rng
     
