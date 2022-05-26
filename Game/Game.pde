@@ -3,7 +3,7 @@ int screen = 0;
 public Board test = new Board(0);
 ArrayList<Pellet> notEaten = new ArrayList<Pellet>();
 Keyboard keyIn = new Keyboard();
-PacMan p = new PacMan(color(250,250,0),200,200);
+PacMan p = new PacMan(color(250,250,0),220,220);
 
 void setup(){
   size(1080,920);

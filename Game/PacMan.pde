@@ -34,13 +34,18 @@ public class PacMan{
     y += dy; 
   }
   void move(){
-    if(keyIn.isPressed(Keyboard.K_RT))
-    move(40,0);
+    if(keyIn.isPressed(Keyboard.K_RT)){
+      for(int i = 0; i < 40; i++)
+      move(1,0);
+    }
     if(keyIn.isPressed(Keyboard.K_LT))
-    move(-40,0);
+    for(int i = 0; i < 40; i++)
+    move(-1,0);
     if(keyIn.isPressed(Keyboard.K_UP))
-    move(0,-40);
+    for(int i = 0; i < 40; i++)
+    move(0,-1);
     if(keyIn.isPressed(Keyboard.K_DN))
-    move(0,40);
+    for(int i = 0; i < 40; i++)
+    move(0,1);
   }
 }
