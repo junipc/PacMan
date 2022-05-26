@@ -9,7 +9,13 @@ void setup(){
 }
 
 void draw(){
+  background(255);
   test.display();
+  if(keyIn.isPressed(Keyboard.K_RT))
+  if(keyIn.isPressed(Keyboard.K_LT))
+  if(keyIn.isPressed(Keyboard.K_UP))
+  if(keyIn.isPressed(Keyboard.K_DN))
+  
 }
 
 void keyPressed() {
