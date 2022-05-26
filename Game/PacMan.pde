@@ -14,13 +14,13 @@ public class PacMan{
   void display(){
     noStroke();
     fill(c);
-    if(dir == 0)
+    if(dx > 0)
     arc(x,y,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
-    if(dir == 1)
+    if(dy > 0)
     arc(x,y,33,33,QUARTER_PI+HALF_PI, 2*PI-QUARTER_PI+HALF_PI);
-    if(dir == 2)
+    if(dx < 0)
     arc(x,y,33,33,QUARTER_PI+PI, 2*PI-QUARTER_PI+PI);
-    if(dir == 3)
+    if(dy < 0)
     arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
   }
   
@@ -28,8 +28,9 @@ public class PacMan{
     dx = x;
     dy = y;
   }
-  void move(int d){
-    setDir(d);
-    x += 
+  void move(int x, int y){
+    setDir(x,y);
+    dx += x;
+    dy += y;
   }
 }
