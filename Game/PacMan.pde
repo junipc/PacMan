@@ -32,8 +32,8 @@ public class PacMan{
   }
   void move(float x_, float y_){
     setDir(x_,y_);
-    x = (x + dx) % width;
-    y = (y+ dy) % height;
+    x = abs((x + dx) % width);
+    y = abs((y + dy) % height);
   }
   void move(){
     if(x % 40 == 20 && y % 40 == 20){

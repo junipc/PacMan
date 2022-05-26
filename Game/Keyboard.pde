@@ -13,7 +13,6 @@ public class Keyboard{
     return inputs[code];
   }
   void press(int code){
-    println(code);
     if(code == LEFT || code == 'A' || code == 'a')
     inputs[K_LT] = true;
     if(code == RIGHT || code == 'D' || code == 'd')
@@ -24,7 +23,6 @@ public class Keyboard{
     inputs[K_DN] = true;
   }
   void release(int code){
-    println(code);
     if(code == LEFT || code == 'A' || code == 'a')
     inputs[K_LT] = false;
     if(code == RIGHT || code == 'D' || code == 'd')
