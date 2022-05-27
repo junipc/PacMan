@@ -38,11 +38,11 @@ public class PacMan{
     x = (x + dx + width) % width;
     y = (y + dy + height) % height;
   }
-  void move(){
+  void move(Board b){
     if(x % 40 == 20 && y % 40 == 20){
-      if(keyIn.isPressed(Keyboard.K_RT)){
+      if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
         move(speed,0);
-        bx++;
+        //bx++;
       }else if(keyIn.isPressed(Keyboard.K_LT)){
         move(speed*-1,0);
         bx--;
@@ -57,7 +57,9 @@ public class PacMan{
       move(dx,dy);
     }
   }
-  boolean canMove(Board b){
+  boolean canMove(Board b, int incX, int incY){
+    bx = (bx + incX + b.map[0].length) % b.map[0].length;
+    by = (by + incY + b.map.length) % b.map.length;
     return true;
   }
 }

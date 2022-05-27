@@ -13,9 +13,9 @@ void setup(){
 void draw(){
   background(255);
   test.display();
-  p.move();
+  p.move(test);
   p.display();
-  println(p.by);
+  println(p.bx);
   
 }
 
