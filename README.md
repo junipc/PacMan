@@ -23,6 +23,7 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 
 5/26:
 - PacMan movement! It works with keyboard control and is locked to the grid. It also wraps around the map!
+- PacMan collision with wall!
 
 ### Maya
 5/23:
