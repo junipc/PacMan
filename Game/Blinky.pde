@@ -14,6 +14,14 @@ public class Blinky extends Ghost{
   }
   void move(float x_, float y_){ //update for blinky maze optimization
     setDir(x_,y_);
+    float endX = p.x;
+    float endY = p.y;
+    //breadth first search probably best option
+    //might be better to round floats of ghost and pacman location to int so that R,C
+    //search is easier <3
+    
+    
+    //
   //  private int solve(int row, int col){ //you can add more parameters since this is private
   //  //automatic animation! You are welcome.
   //  if (maze[row][col] == '#' || maze[row][col] == '@' || maze[row][col] == '.'){
