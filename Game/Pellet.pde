@@ -15,6 +15,7 @@ public class Pellet{
   public void eaten(){
     //if pacman is on it:
     notEaten.remove(0);
+    test.score += value;
     if (notEaten.size() == 0){
       //level up; if level == 10, go to congrats screen
     } 
