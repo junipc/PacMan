@@ -7,10 +7,13 @@ public class PacMan{
   float speed = 40/9; //40 must be divisible by it (just change the second number)
   int bx;
   int by;
+  
   PacMan(color c_, int x_, int y_){ //x_ and y_ must be 40n+20
     c = c_;
     x = x_;
     y = y_;
+    bx = (int)(x/40);
+    by = (int)(y/40);
   }
   
   void display(){
@@ -39,15 +42,22 @@ public class PacMan{
     if(x % 40 == 20 && y % 40 == 20){
       if(keyIn.isPressed(Keyboard.K_RT)){
         move(speed,0);
+        bx++;
       }else if(keyIn.isPressed(Keyboard.K_LT)){
         move(speed*-1,0);
+        bx--;
       }else if(keyIn.isPressed(Keyboard.K_UP)){
         move(0,speed*-1);
+        by--;
       }else if(keyIn.isPressed(Keyboard.K_DN)){
         move(0,speed);
+        by++;
       }
     }else{
       move(dx,dy);
     }
+  }
+  boolean canMove(Board b){
+    return true;
   }
 }
