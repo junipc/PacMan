@@ -42,16 +42,12 @@ public class PacMan{
     if(x % 40 == 20 && y % 40 == 20){
       if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
         move(speed,0);
-        //bx++;
-      }else if(keyIn.isPressed(Keyboard.K_LT)){
+      }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
         move(speed*-1,0);
-        bx--;
-      }else if(keyIn.isPressed(Keyboard.K_UP)){
+      }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
         move(0,speed*-1);
-        by--;
-      }else if(keyIn.isPressed(Keyboard.K_DN)){
+      }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
         move(0,speed);
-        by++;
       }
     }else{
       move(dx,dy);
