@@ -7,7 +7,7 @@ public abstract class Ghost{
     x = x_;
     y = y_;
   }
-  abstract void move();
+  abstract void move(float x_, float y_);
   void display(){
     noStroke();
     fill(c);

@@ -45,5 +45,16 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - began Pellet class with an arrayList of Pellets in Game
 - displayed pellets on the board for Classic mode
 
+5/26:
+- added PowerPellet class
+- determined addition of points for PowerPellet and Pellet as well as their score methods
+- animated/display for PowerPellets
+- began Blinky
+
+5/27:
+- created PacMan-similar move(board) and canMove() for Blinky
+- created constructor for Blinky using super() with additional vars
+- began breadth-first algorithm for optimized move()
+
 ## Design Document:
 https://docs.google.com/document/d/1o4uHIYr6bDUU8YjrVuAWTHnPCBCr8zDS339r6GEzFfo/edit?usp=sharing
