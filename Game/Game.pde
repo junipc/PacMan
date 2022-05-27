@@ -2,27 +2,30 @@ String playerName;
 int screen = 0;
 public Board test = new Board(0);
 ArrayList<Pellet> notEaten = new ArrayList<Pellet>();
+Keyboard keyIn = new Keyboard();
+PacMan p = new PacMan(color(250,250,0),220,220);
 ArrayList<PowerPellet> powerNotEaten = new ArrayList<PowerPellet>();
 
 void setup(){
   size(1080,920);
-  println(test.getMapString());
-  test.display();
-  //int sideLength = height/23; //shld be 40
-  //for (int i = 0; i < 23; i++){ //test, smth seems to not work
-  //  for (int j = 0; j < 27; j++){
-  //    fill(200,0,255);
-  //    square(j*sideLength, i*sideLength, sideLength);
-  //  }
-  //}
 }
 
 void draw(){
+  background(255);
+  test.display();
+  p.move();
+  p.display();
+  
 }
 
-void keyPressed(){
-
+void keyPressed() {
+  keyIn.press(keyCode);
 }
+
+void keyReleased() {
+  keyIn.release(keyCode);
+}
+
 
 void mouseClicked(){
 

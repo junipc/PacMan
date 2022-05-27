@@ -21,6 +21,9 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - made direction of PacMan two variables instead of one
 - working move method for PacMan that doesn't conform to a grid yet
 
+5/26:
+- PacMan movement! It works with keyboard control and is locked to the grid. It also wraps around the map!
+
 ### Maya
 5/23:
 - tested merge conflict with Juniper in class
