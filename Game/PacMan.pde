@@ -4,7 +4,7 @@ public class PacMan{
   float y;
   float dx = 1;
   float dy = 0;
-  float speed = 40/9; //40 must be divisible by it (just change the second number)
+  float speed = 72 ; //15,18,20,24,30,36,40,45,60,72
   int bx;
   int by;
   
@@ -39,15 +39,15 @@ public class PacMan{
     y = (y + dy + height) % height;
   }
   void move(Board b){
-    if(x % 40 == 20 && y % 40 == 20){
+    if(x % 40 > 19 && x % 40 < 21 && y % 40 > 19 && y % 40 < 21){
       if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
-        move(speed,0);
+        move(speed/9,0);
       }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
-        move(speed*-1,0);
+        move(speed/-9,0);
       }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
-        move(0,speed*-1);
+        move(0,speed/(-9));
       }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
-        move(0,speed);
+        move(0,speed/9);
       }
     }else{
       move(dx,dy);
