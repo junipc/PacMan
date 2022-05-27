@@ -54,8 +54,14 @@ public class PacMan{
     }
   }
   boolean canMove(Board b, int incX, int incY){
-    bx = (bx + incX + b.map[0].length) % b.map[0].length;
-    by = (by + incY + b.map.length) % b.map.length;
-    return true;
+    int nextX = (bx + incX + b.map[0].length) % b.map[0].length;
+    int nextY = (by + incY + b.map.length) % b.map.length;
+    if(b.map[nextY][nextX] == 1){
+      return false;
+    }else{
+      bx = nextX;
+      by = nextY;
+      return true;
+    }
   }
 }

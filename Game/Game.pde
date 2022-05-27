@@ -15,7 +15,6 @@ void draw(){
   test.display();
   p.move(test);
   p.display();
-  println(p.bx);
   
 }
 
