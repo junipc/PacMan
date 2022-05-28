@@ -7,6 +7,7 @@ public class Blinky extends Ghost{
   float speed = 40/9; //40 must be divisible by it (just change the second number)
   int bx;
   int by;
+  int counter = 1;
   
   void setDir(float x, float y){
     dx = x;
@@ -21,54 +22,55 @@ public class Blinky extends Ghost{
     int[][] maze = test.map;
     int[] dx = {0,0,1,-1}; //r,l,d,u
     int[] dy = {1,-1,0,0};//r,l,d,u
+    int[][] movesToPacMan = new int[23][27];
+    for (int i = 0; i < 23; i++){
+      for (int j = 0; j < 27; j++){
+        movesToPacMan[i][j] = 110105; //filler
+        if (test.map[i][j] == 1){
+          movesToPacMan[i][j] = -110105; //some irrelevant path move #
+        }
+      }
+    }
+    for (int i = 0; i < 23; i++){
+      for (int j = 0; j < 27; j++){
+        if (test.map[i][j] != 1){
+          //basically not border or tree
+          if (test.map[i+1][j] != 1){
+            movesToPacMan[i+1][j] = counter;
+            counter++;
+            //recursive call
+          }
+          if (test.map[i-1][j] != 1){
+            movesToPacMan[i-1][j] = counter;
+            counter++;
+            //recursive call
+          }
+          if (test.map[i][j+1] != 1){
+            movesToPacMan[i][j+1] = counter;
+            counter++;
+            //recursive call
+          }
+          if (test.map[i][j-1] != 1){
+             movesToPacMan[i][j-1] = counter;
+            counter++;
+            //recursive call
+          }
+          //updatedNum[i][j] = newWays;
+          counter = 1; //?
+        }
+        else{
+          counter = 1;
+          //and reset path numbers?  or not necessary bcs we stop when we hit pacman, then move in direction of path#-1 each time
+          //ex if 20 moves to pac man, we move to square w 19 moves to pac man as that must be optimized
+        }
+      }
+    }
     //breadth first search probably best option
     //might be better to round floats of ghost and pacman location to int so that R,C
     //search is easier <3
-    
-    
-    //
-  //  private int solve(int row, int col){ //you can add more parameters since this is private
-  //  //automatic animation! You are welcome.
-  //  if (maze[row][col] == '#' || maze[row][col] == '@' || maze[row][col] == '.'){
-  //    return -1;
-  //  }
-  //  else if (maze[row][col] == 'E'){
-  //    return 0;
-  //  }
-  //  else{
-  //    maze[row][col] = '@';
-  //    if(animate){ // put in spots 1 and 2 yk (?)
-  //      gotoTop();
-  //      System.out.println(this);
-  //      wait(50);
-  //    }
-  //    int North = solve(row - 1, col);
-  //    if (North != -1){
-  //      return North + 1;
-  //    }
-  //    int South = solve (row + 1, col);
-  //    if (South != -1){
-  //      return South + 1;
-  //    }
-  //    int East = solve (row, col + 1);
-  //    if (East != -1){
-  //      return East + 1;
-  //    }
-  //    int West = solve (row, col - 1);
-  //    if (West != -1){
-  //      return West + 1;
-  //    }
-  //    maze[row][col] = '.';
-  //    if(animate){ // put in spots 1 and 2 yk (?)
-  //      gotoTop();
-  //      System.out.println(this);
-  //      wait(50);
-  //    }
-  //    return -1;
-  //  }
-  //}
-    x = (x + dx + width) % width;
-    y = (y + dy + height) % height;
+
+   // x = (x + dx + width) % width;
+    //y = (y + dy + height) % height;
   }
   
   Blinky(color c, int x, int y){
