@@ -25,6 +25,9 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - PacMan movement! It works with keyboard control and is locked to the grid. It also wraps around the map!
 - PacMan collision with wall!
 
+5/27:
+- Fixed wall collision problems
+
 ### Maya
 5/23:
 - tested merge conflict with Juniper in class
