@@ -14,8 +14,13 @@ public class Blinky extends Ghost{
   }
   void move(float x_, float y_){ //update for blinky maze optimization
     setDir(x_,y_);
-    float endX = p.x;
-    float endY = p.y;
+    float endX = p.x/27;
+    float endY = p.y/23;
+    float startX = x/27;
+    float startY = y/23;
+    int[][] maze = test.map;
+    int[] dx = {0,0,1,-1}; //r,l,d,u
+    int[] dy = {1,-1,0,0};//r,l,d,u
     //breadth first search probably best option
     //might be better to round floats of ghost and pacman location to int so that R,C
     //search is easier <3
@@ -73,15 +78,15 @@ public class Blinky extends Ghost{
   }
   
   void move(Board b){
-    if(x % 40 == 20 && y % 40 == 20){
+    if(x % 40 > 19 && x % 40 < 21 && y % 40 > 19 && y % 40 < 21){
       if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
-        move(speed,0);
+        move(speed/9,0);
       }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
-        move(speed*-1,0);
+        move(speed/-9,0);
       }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
-        move(0,speed*-1);
+        move(0,speed/(-9));
       }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
-        move(0,speed);
+        move(0,speed/9);
       }
     }else{
       move(dx,dy);

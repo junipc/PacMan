@@ -5,6 +5,7 @@ ArrayList<Pellet> notEaten = new ArrayList<Pellet>();
 Keyboard keyIn = new Keyboard();
 PacMan p = new PacMan(color(250,250,0),220,220);
 ArrayList<PowerPellet> powerNotEaten = new ArrayList<PowerPellet>();
+Blinky b = new Blinky(color(250,0,0), 220, 200);
 
 void setup(){
   size(1080,920);
