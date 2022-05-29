@@ -7,6 +7,7 @@ public class PacMan{
   float speed = 36 ; //15,18,20,24,30,36,40,45,60,72
   int bx;
   int by;
+  boolean atCenter = true;
   
   PacMan(color c_, int x_, int y_){ //x_ and y_ must be 40n+20
     c = c_;
@@ -39,16 +40,16 @@ public class PacMan{
     y = (y + dy + height) % height;
   }
   void move(Board b){
-    if(x % 40 > 19 && x % 40 < 21 && y % 40 > 19 && y % 40 < 21){
+    if(atCenter){
       eat(b);
       if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
-        move(speed/9,0);
+        move(speed,0);
       }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
-        move(speed/-9,0);
+        move(speed*-1,0);
       }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
-        move(0,speed/(-9));
+        move(0,speed*-1);
       }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
-        move(0,speed/9);
+        move(0,speed);
       }
     }else{
       move(dx,dy);
