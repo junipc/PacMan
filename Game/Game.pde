@@ -3,9 +3,12 @@ int screen = 0;
 public Board test = new Board(0);
 ArrayList<Pellet> notEaten = new ArrayList<Pellet>();
 Keyboard keyIn = new Keyboard();
-PacMan p = new PacMan(color(250,250,0),220,220);
+PacMan p = new PacMan(color(250,250,0),540,580);
 ArrayList<PowerPellet> powerNotEaten = new ArrayList<PowerPellet>();
-Blinky b = new Blinky(color(250,0,0), 220, 700);
+Blinky b1 = new Blinky(color(250,0,0), 460, 460);
+Blinky b2 = new Blinky(color(250,0,0), 500, 460);
+Blinky b3 = new Blinky(color(250,0,0), 580, 460);
+Blinky b4 = new Blinky(color(250,0,0), 620, 460);
 int readyTime = 5000;
 int setUpTime;
 int counter = 5;
@@ -18,30 +21,26 @@ void setup(){
 void draw(){
   background(255);
   int passedTime = millis() - setUpTime;
-  //if (passedTime > readyTime) {
-  //  passedTime = 6000;
-  //  p.move(test);
-  //}
   test.display();
   PFont font;
   font = createFont("emulogic.ttf", 128);
   textFont(font);
   textSize(12);
-  fill(255,0,0);
+  fill(255,128,0);
   if (passedTime <= 1000) {
-    text("READY! " + counter, 490, 585);  
+    text("READY! " + counter, 490, 345);  
   }
   else if (passedTime <= 2000) {
-    text("READY! " + (counter-1), 490, 585);
+    text("READY! " + (counter-1), 490, 345);
   }
   else if (passedTime <= 3000) {
-    text("READY! " + (counter-2), 490, 585);
+    text("READY! " + (counter-2), 490, 345);
   }
   else if (passedTime <= 4000) {
-    text("READY! " + (counter-3), 490, 585);
+    text("READY! " + (counter-3), 490, 345);
   }
   else if (passedTime <= 5000) {
-    text("READY! " + (counter-4), 490, 585);
+    text("READY! " + (counter-4), 490, 345);
   }
   else if (passedTime > readyTime) {
     passedTime = 6000;
@@ -51,7 +50,11 @@ void draw(){
   textSize(12);
   fill(255);
   text("SCORE:" + test.score, 20, 20);
-  b.display();
+  b1.display();
+  b2.display();
+  b3.display();
+  b4.display();
+
   
 }
 
