@@ -64,11 +64,10 @@ public class PacMan{
       return true;
     }
   }
-  int eat(Board b){
+  void eat(Board b){
     if(b.map[by][bx] == 0){
       b.map[by][bx] = 2;
-      return 50;
-    }else{
-      return 0;
+      b.score += 50;
+    }
   }
 }
