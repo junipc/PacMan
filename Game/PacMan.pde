@@ -34,8 +34,7 @@ public class PacMan{
     dx = x;
     dy = y;
   }
-  void move(float x_, float y_){
-    setDir(x_,y_);
+  void move(){
     x = (x + dx + width) % width;
     y = (y + dy + height) % height;
   }
@@ -43,16 +42,20 @@ public class PacMan{
     if(atCenter){
       eat(b);
       if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
-        move(speed,0);
+        setDir(speed,0);
+        move();
         atCenter = false;
       }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
-        move(speed*-1,0);
+        setDir(speed*-1,0);
+        move();
         atCenter = false;
       }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
-        move(0,speed*-1);
+        setDir(0,speed*-1);
+        move();
         atCenter = false;
       }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
-        move(0,speed);
+        setDir(0,speed);
+        move();
         atCenter = false;
       }
     }else{
@@ -61,7 +64,7 @@ public class PacMan{
         y = by * 40 + 20;
         atCenter = true;
       }else{
-        move(dx,dy);
+        move();
       }
     }
   }
