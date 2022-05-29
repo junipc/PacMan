@@ -65,8 +65,25 @@ public class Blinky extends Ghost{
     //might be better to round floats of ghost and pacman location to int so that R,C
     //search is easier <3
 
-   // x = (x + dx + width) % width;
-    //y = (y + dy + height) % height;
+   
+  }
+  
+  void optimalMove(float x_, float y_){
+  move( x_, y_);
+  if (currentOptimalPlay[Math.round(p.y/23)][Math.round(p.x/27)] == 1 + currentOptimalPlay[Math.round(p.y/23)-1][Math.round(p.x/27)]){
+  //set the next move to U
+  }
+  else if (currentOptimalPlay[Math.round(p.y/23)][Math.round(p.x/27)] == 1 + currentOptimalPlay[Math.round(p.y/23)+1][Math.round(p.x/27)]){
+  //set the next move to D
+  }
+  else if (currentOptimalPlay[Math.round(p.y/23)][Math.round(p.x/27)] == 1 + currentOptimalPlay[Math.round(p.y/23)][Math.round(p.x/27)-1]){
+  //set the next move to L
+  }
+  else{
+  //set the next move to R
+  }
+   x = (x + dx + width) % width;
+   y = (y + dy + height) % height;
   }
   
   Blinky(color c, int x, int y){
@@ -78,13 +95,13 @@ public class Blinky extends Ghost{
   void move(Board b){
     if(x % 40 > 19 && x % 40 < 21 && y % 40 > 19 && y % 40 < 21){
       if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
-        move(speed/9,0);
+        optimalMove(speed/9,0);
       }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
-        move(speed/-9,0);
+        optimalMove(speed/-9,0);
       }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
-        move(0,speed/(-9));
+        optimalMove(0,speed/(-9));
       }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
-        move(0,speed/9);
+        optimalMove(0,speed/9);
       }
     }else{
       move(dx,dy);
