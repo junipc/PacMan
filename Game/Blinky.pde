@@ -7,63 +7,83 @@ public class Blinky extends Ghost{
   float speed = 40/9; //40 must be divisible by it (just change the second number)
   int bx;
   int by;
+  int counter = 1;
+  int[][] currentOptimalPlay = new int[23][27];
   
   void setDir(float x, float y){
     dx = x;
     dy = y;
   }
+  int[][] moveHelper(int endX, int endY, int startX, int startY, int[][]movesToPacMan){
+   int j = startX;
+   int i = startY;
+    if (test.map[i][j] != 1 && !(i == endY && j == endX) && movesToPacMan[i][j] == 110105){
+      //basically not wall or alr travelled to (110105 appears in regular move(x_,y_))
+      if (test.map[i+1][j] != 1){
+        movesToPacMan[i+1][j] = counter;
+        counter++;
+        moveHelper(endX, endY, startX, startY+1, movesToPacMan);
+      }
+      if (test.map[i-1][j] != 1){
+        movesToPacMan[i-1][j] = counter;
+        counter++;
+        moveHelper(endX, endY, startX, startY-1, movesToPacMan);
+      }
+      if (test.map[i][j+1] != 1){
+        movesToPacMan[i][j+1] = counter;
+        counter++;
+        moveHelper(endX, endY, startX+1, startY, movesToPacMan);
+      }
+      if (test.map[i][j-1] != 1){
+         movesToPacMan[i][j-1] = counter;
+        counter++;
+        moveHelper(endX, endY, startX-1, startY, movesToPacMan);
+      }
+      //updatedNum[i][j] = newWays;
+      counter = 1; //?
+    }
+    else if (i == endY && j == endX){
+    }
+    else{
+      counter = 1;
+      //and reset path numbers?  or not necessary bcs we stop when we hit pacman, then move in direction of path#-1 each time
+      //ex if 20 moves to pac man, we move to square w 19 moves to pac man as that must be optimized
+    } 
+    return movesToPacMan;
+  }
   void move(float x_, float y_){ //update for blinky maze optimization
     setDir(x_,y_);
-    float endX = p.x;
-    float endY = p.y;
+    int endX = Math.round(p.x/27);
+    int endY = Math.round(p.y/23);
+    int startX = Math.round(x/27);
+    int startY = Math.round(y/23);
+    //int[] dx = {0,0,1,-1}; //r,l,d,u
+    //int[] dy = {1,-1,0,0};//r,l,d,u
+    int[][] movesToPacMan = new int[23][27];
+    currentOptimalPlay = moveHelper(endX, endY, startX, startY, movesToPacMan);
     //breadth first search probably best option
     //might be better to round floats of ghost and pacman location to int so that R,C
     //search is easier <3
-    
-    
-    //
-  //  private int solve(int row, int col){ //you can add more parameters since this is private
-  //  //automatic animation! You are welcome.
-  //  if (maze[row][col] == '#' || maze[row][col] == '@' || maze[row][col] == '.'){
-  //    return -1;
-  //  }
-  //  else if (maze[row][col] == 'E'){
-  //    return 0;
-  //  }
-  //  else{
-  //    maze[row][col] = '@';
-  //    if(animate){ // put in spots 1 and 2 yk (?)
-  //      gotoTop();
-  //      System.out.println(this);
-  //      wait(50);
-  //    }
-  //    int North = solve(row - 1, col);
-  //    if (North != -1){
-  //      return North + 1;
-  //    }
-  //    int South = solve (row + 1, col);
-  //    if (South != -1){
-  //      return South + 1;
-  //    }
-  //    int East = solve (row, col + 1);
-  //    if (East != -1){
-  //      return East + 1;
-  //    }
-  //    int West = solve (row, col - 1);
-  //    if (West != -1){
-  //      return West + 1;
-  //    }
-  //    maze[row][col] = '.';
-  //    if(animate){ // put in spots 1 and 2 yk (?)
-  //      gotoTop();
-  //      System.out.println(this);
-  //      wait(50);
-  //    }
-  //    return -1;
-  //  }
-  //}
-    x = (x + dx + width) % width;
-    y = (y + dy + height) % height;
+
+   
+  }
+  
+  void optimalMove(float x_, float y_){
+  move( x_, y_);
+  if (currentOptimalPlay[Math.round(p.y/23)][Math.round(p.x/27)] == 1 + currentOptimalPlay[Math.round(p.y/23)-1][Math.round(p.x/27)]){
+  //set the next move to U
+  }
+  else if (currentOptimalPlay[Math.round(p.y/23)][Math.round(p.x/27)] == 1 + currentOptimalPlay[Math.round(p.y/23)+1][Math.round(p.x/27)]){
+  //set the next move to D
+  }
+  else if (currentOptimalPlay[Math.round(p.y/23)][Math.round(p.x/27)] == 1 + currentOptimalPlay[Math.round(p.y/23)][Math.round(p.x/27)-1]){
+  //set the next move to L
+  }
+  else{
+  //set the next move to R
+  }
+   x = (x + dx + width) % width;
+   y = (y + dy + height) % height;
   }
   
   Blinky(color c, int x, int y){
@@ -73,15 +93,15 @@ public class Blinky extends Ghost{
   }
   
   void move(Board b){
-    if(x % 40 == 20 && y % 40 == 20){
+    if(x % 40 > 19 && x % 40 < 21 && y % 40 > 19 && y % 40 < 21){
       if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
-        move(speed,0);
+        optimalMove(speed/9,0);
       }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
-        move(speed*-1,0);
+        optimalMove(speed/-9,0);
       }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
-        move(0,speed*-1);
+        optimalMove(0,speed/(-9));
       }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
-        move(0,speed);
+        optimalMove(0,speed/9);
       }
     }else{
       move(dx,dy);

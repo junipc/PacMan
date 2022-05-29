@@ -62,5 +62,11 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - created constructor for Blinky using super() with additional vars
 - began breadth-first algorithm for optimized move()
 
+5/28:
+- Added ghost to the board (Blinky)
+- Added recursive moveHelper() for Blinky that does a breadth first search and also tells the direction Blinky should go
+- added optimalMove() which is similar to PacMan's move()
+- Blinky's move() now instead defines all necessary parameters for moveHelper so it doesn't interfere with the recursion
+
 ## Design Document:
 https://docs.google.com/document/d/1o4uHIYr6bDUU8YjrVuAWTHnPCBCr8zDS339r6GEzFfo/edit?usp=sharing

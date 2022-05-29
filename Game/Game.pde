@@ -5,6 +5,7 @@ ArrayList<Pellet> notEaten = new ArrayList<Pellet>();
 Keyboard keyIn = new Keyboard();
 PacMan p = new PacMan(color(250,250,0),220,220);
 ArrayList<PowerPellet> powerNotEaten = new ArrayList<PowerPellet>();
+Blinky b = new Blinky(color(250,0,0), 220, 700);
 
 void setup(){
   size(1080,920);
@@ -18,6 +19,7 @@ void draw(){
   textSize(12);
   fill(255);
   text("SCORE:" + test.score, 20, 20);
+  b.display();
   
 }
 
