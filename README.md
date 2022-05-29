@@ -33,7 +33,7 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 
 5/29:
 - PacMan now eats the pellets
-- 
+- speed overhaul: speed now can be any float value
 
 ### Maya
 5/23:
