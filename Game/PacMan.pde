@@ -40,6 +40,7 @@ public class PacMan{
   }
   void move(Board b){
     if(x % 40 > 19 && x % 40 < 21 && y % 40 > 19 && y % 40 < 21){
+      eat(b);
       if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
         move(speed/9,0);
       }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
@@ -61,7 +62,6 @@ public class PacMan{
     }else{
       bx = nextX;
       by = nextY;
-      eat(b);
       return true;
     }
   }
