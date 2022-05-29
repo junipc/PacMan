@@ -26,7 +26,14 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - PacMan collision with wall!
 
 5/27:
-- Fixed wall collision problems
+- fixed wall collision problems
+
+5/28:
+- no new commits
+
+5/29:
+- PacMan now eats the pellets
+- speed overhaul: speed now can be any float value
 
 ### Maya
 5/23:
