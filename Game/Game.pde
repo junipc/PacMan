@@ -14,6 +14,7 @@ int readyTime = 5000;
 int setUpTime;
 int counter = 5;
 int level = 1;
+boolean firstTime = false;
 
 void setup(){
   size(1080,920);
@@ -23,6 +24,10 @@ void setup(){
 
 void draw(){
   if (screen == 0){
+    if (firstTime == true){
+      setUpTime = millis();
+      firstTime = false;
+    }
     background(255);
     int passedTime = millis() - setUpTime;
     test.display();
@@ -90,7 +95,10 @@ void draw(){
     textSize(20);
     text("© 2022 Dot Hoggers", 340, 820);
     text("ALL RIGHTS RESERVED", 332, 880);
-    
+    fill(110,110,251);
+    rect(430, 300, 215, 60);
+    fill(250,0,0);
+    text("CLASSIC", 465, 340);
   }
   if (screen == 2){
     background(0);
@@ -123,5 +131,8 @@ void keyReleased() {
 
 
 void mouseClicked(){
-
+  if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 300 && mouseY < 300+60){
+    firstTime = true;
+    screen = 0;
+  }
 }
