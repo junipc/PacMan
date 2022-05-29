@@ -4,7 +4,7 @@ public class PacMan{
   float y;
   float dx = 1;
   float dy = 0;
-  float speed = 36 ; //15,18,20,24,30,36,40,45,60,72
+  float speed = 3 ; //15,18,20,24,30,36,40,45,60,72
   int bx;
   int by;
   boolean atCenter = true;
@@ -44,15 +44,25 @@ public class PacMan{
       eat(b);
       if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
         move(speed,0);
+        atCenter = false;
       }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
         move(speed*-1,0);
+        atCenter = false;
       }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
         move(0,speed*-1);
+        atCenter = false;
       }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
         move(0,speed);
+        atCenter = false;
       }
     }else{
-      move(dx,dy);
+      if(goesOver()){
+        x = bx * 40 + 20;
+        y = by * 40 + 20;
+        atCenter = true;
+      }else{
+        move(dx,dy);
+      }
     }
   }
   boolean goesOver(){
@@ -61,11 +71,11 @@ public class PacMan{
     if(dx > 0)
       return nextX >= bx * 40 + 20;
     else if(dy > 0)
-      return nextY >= bx * 40 + 20;
+      return nextY >= by * 40 + 20;
     else if(dx < 0)
       return nextX <= bx * 40 + 20;
     else if(dy < 0)
-      return nextY <= bx * 40 + 20;
+      return nextY <= by * 40 + 20;
     else
       return false;
   }
