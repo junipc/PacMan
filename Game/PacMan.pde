@@ -61,6 +61,7 @@ public class PacMan{
     }else{
       bx = nextX;
       by = nextY;
+      eat(b);
       return true;
     }
   }

@@ -15,6 +15,9 @@ void draw(){
   test.display();
   p.move(test);
   p.display();
+  textSize(12);
+  fill(255);
+  text("SCORE:" + test.score, 20, 20);
   
 }
 
