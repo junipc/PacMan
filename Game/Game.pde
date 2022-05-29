@@ -1,5 +1,5 @@
 String playerName;
-int screen = 2;
+int screen = 1;
 public Board test = new Board(0);
 ArrayList<Pellet> notEaten = new ArrayList<Pellet>();
 int startingPellets = 206; //208 if powerpellets switch back for demo
@@ -78,7 +78,19 @@ void draw(){
    }
   }
   if (screen == 1){
-   //start screen
+    background(0);
+    PFont font;
+    font = createFont("pac-font.ttf", 128);
+    textFont(font);
+    textSize(65);
+    fill(255,255,0);
+    text("pac-man", 360, 200); // BEATING + mode when survival mode exists
+    font = createFont("emulogic.ttf", 128);
+    textFont(font);
+    textSize(20);
+    text("© 2022 Dot Hoggers", 340, 820);
+    text("ALL RIGHTS RESERVED", 332, 880);
+    
   }
   if (screen == 2){
     background(0);
@@ -100,7 +112,7 @@ void draw(){
 void keyPressed() {
   keyIn.press(keyCode);
   if (screen == 2 && key == ' '){
-    screen = 0;
+    screen = 1;
     test.score = 0;
   }
 }

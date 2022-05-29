@@ -15,7 +15,7 @@ public class PacMan{
     y = y_;
     bx = (int)(x/40);
     by = (int)(y/40);
-    speed = 3 * level + 2.15;
+    speed = 2 * level + 2.15;
   }
   
   void display(){
