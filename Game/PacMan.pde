@@ -55,6 +55,20 @@ public class PacMan{
       move(dx,dy);
     }
   }
+  boolean goesOver(){
+    float nextX = x + dx;
+    float nextY = y + dy;
+    if(dx > 0)
+      return x >= bx * 40 + 20;
+    else if(dy > 0)
+      return y >= bx * 40 + 20;
+    else if(dx < 0)
+      return x <= bx * 40 + 20;
+    else if(dy < 0)
+      return y <= bx * 40 + 20;
+    else
+      return false;
+  }
   boolean canMove(Board b, int incX, int incY){
     int nextX = (bx + incX + b.map[0].length) % b.map[0].length;
     int nextY = (by + incY + b.map.length) % b.map.length;
