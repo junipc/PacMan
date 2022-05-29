@@ -71,7 +71,7 @@ void draw(){
         screen = 2;
       }
       else{
-        startingPellets = 206;
+        startingPellets = 206; //208 if powerPellets r removed for demo
         p = new PacMan(color(250,250,0),540,580);
         b1 = new Blinky(color(250,0,0), 460, 460);
         b2 = new Blinky(color(250,0,0), 500, 460);
