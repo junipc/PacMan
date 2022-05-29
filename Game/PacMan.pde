@@ -59,13 +59,13 @@ public class PacMan{
     float nextX = x + dx;
     float nextY = y + dy;
     if(dx > 0)
-      return x >= bx * 40 + 20;
+      return nextX >= bx * 40 + 20;
     else if(dy > 0)
-      return y >= bx * 40 + 20;
+      return nextY >= bx * 40 + 20;
     else if(dx < 0)
-      return x <= bx * 40 + 20;
+      return nextX <= bx * 40 + 20;
     else if(dy < 0)
-      return y <= bx * 40 + 20;
+      return nextY <= bx * 40 + 20;
     else
       return false;
   }
