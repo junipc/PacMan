@@ -4,7 +4,7 @@ public class PacMan{
   float y;
   float dx = 1;
   float dy = 0;
-  float speed = 72 ; //15,18,20,24,30,36,40,45,60,72
+  float speed = 36 ; //15,18,20,24,30,36,40,45,60,72
   int bx;
   int by;
   
@@ -40,6 +40,7 @@ public class PacMan{
   }
   void move(Board b){
     if(x % 40 > 19 && x % 40 < 21 && y % 40 > 19 && y % 40 < 21){
+      eat(b);
       if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
         move(speed/9,0);
       }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
@@ -62,6 +63,12 @@ public class PacMan{
       bx = nextX;
       by = nextY;
       return true;
+    }
+  }
+  void eat(Board b){
+    if(b.map[by][bx] == 0){
+      b.map[by][bx] = 2;
+      b.score += 50;
     }
   }
 }

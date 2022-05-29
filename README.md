@@ -28,6 +28,12 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 5/27:
 - Fixed wall collision problems
 
+5/28:
+- No new commits
+
+5/29:
+- PacMan now eats the pellets
+
 ### Maya
 5/23:
 - tested merge conflict with Juniper in class
