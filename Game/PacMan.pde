@@ -4,7 +4,7 @@ public class PacMan{
   float y;
   float dx = 1;
   float dy = 0;
-  float speed = 3 ; //15,18,20,24,30,36,40,45,60,72
+  float speed = 5.15; //any float <= 40.0, higher = choppier
   int bx;
   int by;
   boolean atCenter = true;
