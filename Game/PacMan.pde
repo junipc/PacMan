@@ -4,7 +4,7 @@ public class PacMan{
   float y;
   float dx = 1;
   float dy = 0;
-  float speed = 72 ; //15,18,20,24,30,36,40,45,60,72
+  float speed = 36 ; //15,18,20,24,30,36,40,45,60,72
   int bx;
   int by;
   
@@ -63,5 +63,8 @@ public class PacMan{
       by = nextY;
       return true;
     }
+  }
+  int eat(Board b){
+    
   }
 }
