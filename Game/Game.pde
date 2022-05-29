@@ -23,30 +23,25 @@ void draw(){
   //  p.move(test);
   //}
   test.display();
+  PFont font;
+  font = createFont("emulogic.ttf", 128);
+  textFont(font);
+  textSize(12);
+  fill(255,0,0);
   if (passedTime <= 1000) {
-    textSize(12);
-    fill(255);
-    text("READY! " + counter, 515, 585);  
+    text("READY! " + counter, 490, 585);  
   }
   else if (passedTime <= 2000) {
-    textSize(12);
-    fill(255);
-    text("READY! " + (counter-1), 515, 585);
+    text("READY! " + (counter-1), 490, 585);
   }
   else if (passedTime <= 3000) {
-    textSize(12);
-    fill(255);
-    text("READY! " + (counter-2), 515, 585);
+    text("READY! " + (counter-2), 490, 585);
   }
   else if (passedTime <= 4000) {
-    textSize(12);
-    fill(255);
-    text("READY! " + (counter-3), 515, 585);
+    text("READY! " + (counter-3), 490, 585);
   }
   else if (passedTime <= 5000) {
-    textSize(12);
-    fill(255);
-    text("READY! " + (counter-4), 515, 585);
+    text("READY! " + (counter-4), 490, 585);
   }
   else if (passedTime > readyTime) {
     passedTime = 6000;
