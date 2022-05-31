@@ -9,6 +9,10 @@ public class Blinky extends Ghost{
     dx = x;
     dy = y;
   }
+  void move(){
+    x = (x + dx + width) % width;
+    y = (y + dy + height) % height;
+  }
   int[][] moveHelper(int endX, int endY, int startX, int startY, int[][]movesToPacMan){
    int j = startX;
    int i = startY;
@@ -145,20 +149,49 @@ public class Blinky extends Ghost{
     frontier = new ArrayDeque();
   }
   
-  void move(Board b){
-    if(x % 40 > 19 && x % 40 < 21 && y % 40 > 19 && y % 40 < 21){
-      if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
-        optimalMove(speed/9,0);
-      }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
-        optimalMove(speed/-9,0);
-      }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
-        optimalMove(0,speed/(-9));
-      }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
-        optimalMove(0,speed/9);
+  void move(int dir){
+    if(atCenter){
+      if(dir == 0){
+        setDir(0,speed*-1);
+        move();
+        atCenter = false;
+      }else if(dir == 1){
+        setDir(speed,0);
+        move();
+        atCenter = false;
+      }else if(dir == 2){
+        setDir(0,speed);
+        move();
+        atCenter = false;
+      }else if(dir == 3){
+        setDir(speed*-1,0);
+        move();
+        atCenter = false;
       }
     }else{
-      move(dx,dy);
+      if(goesOver()){
+        x = bx * 40 + 20;
+        y = by * 40 + 20;
+        atCenter = true;
+      }else{
+        move();
+      }
     }
+  }
+  
+  boolean goesOver(){
+    float nextX = x + dx;
+    float nextY = y + dy;
+    if(dx > 0)
+      return nextX >= bx * 40 + 20;
+    else if(dy > 0)
+      return nextY >= by * 40 + 20;
+    else if(dx < 0)
+      return nextX <= bx * 40 + 20;
+    else if(dy < 0)
+      return nextY <= by * 40 + 20;
+    else
+      return false;
   }
   
   boolean canMove(Board b, int incX, int incY){
