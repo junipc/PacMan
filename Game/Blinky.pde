@@ -88,8 +88,8 @@ public class Blinky extends Ghost{
   
   boolean done(){
     ArrayDeque<int[]>tempQ = frontier.clone();
-    for(int i = 0; i < frontier.size(); i++){
-      
+    for(int i = 0; i < tempQ.size(); i++){
+       
     }
   }
   
