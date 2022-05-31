@@ -3,7 +3,6 @@ public class Blinky extends Ghost{
   int counter = 1;
   int[][] currentOptimalPlay = new int[23][27];
   ArrayDeque<Route>frontier;
-  int ticks;
   int[][] tempMap;
   
   void setDir(float x, float y){
@@ -133,7 +132,7 @@ public class Blinky extends Ghost{
     }
     return 0;
   }
-  void createTempMap(int[][]map){
+  void newStep(int[][]map){
     tempMap = new int[map.length][map[0].length];
     for(int i = 0; i < map.length; i++){
       for(int j = 0; j < map[0].length; j++){
@@ -143,6 +142,7 @@ public class Blinky extends Ghost{
         tempMap[i][j] = 0;
       }
     }
+    frontier = new ArrayDeque();
   }
   
   void move(Board b){
