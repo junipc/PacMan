@@ -100,5 +100,9 @@ public class PacMan{
       b.score += 50;
       startingPellets--;
     }
+    if(b.map[by][bx] == 3){
+       b.map[by][bx] = 2;
+        b.score += 100;
+    }
   }
 }
