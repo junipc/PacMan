@@ -1,14 +1,9 @@
+import java.util.*;
 public class Blinky extends Ghost{
-  color c;
-  float x;
-  float y;
-  float dx = 1;
-  float dy = 0;
-  float speed; //starts same speed as pacman, gets faster than him (dspeed/dlevel_ghosts > dspeed/dlevel_pac)?
-  int bx;
-  int by;
   int counter = 1;
   int[][] currentOptimalPlay = new int[23][27];
+  ArrayDeque<Route>frontier;
+  int[][] tempMap;
   
   //void release(){
   //  int setTime = millis();
@@ -22,6 +17,10 @@ public class Blinky extends Ghost{
   void setDir(float x, float y){
     dx = x;
     dy = y;
+  }
+  void move(){
+    x = (x + dx + width) % width;
+    y = (y + dy + height) % height;
   }
   int[][] moveHelper(int endX, int endY, int startX, int startY, int[][]movesToPacMan){
    int j = startX;
@@ -95,26 +94,135 @@ public class Blinky extends Ghost{
    y = (y + dy + height) % height;
   }
   
-  Blinky(color c, int x, int y){
-    super(c,x,y);
-    bx = (int)(x/40);
-    by = (int)(y/40);
+  Blinky(color c, int x, int y, float s){
+    super(c,x,y,s);
   }
   
-  void move(Board b){
-    if(x % 40 > 19 && x % 40 < 21 && y % 40 > 19 && y % 40 < 21){
-      if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
-        optimalMove(speed/9,0);
-      }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
-        optimalMove(speed/-9,0);
-      }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
-        optimalMove(0,speed/(-9));
-      }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
-        optimalMove(0,speed/9);
+  boolean done(PacMan p){
+    ArrayDeque<Route>tempQ = frontier.clone();
+    int qSize = tempQ.size();
+    for(int i = 0; i < qSize; i++){
+       Route r = tempQ.remove();
+       if(r.coords[0] == p.bx && r.coords[1] == p.by)
+       return true;
+    }
+    return false;
+  }
+  void tick(){
+    int qSize = frontier.size();
+    for(int i = 0; i < qSize; i++){
+      Route r = frontier.remove();
+      int cx = r.coords[0];
+      int cy = r.coords[1];
+      updateSide(cx,cy-1,0,r);
+      updateSide(cx+1,cy,1,r);
+      updateSide(cx,cy+1,2,r);
+      updateSide(cx-1,cy,3,r);
+      tempMap[cy][cx] = 1;
+    }
+  }
+  void updateSide(int cx, int cy, int dir, Route r){
+    if(cy < tempMap.length && cy >= 0 && cx < tempMap[0].length && cx >= 0 && tempMap[cy][cx] == 0){
+      tempMap[cy][cx] = 1;
+      ArrayList<Integer>nDirs = new ArrayList();
+      for(int i = 0 ; i < r.dirs.size(); i++){
+        nDirs.add(r.dirs.get(i));
+      }
+      nDirs.add(dir);
+      Route nr = new Route(nDirs,cx,cy);
+      frontier.add(nr);
+    }
+  }
+  int step(PacMan p1){
+    while(!(done(p1))){
+      tick();
+    }
+    int qSize = frontier.size();
+    for(int i = 0; i < qSize; i++){
+       Route r = frontier.remove();
+       if(r.coords[0] == p.bx && r.coords[1] == p.by){
+         try{
+           return r.dirs.get(0);
+         }catch(IndexOutOfBoundsException e){
+           b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
+         }
+       }
+    }
+    return 0;
+  }
+  void newStep(int[][]map){
+    tempMap = new int[map.length][map[0].length];
+    for(int i = 0; i < map.length; i++){
+      for(int j = 0; j < map[0].length; j++){
+        if(map[i][j] == 1)
+        tempMap[i][j] = 1;
+        else
+        tempMap[i][j] = 0;
+      }
+    }
+    frontier = new ArrayDeque();
+    start();
+  }
+  void start(){
+    tempMap[by][bx] = 1;
+    frontier.add(new Route(new ArrayList<Integer>(), bx, by));
+  }
+  
+  void move(PacMan p, Board b){
+    newStep(b.map);
+    move(b, step(p));
+  }
+  void move(Board b, int dir){
+    if(atCenter){
+      if(dir == 0){
+        setDir(0,speed*-1);
+        incB(b,0,-1);
+        move();
+        atCenter = false;
+      }else if(dir == 1){
+        setDir(speed,0);
+        incB(b,1,0);
+        move();
+        atCenter = false;
+      }else if(dir == 2){
+        setDir(0,speed);
+        incB(b,0,1);
+        move();
+        atCenter = false;
+      }else if(dir == 3){
+        setDir(speed*-1,0);
+        incB(b,-1,0);
+        move();
+        atCenter = false;
       }
     }else{
-      move(dx,dy);
+      if(goesOver()){
+        x = bx * 40 + 20;
+        y = by * 40 + 20;
+        atCenter = true;
+      }else{
+        move();
+      }
     }
+  }
+  void incB(Board b, int incX, int incY){
+    bx = (bx + incX + b.map[0].length) % b.map[0].length;
+    by = (by + incY + b.map.length) % b.map.length;
+  }
+  
+  boolean goesOver(){
+    float nextX = x + dx;
+    float nextY = y + dy;
+    if(dx > 0)
+      return nextX >= bx * 40 + 20;
+    else if(dy > 0)
+      return nextY >= by * 40 + 20;
+    else if(dx < 0)
+      return nextX <= bx * 40 + 20;
+    else if(dy < 0)
+      return nextY <= by * 40 + 20;
+    else
+      return false;
   }
   
   boolean canMove(Board b, int incX, int incY){
