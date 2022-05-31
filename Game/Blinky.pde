@@ -121,6 +121,17 @@ public class Blinky extends Ghost{
       frontier.add(nr);
     }
   }
+  int step(PacMan p){
+    while(!(done(p))){
+      tick();
+    }
+    int qSize = tempQ.size();
+    for(int i = 0; i < qSize; i++){
+       Route r = tempQ.remove();
+       if(r.coords[0] == p.bx && r.coords[1] == p.by)
+       return r.dirs.get(0);
+    }
+  }
   void createTempMap(int[][]map){
     tempMap = new int[map.length][map[0].length];
     for(int i = 0; i < map.length; i++){
