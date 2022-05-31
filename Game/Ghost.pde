@@ -7,13 +7,14 @@ public abstract class Ghost{
   float speed; //starts same speed as pacman, gets faster than him (dspeed/dlevel_ghosts > dspeed/dlevel_pac)?
   int bx;
   int by;
-  boolean atCenter;
-  Ghost(color c_, int x_, int y_){
+  boolean atCenter = true;
+  Ghost(color c_, int x_, int y_, float s){
     c = c_;
     x = x_;
     y = y_;
     bx = (int)(x/40);
     by = (int)(y/40);
+    speed = s;
   }
   abstract void move(float x_, float y_);
   void display(){

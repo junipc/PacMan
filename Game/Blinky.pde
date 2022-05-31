@@ -94,8 +94,8 @@ public class Blinky extends Ghost{
    y = (y + dy + height) % height;
   }
   
-  Blinky(color c, int x, int y){
-    super(c,x,y);
+  Blinky(color c, int x, int y, float s){
+    super(c,x,y,s);
   }
   
   boolean done(PacMan p){
@@ -156,8 +156,17 @@ public class Blinky extends Ghost{
       }
     }
     frontier = new ArrayDeque();
+    start();
+  }
+  void start(){
+    tempMap[by][bx] = 1;
+    frontier.add(new Route(new ArrayList<Integer>(), bx, by));
   }
   
+  void move(PacMan p, Board b){
+    newStep(b.map);
+    move(step(p));
+  }
   void move(int dir){
     if(atCenter){
       if(dir == 0){
