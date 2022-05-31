@@ -165,24 +165,28 @@ public class Blinky extends Ghost{
   
   void move(PacMan p, Board b){
     newStep(b.map);
-    move(step(p));
+    move(b, step(p));
   }
-  void move(int dir){
+  void move(Board b, int dir){
     if(atCenter){
       if(dir == 0){
         setDir(0,speed*-1);
+        incB(b,0,-1);
         move();
         atCenter = false;
       }else if(dir == 1){
         setDir(speed,0);
+        incB(b,1,0);
         move();
         atCenter = false;
       }else if(dir == 2){
         setDir(0,speed);
+        incB(b,0,1);
         move();
         atCenter = false;
       }else if(dir == 3){
         setDir(speed*-1,0);
+        incB(b,-1,0);
         move();
         atCenter = false;
       }
@@ -195,6 +199,10 @@ public class Blinky extends Ghost{
         move();
       }
     }
+  }
+  void incB(Board b, int incX, int incY){
+    bx = (bx + incX + b.map[0].length) % b.map[0].length;
+    by = (bx + incY + b.map.length) % b.map.length;
   }
   
   boolean goesOver(){
