@@ -69,5 +69,16 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - added optimalMove() which is similar to PacMan's move()
 - Blinky's move() now instead defines all necessary parameters for moveHelper so it doesn't interfere with the recursion
 
+5/29:
+- Added both PacMan fonts
+- created start and congratulation screens that lead to the appropriate screens with buttons/keys
+- created "Ready!" timer before each level
+- created levels and speed increments per levels (higher level = more challenging)
+
+5/30:
+- fixed bugs - score reset bug, level reset bug
+- made PacMan's speed lower per level
+- created release MVP timed animation
+
 ## Design Document:
 https://docs.google.com/document/d/1o4uHIYr6bDUU8YjrVuAWTHnPCBCr8zDS339r6GEzFfo/edit?usp=sharing

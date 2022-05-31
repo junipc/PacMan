@@ -15,7 +15,7 @@ public class PacMan{
     y = y_;
     bx = (int)(x/40);
     by = (int)(y/40);
-    speed = 2 * level + 2.15;
+    speed = 1.05 * (level/2.0) + 2.15;
   }
   
   void display(){
@@ -97,8 +97,12 @@ public class PacMan{
   void eat(Board b){
     if(b.map[by][bx] == 0){
       b.map[by][bx] = 2;
-      b.score += 50;
+      totalScore += 50;
       startingPellets--;
+    }
+    if(b.map[by][bx] == 3){
+       b.map[by][bx] = 2;
+        totalScore += 100;
     }
   }
 }

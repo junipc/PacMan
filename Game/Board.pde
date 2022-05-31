@@ -1,11 +1,11 @@
 import java.util.*;
 public class Board{
   int[][] map;
-  int score = 0; //do i need to make static or
+  //int score = 0; //do i need to make static or
   
   public Board(int mode){
     map = new int[23][27];
-    int[][] helperFourth = new int[][]{// 0 pellet; 1 wall; 2 place w/ no pellet; 3 powerpellet; 4 will be cherry added to map; not to 1/4th helper
+    int[][] helperFourth = new int[][]{// 0 pellet; 1 wall; 2 place w/ no pellet; 3 powerpellet; 4 cage exit (cool display later)
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1}, //this will be one fourth of the board to
     {1,0,0,0,0,0,0,0,0,0,0,0,0,1}, //copy by symmetry w/ for loops
     {1,0,1,1,1,0,0,1,1,1,1,0,0,1}, // then the center col/row will be added if odd row/c
@@ -44,7 +44,7 @@ public class Board{
     int sideLength = height/23; //shld be 40
     for (int i = 0; i < 23; i++){
       for (int j = 0; j < 27; j++){
-        if (map[i][j] == 0 || map[i][j] == 2 || map[i][j] == 3){
+        if (map[i][j] == 0 || map[i][j] == 2 || map[i][j] == 3 || map[i][j] == 4){
           fill(0,0,0);
           square(j*sideLength, i*sideLength, sideLength);
           if (map[i][j] == 0){ //pellet display

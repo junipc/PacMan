@@ -5,6 +5,15 @@ public class Blinky extends Ghost{
   ArrayDeque<Route>frontier;
   int[][] tempMap;
   
+  //void release(){
+  //  int setTime = millis();
+  //  while (setTime < 3000){
+  //    setTime += millis();
+  //  }
+    
+    
+  //}
+  
   void setDir(float x, float y){
     dx = x;
     dy = y;
