@@ -4,7 +4,7 @@ public class PacMan{
   float y;
   float dx = 1;
   float dy = 0;
-  float speed = 5.15; //any float <= 40.0, higher = choppier
+  float speed; //any float <= 40.0, higher = choppier
   int bx;
   int by;
   boolean atCenter = true;
@@ -15,6 +15,7 @@ public class PacMan{
     y = y_;
     bx = (int)(x/40);
     by = (int)(y/40);
+    speed = 2 * level + 2.15;
   }
   
   void display(){
@@ -97,6 +98,7 @@ public class PacMan{
     if(b.map[by][bx] == 0){
       b.map[by][bx] = 2;
       b.score += 50;
+      startingPellets--;
     }
   }
 }

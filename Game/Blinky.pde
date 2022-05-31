@@ -4,7 +4,7 @@ public class Blinky extends Ghost{
   float y;
   float dx = 1;
   float dy = 0;
-  float speed = 40/9; //40 must be divisible by it (just change the second number)
+  float speed; //starts same speed as pacman, gets faster than him (dspeed/dlevel_ghosts > dspeed/dlevel_pac)?
   int bx;
   int by;
   int counter = 1;
