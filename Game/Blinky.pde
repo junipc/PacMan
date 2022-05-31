@@ -115,6 +115,7 @@ public class Blinky extends Ghost{
       for(int i = 0 ; i < r.dirs.size(); i++){
         nDirs.add(r.dirs.get(i));
       }
+      nDirs.add(dir);
       Route nr = new Route(nDirs,cx,cy);
       frontier.add(nr);
   }
