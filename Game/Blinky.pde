@@ -2,7 +2,7 @@ import java.util.*;
 public class Blinky extends Ghost{
   int counter = 1;
   int[][] currentOptimalPlay = new int[23][27];
-  ArrayDeque<int[]>frontier;
+  ArrayDeque<Route>frontier;
   int ticks;
   int[][] tempMap;
   
@@ -86,11 +86,15 @@ public class Blinky extends Ghost{
     super(c,x,y);
   }
   
-  boolean done(){
-    ArrayDeque<int[]>tempQ = frontier.clone();
-    for(int i = 0; i < tempQ.size(); i++){
-       
+  boolean done(PacMan p){
+    ArrayDeque<Route>tempQ = frontier.clone();
+    int qSize = tempQ.size();
+    for(int i = 0; i < qSize; i++){
+       Route r = tempQ.remove();
+       if(r.coords[0] == p.bx && r.coords[1] == p.by)
+       return true;
     }
+    return false;
   }
   
   void move(Board b){
