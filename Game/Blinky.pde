@@ -1,12 +1,4 @@
 public class Blinky extends Ghost{
-  color c;
-  float x;
-  float y;
-  float dx = 1;
-  float dy = 0;
-  float speed; //starts same speed as pacman, gets faster than him (dspeed/dlevel_ghosts > dspeed/dlevel_pac)?
-  int bx;
-  int by;
   int counter = 1;
   int[][] currentOptimalPlay = new int[23][27];
   
@@ -88,8 +80,6 @@ public class Blinky extends Ghost{
   
   Blinky(color c, int x, int y){
     super(c,x,y);
-    bx = (int)(x/40);
-    by = (int)(y/40);
   }
   
   void move(Board b){

@@ -1,11 +1,18 @@
 public abstract class Ghost{
   color c;
-  int x;
-  int y;
+  float x;
+  float y;
+  float dx = 1;
+  float dy = 0;
+  float speed; //starts same speed as pacman, gets faster than him (dspeed/dlevel_ghosts > dspeed/dlevel_pac)?
+  int bx;
+  int by;
   Ghost(color c_, int x_, int y_){
     c = c_;
     x = x_;
     y = y_;
+    bx = (int)(x/40);
+    by = (int)(y/40);
   }
   abstract void move(float x_, float y_);
   void display(){
