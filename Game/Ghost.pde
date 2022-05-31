@@ -16,7 +16,66 @@ public abstract class Ghost{
     by = (int)(y/40);
     speed = s;
   }
-  abstract void move(float x_, float y_);
+  void setDir(float x, float y){
+    dx = x;
+    dy = y;
+  }
+  void move(){
+    x = (x + dx + width) % width;
+    y = (y + dy + height) % height;
+  }
+  void move(Board b, int dir){ //0 up, 1 right, 2 down, 3 left
+    if(atCenter){
+      if(dir == 0){
+        setDir(0,speed*-1);
+        incB(b,0,-1);
+        move();
+        atCenter = false;
+      }else if(dir == 1){
+        setDir(speed,0);
+        incB(b,1,0);
+        move();
+        atCenter = false;
+      }else if(dir == 2){
+        setDir(0,speed);
+        incB(b,0,1);
+        move();
+        atCenter = false;
+      }else if(dir == 3){
+        setDir(speed*-1,0);
+        incB(b,-1,0);
+        move();
+        atCenter = false;
+      }
+    }else{
+      if(goesOver()){
+        x = bx * 40 + 20;
+        y = by * 40 + 20;
+        atCenter = true;
+      }else{
+        move();
+      }
+    }
+  }
+  void incB(Board b, int incX, int incY){
+    bx = (bx + incX + b.map[0].length) % b.map[0].length;
+    by = (by + incY + b.map.length) % b.map.length;
+  }
+  
+  boolean goesOver(){
+    float nextX = x + dx;
+    float nextY = y + dy;
+    if(dx > 0)
+      return nextX >= bx * 40 + 20;
+    else if(dy > 0)
+      return nextY >= by * 40 + 20;
+    else if(dx < 0)
+      return nextX <= bx * 40 + 20;
+    else if(dy < 0)
+      return nextY <= by * 40 + 20;
+    else
+      return false;
+  }
   void display(){
     noStroke();
     fill(c);
