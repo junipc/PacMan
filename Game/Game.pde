@@ -11,7 +11,7 @@ int setUpTime;
 int counter = 5;
 int level = 1;
 PacMan p = new PacMan(color(250,250,0),540,580);
-Blinky b1 = new Blinky(color(250,0,0), 460, 460);
+Blinky b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
 //Blinky b2 = new Blinky(color(250,0,0), 500, 460);
 //Blinky b3 = new Blinky(color(250,0,0), 580, 460);
 //Blinky b4 = new Blinky(color(250,0,0), 620, 460);
@@ -56,15 +56,19 @@ void draw(){
       //passedTime = 6000;
       p.move(test);
     }
+    if (passedTime > readyTime + 3500) {
+      b1.move(p,test);
+      //b1.move(test,0);
+    }
     if (passedTime > 6000 && passedTime < 7000){
       test.map[9][13] = 4;
     }
     if (passedTime >= 7000 && passedTime < 8000){
       test.map[9][13] = 4;
-      b1 = new Blinky(color(250,0,0), 540, 340);
+      //b1 = new Blinky(color(250,0,0), 540, 340);
     }
     if (passedTime >= 8000 && passedTime <= 8500){
-      test.map[9][13] = 1;
+      //test.map[9][13] = 1;
     }
     p.display();
     textSize(12);
@@ -85,7 +89,7 @@ void draw(){
         level++;
         startingPellets = 206; //208 if powerPellets r removed for demo
         p = new PacMan(color(250,250,0),540,580);
-        b1 = new Blinky(color(250,0,0), 460, 460);
+        b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
         //b2 = new Blinky(color(250,0,0), 500, 460);
         //b3 = new Blinky(color(250,0,0), 580, 460);
         //b4 = new Blinky(color(250,0,0), 620, 460);

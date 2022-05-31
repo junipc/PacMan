@@ -86,7 +86,7 @@ public class PacMan{
   boolean canMove(Board b, int incX, int incY){
     int nextX = (bx + incX + b.map[0].length) % b.map[0].length;
     int nextY = (by + incY + b.map.length) % b.map.length;
-    if(b.map[nextY][nextX] == 1){
+    if(b.map[nextY][nextX] == 1 || b.map[nextY][nextX] == 4){
       return false;
     }else{
       bx = nextX;

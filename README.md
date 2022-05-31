@@ -35,6 +35,9 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - PacMan now eats the pellets
 - speed overhaul: speed now can be any float value
 
+5/30:
+- working Blinky movement! (shortest path to PacMan's current position)
+
 ### Maya
 5/23:
 - tested merge conflict with Juniper in class
