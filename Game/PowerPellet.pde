@@ -11,10 +11,11 @@ public class PowerPellet extends Pellet{
     }
   }
   
+  
   public void eaten(){
     //if pacman is on it:
     powerNotEaten.remove(0);
-    test.score += value * 5;
+    totalScore += value * 5;
     //PowerPellet mode !! <3
   }
 }

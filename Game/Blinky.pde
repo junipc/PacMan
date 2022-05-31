@@ -10,6 +10,15 @@ public class Blinky extends Ghost{
   int counter = 1;
   int[][] currentOptimalPlay = new int[23][27];
   
+  //void release(){
+  //  int setTime = millis();
+  //  while (setTime < 3000){
+  //    setTime += millis();
+  //  }
+    
+    
+  //}
+  
   void setDir(float x, float y){
     dx = x;
     dy = y;
