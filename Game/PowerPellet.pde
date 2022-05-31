@@ -11,6 +11,7 @@ public class PowerPellet extends Pellet{
     }
   }
   
+  
   public void eaten(){
     //if pacman is on it:
     powerNotEaten.remove(0);
