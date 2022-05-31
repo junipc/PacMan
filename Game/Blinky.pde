@@ -133,8 +133,8 @@ public class Blinky extends Ghost{
       frontier.add(nr);
     }
   }
-  int step(PacMan p){
-    while(!(done(p))){
+  int step(PacMan p1){
+    while(!(done(p1))){
       tick();
     }
     int qSize = frontier.size();
@@ -144,14 +144,7 @@ public class Blinky extends Ghost{
          try{
            return r.dirs.get(0);
          }catch(IndexOutOfBoundsException e){
-           screen = 0;
-           firstTime = true;
-           startingPellets = 206; //208 if powerPellets r removed for demo
-           p.x = 540;
-           p.y = 580;
            b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
-           setUpTime = millis();
-           test = new Board(0);
          }
        }
     }
