@@ -6,4 +6,8 @@ public class Route{
     dirs = d;
     coords = c;
   }
+  Route(ArrayList<Integer>d, int cx, int cy){
+    dirs = d;
+    coords = new int[]{cx,cy};
+  }
 }

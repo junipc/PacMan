@@ -102,7 +102,21 @@ public class Blinky extends Ghost{
       Route r = frontier.remove();
       int cx = r.coords[0];
       int cy = r.coords[1];
+      updateSide(cx,cy-1,0,r);
+      updateSide(cx+1,cy,1,r);
+      updateSide(cx,cy+1,2,r);
+      updateSide(cx-1,cy,3,r);
     }
+  }
+  void updateSide(int cx, int cy, int dir, Route r){
+    if(cy < tempMap.length && cy >= 0 && cx < tempMap[0].length && cx >= 0 && tempMap[cy][cx] == 0)
+      tempMap[cy][cx] = 1;
+      ArrayList<Integer>nDirs = new ArrayList();
+      for(int i = 0 ; i < r.dirs.size(); i++){
+        nDirs.add(r.dirs.get(i));
+      }
+      Route nr = new Route(nDirs,cx,cy);
+      frontier.add(nr);
   }
   
   void move(Board b){
