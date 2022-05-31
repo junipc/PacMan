@@ -96,6 +96,14 @@ public class Blinky extends Ghost{
     }
     return false;
   }
+  void tick(){
+    int qSize = frontier.size();
+    for(int i = 0; i < qSize; i++){
+      Route r = frontier.remove();
+      int cx = r.coords[0];
+      int cy = r.coords[1];
+    }
+  }
   
   void move(Board b){
     if(x % 40 > 19 && x % 40 < 21 && y % 40 > 19 && y % 40 < 21){
