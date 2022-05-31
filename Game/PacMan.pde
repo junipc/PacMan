@@ -97,12 +97,12 @@ public class PacMan{
   void eat(Board b){
     if(b.map[by][bx] == 0){
       b.map[by][bx] = 2;
-      b.score += 50;
+      totalScore += 50;
       startingPellets--;
     }
     if(b.map[by][bx] == 3){
        b.map[by][bx] = 2;
-        b.score += 100;
+        totalScore += 100;
     }
   }
 }
