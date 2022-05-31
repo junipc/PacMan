@@ -106,6 +106,7 @@ public class Blinky extends Ghost{
       updateSide(cx+1,cy,1,r);
       updateSide(cx,cy+1,2,r);
       updateSide(cx-1,cy,3,r);
+      tempMap[cy][cx] = 1;
     }
   }
   void updateSide(int cx, int cy, int dir, Route r){
@@ -118,6 +119,17 @@ public class Blinky extends Ghost{
       nDirs.add(dir);
       Route nr = new Route(nDirs,cx,cy);
       frontier.add(nr);
+    }
+  }
+  void createTempMap(int[][]map){
+    tempMap = new int[map.length][map[0].length];
+    for(int i = 0; i < map.length; i++){
+      for(int j = 0; j < map[0].length; j++){
+        if(map[i][j] == 1)
+        tempMap[i][j] = 1;
+        else
+        tempMap[i][j] = 0;
+      }
     }
   }
   
