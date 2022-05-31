@@ -1,6 +1,10 @@
+import java.util.*;
 public class Blinky extends Ghost{
   int counter = 1;
   int[][] currentOptimalPlay = new int[23][27];
+  ArrayDeque<int[]>frontier;
+  int ticks;
+  int[][] tempMap;
   
   void setDir(float x, float y){
     dx = x;
@@ -80,6 +84,13 @@ public class Blinky extends Ghost{
   
   Blinky(color c, int x, int y){
     super(c,x,y);
+  }
+  
+  boolean done(){
+    ArrayDeque<int[]>tempQ = frontier.clone();
+    for(int i = 0; i < frontier.size(); i++){
+      
+    }
   }
   
   void move(Board b){
