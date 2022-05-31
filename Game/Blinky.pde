@@ -140,8 +140,20 @@ public class Blinky extends Ghost{
     int qSize = frontier.size();
     for(int i = 0; i < qSize; i++){
        Route r = frontier.remove();
-       if(r.coords[0] == p.bx && r.coords[1] == p.by)
-       return r.dirs.get(0);
+       if(r.coords[0] == p.bx && r.coords[1] == p.by){
+         try{
+           return r.dirs.get(0);
+         }catch(IndexOutOfBoundsException e){
+           screen = 0;
+           firstTime = true;
+           startingPellets = 206; //208 if powerPellets r removed for demo
+           p.x = 540;
+           p.y = 580;
+           b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
+           setUpTime = millis();
+           test = new Board(0);
+         }
+       }
     }
     return 0;
   }
@@ -202,7 +214,7 @@ public class Blinky extends Ghost{
   }
   void incB(Board b, int incX, int incY){
     bx = (bx + incX + b.map[0].length) % b.map[0].length;
-    by = (bx + incY + b.map.length) % b.map.length;
+    by = (by + incY + b.map.length) % b.map.length;
   }
   
   boolean goesOver(){

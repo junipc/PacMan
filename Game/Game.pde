@@ -57,8 +57,8 @@ void draw(){
       p.move(test);
     }
     if (passedTime > readyTime + 3500) {
-      //b1.move(p,test);
-      b1.move(test,1);
+      b1.move(p,test);
+      //b1.move(test,0);
     }
     if (passedTime > 6000 && passedTime < 7000){
       test.map[9][13] = 4;
