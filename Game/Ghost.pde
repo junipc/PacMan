@@ -16,6 +16,9 @@ public abstract class Ghost{
     by = (int)(y/40);
     speed = s;
   }
+  
+  abstract void move(PacMan p, Board b);
+  
   void setDir(float x, float y){
     dx = x;
     dy = y;
