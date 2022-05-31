@@ -125,12 +125,13 @@ public class Blinky extends Ghost{
     while(!(done(p))){
       tick();
     }
-    int qSize = tempQ.size();
+    int qSize = frontier.size();
     for(int i = 0; i < qSize; i++){
-       Route r = tempQ.remove();
+       Route r = frontier.remove();
        if(r.coords[0] == p.bx && r.coords[1] == p.by)
        return r.dirs.get(0);
     }
+    return 0;
   }
   void createTempMap(int[][]map){
     tempMap = new int[map.length][map[0].length];
