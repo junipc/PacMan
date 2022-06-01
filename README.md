@@ -83,5 +83,9 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - made PacMan's speed lower per level
 - created release MVP timed animation
 
+5/31:
+- made Game Over screen that leads to the start screen with a key
+- note to use screen if ghost is over PacMan
+
 ## Design Document:
 https://docs.google.com/document/d/1o4uHIYr6bDUU8YjrVuAWTHnPCBCr8zDS339r6GEzFfo/edit?usp=sharing
