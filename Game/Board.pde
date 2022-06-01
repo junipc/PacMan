@@ -32,6 +32,7 @@ public class Board{
       map[2][25] = 3;
     }
     if (mode == 1){//survival rng
+      ArrayDeque<int[]>currentExpanding = new ArrayDeque<int[]>();
       int[][] tempMap = new int[23][27];
       for (int i = 0; i < 23; i++){
         for (int j = 0; j < 27; j++){
@@ -48,6 +49,38 @@ public class Board{
              map[i][j] = 2; //empty (at first)
            }
         }
+      }
+      map[11][13] = 1;
+      map[6][7] = 1;
+      map[6][19] = 1;
+      map[16][19] = 1;
+      map[16][7] = 1;
+      currentExpanding.addLast(new int[]{11, 13});
+      currentExpanding.addLast(new int[]{6, 7});
+      currentExpanding.addLast(new int[]{6, 19});
+      currentExpanding.addLast(new int[]{16, 19});
+      currentExpanding.addLast(new int[]{16, 7});
+      while (currentExpanding.size() > 0){
+        int[] currentXY = currentExpanding.getFirst();
+        //shldnt ever go out bcs boundary is walls so shld never get within 2 of walls
+        //2 above so no paths blocked; 1 above shldnt be bad bcs arraydeq only has edge ones
+        if (map[currentXY[0]][currentXY[1]+2] != 1 && map[currentXY[0]+1][currentXY[1]+2] != 1 && map[currentXY[0]-1][currentXY[1]+2] != 1){
+          map[currentXY[0]][currentXY[1]+1] = 1;
+          currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]+1});
+        } 
+        if (map[currentXY[0]+2][currentXY[1]] != 1 && map[currentXY[0]+2][currentXY[1]+1] != 1 && map[currentXY[0]+2][currentXY[1]-1] != 1){
+          map[currentXY[0]+1][currentXY[1]] = 1;
+          currentExpanding.addLast(new int[]{currentXY[0]+1, currentXY[1]});
+        } 
+        if (map[currentXY[0]][currentXY[1]-2] != 1 && map[currentXY[0]+1][currentXY[1]-2] != 1 && map[currentXY[0]-1][currentXY[1]-2] != 1){
+          map[currentXY[0]][currentXY[1]-1] = 1;
+          currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]-1});
+        } 
+        if (map[currentXY[0]-2][currentXY[1]] != 1 && map[currentXY[0]-2][currentXY[1]+1] != 1 && map[currentXY[0]-2][currentXY[1]-1] != 1){
+          map[currentXY[0]-1][currentXY[1]] = 1;
+          currentExpanding.addLast(new int[]{currentXY[0]-1, currentXY[1]});
+        } 
+        currentExpanding.removeFirst();
       }
     }
   }
