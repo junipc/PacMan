@@ -65,20 +65,28 @@ public class Board{
         //shldnt ever go out bcs boundary is walls so shld never get within 2 of walls
         //2 above so no paths blocked; 1 above shldnt be bad bcs arraydeq only has edge ones
         if (map[currentXY[0]][currentXY[1]+2] != 1 && map[currentXY[0]+1][currentXY[1]+2] != 1 && map[currentXY[0]-1][currentXY[1]+2] != 1){
-          map[currentXY[0]][currentXY[1]+1] = 1;
-          currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]+1});
+          if (Math.random() >.2){
+            map[currentXY[0]][currentXY[1]+1] = 1;
+            currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]+1});
+          }
         } 
         if (map[currentXY[0]+2][currentXY[1]] != 1 && map[currentXY[0]+2][currentXY[1]+1] != 1 && map[currentXY[0]+2][currentXY[1]-1] != 1){
-          map[currentXY[0]+1][currentXY[1]] = 1;
-          currentExpanding.addLast(new int[]{currentXY[0]+1, currentXY[1]});
+           if (Math.random() >.2){ 
+            map[currentXY[0]+1][currentXY[1]] = 1;
+            currentExpanding.addLast(new int[]{currentXY[0]+1, currentXY[1]});
+           }
         } 
         if (map[currentXY[0]][currentXY[1]-2] != 1 && map[currentXY[0]+1][currentXY[1]-2] != 1 && map[currentXY[0]-1][currentXY[1]-2] != 1){
-          map[currentXY[0]][currentXY[1]-1] = 1;
-          currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]-1});
+           if (Math.random() >.2){
+            map[currentXY[0]][currentXY[1]-1] = 1;
+            currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]-1});
+           }
         } 
         if (map[currentXY[0]-2][currentXY[1]] != 1 && map[currentXY[0]-2][currentXY[1]+1] != 1 && map[currentXY[0]-2][currentXY[1]-1] != 1){
-          map[currentXY[0]-1][currentXY[1]] = 1;
-          currentExpanding.addLast(new int[]{currentXY[0]-1, currentXY[1]});
+           if (Math.random() >.2){
+            map[currentXY[0]-1][currentXY[1]] = 1;
+            currentExpanding.addLast(new int[]{currentXY[0]-1, currentXY[1]});
+           }
         } 
         currentExpanding.removeFirst();
       }
