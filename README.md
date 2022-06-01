@@ -38,6 +38,9 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 5/30:
 - working Blinky movement! (shortest path to PacMan's current position)
 
+5/31:
+- placed ghost movement code in Ghost in preparation for other ghosts' algorithms
+
 ### Maya
 5/23:
 - tested merge conflict with Juniper in class
