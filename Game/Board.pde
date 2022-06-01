@@ -32,7 +32,14 @@ public class Board{
       map[2][25] = 3;
     }
     if (mode == 1){//survival rng
-    
+      for (int i = 0; i < 23; i++){
+        for (int j = 0; j < 27; j++){
+           if (i == 0 || i == 22 || j == 0 || j == 26){
+             map[i][j] = 1; //wall/border
+           }
+        
+        }
+      }
     }
   }
   
@@ -41,27 +48,31 @@ public class Board{
   }
   
   public void display(){
-    int sideLength = height/23; //shld be 40
-    for (int i = 0; i < 23; i++){
-      for (int j = 0; j < 27; j++){
-        if (map[i][j] == 0 || map[i][j] == 2 || map[i][j] == 3 || map[i][j] == 4){
-          fill(0,0,0);
-          square(j*sideLength, i*sideLength, sideLength);
-          if (map[i][j] == 0){ //pellet display
-            fill(249,216,203);
-            square(j*sideLength + sideLength/2.0 - 4, i*sideLength+ sideLength/2.0 - 4, 8);
+    int mode = 0; //just for now; in future, will be a parameter
+    if (mode == 0){
+      int sideLength = height/23; //shld be 40
+      for (int i = 0; i < 23; i++){
+        for (int j = 0; j < 27; j++){
+          if (map[i][j] == 0 || map[i][j] == 2 || map[i][j] == 3 || map[i][j] == 4){
+            fill(0,0,0);
+            square(j*sideLength, i*sideLength, sideLength);
+            if (map[i][j] == 0){ //pellet display
+              fill(249,216,203);
+              square(j*sideLength + sideLength/2.0 - 4, i*sideLength+ sideLength/2.0 - 4, 8);
+            }
+            if (map[i][j] == 3){ //pellet display
+              fill(255,255,0);
+              circle(j*sideLength + sideLength/2.0, i*sideLength+ sideLength/2.0, 25);
+            }
           }
-          if (map[i][j] == 3){ //pellet display
-            fill(255,255,0);
-            circle(j*sideLength + sideLength/2.0, i*sideLength+ sideLength/2.0, 25);
+          else if (map[i][j] == 1){
+            fill(33, 33, 222);
+            square(j*sideLength, i*sideLength, sideLength);
           }
-        }
-        else if (map[i][j] == 1){
-          fill(33, 33, 222);
-          square(j*sideLength, i*sideLength, sideLength);
         }
       }
     }
+    if (mode == 1){}
   }
   
   public void preset(){
