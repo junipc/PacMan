@@ -79,6 +79,11 @@ public abstract class Ghost{
     else
       return false;
   }
+  
+  void kill(PacMan p){
+    
+  }
+  
   void display(){
     noStroke();
     fill(c);

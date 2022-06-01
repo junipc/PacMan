@@ -8,6 +8,7 @@ public class PacMan{
   int bx;
   int by;
   boolean atCenter = true;
+  boolean alive = true;
   
   PacMan(color c_, int x_, int y_){ //x_ and y_ must be 40n+20
     c = c_;
@@ -21,14 +22,18 @@ public class PacMan{
   void display(){
     noStroke();
     fill(c);
-    if(dx > 0)
-    arc(x,y,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
-    if(dy > 0)
-    arc(x,y,33,33,QUARTER_PI+HALF_PI, 2*PI-QUARTER_PI+HALF_PI);
-    if(dx < 0)
-    arc(x,y,33,33,QUARTER_PI+PI, 2*PI-QUARTER_PI+PI);
-    if(dy < 0)
-    arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
+    if(alive){
+      if(dx > 0)
+      arc(x,y,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
+      if(dy > 0)
+      arc(x,y,33,33,QUARTER_PI+HALF_PI, 2*PI-QUARTER_PI+HALF_PI);
+      if(dx < 0)
+      arc(x,y,33,33,QUARTER_PI+PI, 2*PI-QUARTER_PI+PI);
+      if(dy < 0)
+      arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
+    }else{
+      
+    }
   }
   
   void setDir(float x, float y){
