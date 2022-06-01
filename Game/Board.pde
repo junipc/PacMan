@@ -32,12 +32,21 @@ public class Board{
       map[2][25] = 3;
     }
     if (mode == 1){//survival rng
+      int[][] tempMap = new int[23][27];
       for (int i = 0; i < 23; i++){
         for (int j = 0; j < 27; j++){
            if (i == 0 || i == 22 || j == 0 || j == 26){
+             tempMap[i][j] = 1;
              map[i][j] = 1; //wall/border
+             //do rng; start off with 5 or n islands randomly, build off of them by being like 50% chance smth becomes a wall
+             //if theres no wall in front of it or diagonally in front of it or smth; else, leave it as a path
+             //create a copy of the og map to ensure all squares change (or keep) states at the same time per run
+             //then run it like a lot then thats it
            }
-        
+           else{
+             tempMap[i][j] = 2;
+             map[i][j] = 2; //empty (at first)
+           }
         }
       }
     }
