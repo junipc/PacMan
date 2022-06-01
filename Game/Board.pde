@@ -32,7 +32,23 @@ public class Board{
       map[2][25] = 3;
     }
     if (mode == 1){//survival rng
-    
+      int[][] tempMap = new int[23][27];
+      for (int i = 0; i < 23; i++){
+        for (int j = 0; j < 27; j++){
+           if (i == 0 || i == 22 || j == 0 || j == 26){
+             tempMap[i][j] = 1;
+             map[i][j] = 1; //wall/border
+             //do rng; start off with 5 or n islands randomly, build off of them by being like 50% chance smth becomes a wall
+             //if theres no wall in front of it or diagonally in front of it or smth; else, leave it as a path
+             //create a copy of the og map to ensure all squares change (or keep) states at the same time per run
+             //then run it like a lot then thats it
+           }
+           else{
+             tempMap[i][j] = 2;
+             map[i][j] = 2; //empty (at first)
+           }
+        }
+      }
     }
   }
   
@@ -41,27 +57,31 @@ public class Board{
   }
   
   public void display(){
-    int sideLength = height/23; //shld be 40
-    for (int i = 0; i < 23; i++){
-      for (int j = 0; j < 27; j++){
-        if (map[i][j] == 0 || map[i][j] == 2 || map[i][j] == 3 || map[i][j] == 4){
-          fill(0,0,0);
-          square(j*sideLength, i*sideLength, sideLength);
-          if (map[i][j] == 0){ //pellet display
-            fill(249,216,203);
-            square(j*sideLength + sideLength/2.0 - 4, i*sideLength+ sideLength/2.0 - 4, 8);
+    int mode = 0; //just for now; in future, will be a parameter
+    if (mode == 0){
+      int sideLength = height/23; //shld be 40
+      for (int i = 0; i < 23; i++){
+        for (int j = 0; j < 27; j++){
+          if (map[i][j] == 0 || map[i][j] == 2 || map[i][j] == 3 || map[i][j] == 4){
+            fill(0,0,0);
+            square(j*sideLength, i*sideLength, sideLength);
+            if (map[i][j] == 0){ //pellet display
+              fill(249,216,203);
+              square(j*sideLength + sideLength/2.0 - 4, i*sideLength+ sideLength/2.0 - 4, 8);
+            }
+            if (map[i][j] == 3){ //pellet display
+              fill(255,255,0);
+              circle(j*sideLength + sideLength/2.0, i*sideLength+ sideLength/2.0, 25);
+            }
           }
-          if (map[i][j] == 3){ //pellet display
-            fill(255,255,0);
-            circle(j*sideLength + sideLength/2.0, i*sideLength+ sideLength/2.0, 25);
+          else if (map[i][j] == 1){
+            fill(33, 33, 222);
+            square(j*sideLength, i*sideLength, sideLength);
           }
-        }
-        else if (map[i][j] == 1){
-          fill(33, 33, 222);
-          square(j*sideLength, i*sideLength, sideLength);
         }
       }
     }
+    if (mode == 1){}
   }
   
   public void preset(){
