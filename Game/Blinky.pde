@@ -50,10 +50,12 @@ public class Blinky extends Ghost{
     for(int i = 0; i < qSize; i++){
        Route r = frontier.remove();
        if(r.coords[0] == p.bx && r.coords[1] == p.by){
-         try{ //instead, do animation then go to screen 3 (Game over screen)
+         if(r.dirs.size()==0){
+           kill(p1);
+           canMove = false;
+           return -1;
+         }else{
            return r.dirs.get(0);
-         }catch(IndexOutOfBoundsException e){
-           b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
          }
        }
     }
