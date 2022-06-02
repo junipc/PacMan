@@ -50,6 +50,9 @@ public class Board{
            }
         }
       }
+      
+      //map[int(Math.random()*19)+2][int(Math.random()*23)+2] = 1;
+      
       map[11][13] = 1; //we can add/remove/change centers of 'islands' if wanted 
       map[6][7] = 1;
       map[6][19] = 1;
@@ -59,6 +62,14 @@ public class Board{
       map[11][19] = 1;
       map[6][13] = 1;
       map[16][13] = 1;
+      
+      map[11][23] = 1; //we can add/remove/change centers of 'islands' if wanted 
+      map[6][23] = 1;
+      map[16][23] = 1;
+      map[6][3] = 1;
+      map[16][3] = 1;
+      map[11][3] = 1;
+      
       currentExpanding.addLast(new int[]{11, 13});//we can add/remove/change centers of 'islands' if wanted 
       currentExpanding.addLast(new int[]{6, 7});
       currentExpanding.addLast(new int[]{6, 19});
@@ -68,20 +79,35 @@ public class Board{
       currentExpanding.addLast(new int[]{11, 19});
       currentExpanding.addLast(new int[]{6, 13});
       currentExpanding.addLast(new int[]{16, 13});
+      
+      currentExpanding.addLast(new int[]{11, 23});
+      currentExpanding.addLast(new int[]{6, 23});
+      currentExpanding.addLast(new int[]{16, 23});
+      currentExpanding.addLast(new int[]{6, 3});
+      currentExpanding.addLast(new int[]{16, 3});
+      currentExpanding.addLast(new int[]{11, 3});
+      
       while (currentExpanding.size() > 0){
         int[] currentXY = currentExpanding.getFirst();
+        int counter = 0;
         //shldnt ever go out bcs boundary is walls so shld never get within 2 of walls
         //2 above so no paths blocked; 1 above shldnt be bad bcs arraydeq only has edge ones
         if (map[currentXY[0]][currentXY[1]+2] != 1 && map[currentXY[0]+1][currentXY[1]+2] != 1 && map[currentXY[0]-1][currentXY[1]+2] != 1){
-          if (Math.random() >.3){
+          if (Math.random() > .3){
             map[currentXY[0]][currentXY[1]+1] = 1;
             currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]+1});
           }
+          else{
+            counter++;
+           }
         } 
         if (map[currentXY[0]+2][currentXY[1]] != 1 && map[currentXY[0]+2][currentXY[1]+1] != 1 && map[currentXY[0]+2][currentXY[1]-1] != 1){
            if (Math.random() >.3){ 
             map[currentXY[0]+1][currentXY[1]] = 1;
             currentExpanding.addLast(new int[]{currentXY[0]+1, currentXY[1]});
+           }
+           else{
+            counter++;// currentExpanding.addLast(currentExpanding.getFirst());
            }
         } 
         if (map[currentXY[0]][currentXY[1]-2] != 1 && map[currentXY[0]+1][currentXY[1]-2] != 1 && map[currentXY[0]-1][currentXY[1]-2] != 1){
@@ -89,14 +115,24 @@ public class Board{
             map[currentXY[0]][currentXY[1]-1] = 1;
             currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]-1});
            }
+           else{
+            counter++;// currentExpanding.addLast(currentExpanding.getFirst());
+           }
         } 
         if (map[currentXY[0]-2][currentXY[1]] != 1 && map[currentXY[0]-2][currentXY[1]+1] != 1 && map[currentXY[0]-2][currentXY[1]-1] != 1){
            if (Math.random() >.3){
             map[currentXY[0]-1][currentXY[1]] = 1;
             currentExpanding.addLast(new int[]{currentXY[0]-1, currentXY[1]});
            }
+           else{
+            counter++;// currentExpanding.addLast(currentExpanding.getFirst());
+           }
         } 
+        if (counter != 4){
+          //currentExpanding.addLast(currentExpanding.getFirst());
+        }
         currentExpanding.removeFirst();
+        counter = 0;
       }
     }
   }
