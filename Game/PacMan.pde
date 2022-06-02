@@ -21,7 +21,7 @@ public class PacMan{
   }
   void die(){
     alive = false;
-    deathTimer = 60;
+    deathTimer = 75;
   }
   void display(){
     noStroke();
@@ -37,12 +37,14 @@ public class PacMan{
       arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
     }else{
       println(deathTimer);
-      if(deathTimer > 45)
+      if(deathTimer > 60)
       arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
-      else if(deathTimer > 30)
+      else if(deathTimer > 45)
       arc(x,y,33,33,0,PI);
-      else if(deathTimer > 15)
+      else if(deathTimer > 30)
       arc(x,y,33,33,QUARTER_PI,HALF_PI+QUARTER_PI);
+      else if(deathTimer > 15)
+      arc(x,y,33,33,HALF_PI-PI/8,HALF_PI+PI/8);
       if(deathTimer > 0)
       deathTimer --;
       else
