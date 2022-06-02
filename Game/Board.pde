@@ -50,40 +50,48 @@ public class Board{
            }
         }
       }
-      map[11][13] = 1;
+      map[11][13] = 1; //we can add/remove/change centers of 'islands' if wanted 
       map[6][7] = 1;
       map[6][19] = 1;
       map[16][19] = 1;
       map[16][7] = 1;
-      currentExpanding.addLast(new int[]{11, 13});
+      map[11][7] = 1;
+      map[11][19] = 1;
+      map[6][13] = 1;
+      map[16][13] = 1;
+      currentExpanding.addLast(new int[]{11, 13});//we can add/remove/change centers of 'islands' if wanted 
       currentExpanding.addLast(new int[]{6, 7});
       currentExpanding.addLast(new int[]{6, 19});
       currentExpanding.addLast(new int[]{16, 19});
       currentExpanding.addLast(new int[]{16, 7});
+      currentExpanding.addLast(new int[]{11, 7});
+      currentExpanding.addLast(new int[]{11, 19});
+      currentExpanding.addLast(new int[]{6, 13});
+      currentExpanding.addLast(new int[]{16, 13});
       while (currentExpanding.size() > 0){
         int[] currentXY = currentExpanding.getFirst();
         //shldnt ever go out bcs boundary is walls so shld never get within 2 of walls
         //2 above so no paths blocked; 1 above shldnt be bad bcs arraydeq only has edge ones
         if (map[currentXY[0]][currentXY[1]+2] != 1 && map[currentXY[0]+1][currentXY[1]+2] != 1 && map[currentXY[0]-1][currentXY[1]+2] != 1){
-          if (Math.random() >.2){
+          if (Math.random() >.3){
             map[currentXY[0]][currentXY[1]+1] = 1;
             currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]+1});
           }
         } 
         if (map[currentXY[0]+2][currentXY[1]] != 1 && map[currentXY[0]+2][currentXY[1]+1] != 1 && map[currentXY[0]+2][currentXY[1]-1] != 1){
-           if (Math.random() >.2){ 
+           if (Math.random() >.3){ 
             map[currentXY[0]+1][currentXY[1]] = 1;
             currentExpanding.addLast(new int[]{currentXY[0]+1, currentXY[1]});
            }
         } 
         if (map[currentXY[0]][currentXY[1]-2] != 1 && map[currentXY[0]+1][currentXY[1]-2] != 1 && map[currentXY[0]-1][currentXY[1]-2] != 1){
-           if (Math.random() >.2){
+           if (Math.random() >.3){
             map[currentXY[0]][currentXY[1]-1] = 1;
             currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]-1});
            }
         } 
         if (map[currentXY[0]-2][currentXY[1]] != 1 && map[currentXY[0]-2][currentXY[1]+1] != 1 && map[currentXY[0]-2][currentXY[1]-1] != 1){
-           if (Math.random() >.2){
+           if (Math.random() >.3){
             map[currentXY[0]-1][currentXY[1]] = 1;
             currentExpanding.addLast(new int[]{currentXY[0]-1, currentXY[1]});
            }
