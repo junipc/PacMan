@@ -8,6 +8,7 @@ public abstract class Ghost{
   int bx;
   int by;
   boolean atCenter = true;
+  boolean canMove = true;
   Ghost(color c_, int x_, int y_, float s){
     c = c_;
     x = x_;
@@ -28,35 +29,37 @@ public abstract class Ghost{
     y = (y + dy + height) % height;
   }
   void move(Board b, int dir){ //0 up, 1 right, 2 down, 3 left
-    if(atCenter){
-      if(dir == 0){
-        setDir(0,speed*-1);
-        incB(b,0,-1);
-        move();
-        atCenter = false;
-      }else if(dir == 1){
-        setDir(speed,0);
-        incB(b,1,0);
-        move();
-        atCenter = false;
-      }else if(dir == 2){
-        setDir(0,speed);
-        incB(b,0,1);
-        move();
-        atCenter = false;
-      }else if(dir == 3){
-        setDir(speed*-1,0);
-        incB(b,-1,0);
-        move();
-        atCenter = false;
-      }
-    }else{
-      if(goesOver()){
-        x = bx * 40 + 20;
-        y = by * 40 + 20;
-        atCenter = true;
+    if(canMove){
+      if(atCenter){
+        if(dir == 0){
+          setDir(0,speed*-1);
+          incB(b,0,-1);
+          move();
+          atCenter = false;
+        }else if(dir == 1){
+          setDir(speed,0);
+          incB(b,1,0);
+          move();
+          atCenter = false;
+        }else if(dir == 2){
+          setDir(0,speed);
+          incB(b,0,1);
+          move();
+          atCenter = false;
+        }else if(dir == 3){
+          setDir(speed*-1,0);
+          incB(b,-1,0);
+          move();
+          atCenter = false;
+        }
       }else{
-        move();
+        if(goesOver()){
+          x = bx * 40 + 20;
+          y = by * 40 + 20;
+          atCenter = true;
+        }else{
+          move();
+        }
       }
     }
   }
@@ -81,6 +84,7 @@ public abstract class Ghost{
   }
   
   void kill(PacMan p){
+    if(p.alive)
     p.die();
   }
   

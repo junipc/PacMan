@@ -51,8 +51,8 @@ public class Blinky extends Ghost{
        Route r = frontier.remove();
        if(r.coords[0] == p.bx && r.coords[1] == p.by){
          if(r.dirs.size()==0){
-           delay(1000);
-           screen = 3;
+           kill(p1);
+           canMove = false;
            return -1;
          }else{
            return r.dirs.get(0);

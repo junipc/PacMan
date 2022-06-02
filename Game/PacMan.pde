@@ -36,6 +36,7 @@ public class PacMan{
       if(dy < 0)
       arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
     }else{
+      println(deathTimer);
       if(deathTimer > 45)
       arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
       else if(deathTimer > 30)
@@ -44,6 +45,8 @@ public class PacMan{
       arc(x,y,33,33,QUARTER_PI,HALF_PI+QUARTER_PI);
       if(deathTimer > 0)
       deathTimer --;
+      else
+      screen = 3;
     }
   }
   
@@ -56,32 +59,34 @@ public class PacMan{
     y = (y + dy + height) % height;
   }
   void move(Board b){
-    if(atCenter){
-      eat(b);
-      if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
-        setDir(speed,0);
-        move();
-        atCenter = false;
-      }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
-        setDir(speed*-1,0);
-        move();
-        atCenter = false;
-      }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
-        setDir(0,speed*-1);
-        move();
-        atCenter = false;
-      }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
-        setDir(0,speed);
-        move();
-        atCenter = false;
-      }
-    }else{
-      if(goesOver()){
-        x = bx * 40 + 20;
-        y = by * 40 + 20;
-        atCenter = true;
+    if(alive){
+      if(atCenter){
+        eat(b);
+        if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
+          setDir(speed,0);
+          move();
+          atCenter = false;
+        }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
+          setDir(speed*-1,0);
+          move();
+          atCenter = false;
+        }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
+          setDir(0,speed*-1);
+          move();
+          atCenter = false;
+        }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
+          setDir(0,speed);
+          move();
+          atCenter = false;
+        }
       }else{
-        move();
+        if(goesOver()){
+          x = bx * 40 + 20;
+          y = by * 40 + 20;
+          atCenter = true;
+        }else{
+          move();
+        }
       }
     }
   }
