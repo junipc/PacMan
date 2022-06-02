@@ -39,7 +39,6 @@ public class PacMan{
       if(dy < 0)
         arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
     }else{
-      println(deathTimer);
       if(deathTimer > 60)
         arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
       else if(deathTimer > 45)
