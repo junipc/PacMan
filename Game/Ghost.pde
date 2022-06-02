@@ -81,7 +81,7 @@ public abstract class Ghost{
   }
   
   void kill(PacMan p){
-    
+    p.die();
   }
   
   void display(){

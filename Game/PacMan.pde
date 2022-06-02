@@ -9,6 +9,7 @@ public class PacMan{
   int by;
   boolean atCenter = true;
   boolean alive = true;
+  int deathTimer = 0;
   
   PacMan(color c_, int x_, int y_){ //x_ and y_ must be 40n+20
     c = c_;
@@ -20,6 +21,7 @@ public class PacMan{
   }
   void die(){
     alive = false;
+    deathTimer = 60;
   }
   void display(){
     noStroke();
@@ -33,6 +35,15 @@ public class PacMan{
       arc(x,y,33,33,QUARTER_PI+PI, 2*PI-QUARTER_PI+PI);
       if(dy < 0)
       arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
+    }else{
+      if(deathTimer > 45)
+      arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
+      else if(deathTimer > 30)
+      arc(x,y,33,33,0,PI);
+      else if(deathTimer > 15)
+      arc(x,y,33,33,QUARTER_PI,HALF_PI+QUARTER_PI);
+      if(deathTimer > 0)
+      deathTimer --;
     }
   }
   
