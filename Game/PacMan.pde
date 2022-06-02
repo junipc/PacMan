@@ -18,7 +18,9 @@ public class PacMan{
     by = (int)(y/40);
     speed = 1.05 * (level/2.0) + 2.15;
   }
-  
+  void die(){
+    alive = false;
+  }
   void display(){
     noStroke();
     fill(c);
@@ -31,8 +33,6 @@ public class PacMan{
       arc(x,y,33,33,QUARTER_PI+PI, 2*PI-QUARTER_PI+PI);
       if(dy < 0)
       arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
-    }else{
-      
     }
   }
   
