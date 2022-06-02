@@ -23,32 +23,38 @@ public class PacMan{
     alive = false;
     deathTimer = 75;
   }
+  void revive(){
+    alive = true;
+  }
   void display(){
     noStroke();
     fill(c);
     if(alive){
       if(dx > 0)
-      arc(x,y,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
+        arc(x,y,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
       if(dy > 0)
-      arc(x,y,33,33,QUARTER_PI+HALF_PI, 2*PI-QUARTER_PI+HALF_PI);
+        arc(x,y,33,33,QUARTER_PI+HALF_PI, 2*PI-QUARTER_PI+HALF_PI);
       if(dx < 0)
-      arc(x,y,33,33,QUARTER_PI+PI, 2*PI-QUARTER_PI+PI);
+        arc(x,y,33,33,QUARTER_PI+PI, 2*PI-QUARTER_PI+PI);
       if(dy < 0)
-      arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
+        arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
     }else{
       println(deathTimer);
       if(deathTimer > 60)
-      arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
+        arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
       else if(deathTimer > 45)
-      arc(x,y,33,33,0,PI);
+        arc(x,y,33,33,0,PI);
       else if(deathTimer > 30)
-      arc(x,y,33,33,QUARTER_PI,HALF_PI+QUARTER_PI);
+        arc(x,y,33,33,QUARTER_PI,HALF_PI+QUARTER_PI);
       else if(deathTimer > 15)
-      arc(x,y,33,33,HALF_PI-PI/8,HALF_PI+PI/8);
+        arc(x,y,33,33,HALF_PI-PI/8,HALF_PI+PI/8);
       if(deathTimer > 0)
-      deathTimer --;
-      else
-      screen = 3;
+        deathTimer --;
+      else if(deathTimer == 0){
+        deathTimer --;
+        revive();
+        screen = 3;
+      }
     }
   }
   
