@@ -107,7 +107,7 @@ void draw(){
       }
    }else if(p.deathTimer == 0){
      if(lives == 0){
-       level = 0;
+       level = 1;
        screen = 3;
      }else{
        lives --;
