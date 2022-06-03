@@ -78,6 +78,13 @@ void draw(){
     text("LEVEL:" + level, 900, 20);
     text("SP" + startingPellets, 500, 20);
     text("LIVES", 20, 900);
+    fill(250,250,0);
+    if(lives > 0)
+      arc(110,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
+    if(lives > 1)
+      arc(150,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
+    if(lives > 2)
+      arc(190,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
     b1.display();
     //b2.display();
     //b3.display();
