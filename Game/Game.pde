@@ -174,6 +174,7 @@ void keyPressed() {
   if ((screen == 2 || screen == 3) && key == ' '){
     screen = 1;
     totalScore = 0;
+    lives = 3;
   }
 }
 
