@@ -1,6 +1,6 @@
 String playerName;
 int screen = 1;
-public Board test = new Board(0);
+public Board test = new Board(1);
 int totalScore = 0;
 ArrayList<Pellet> notEaten = new ArrayList<Pellet>();
 int startingPellets = 206; //208 if powerpellets switch back for demo
@@ -107,7 +107,7 @@ void draw(){
       }
    }else if(p.deathTimer == 0){
      if(lives == 0){
-       level = 0;
+       level = 1;
        screen = 3;
      }else{
        lives --;
