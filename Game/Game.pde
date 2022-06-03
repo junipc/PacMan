@@ -16,6 +16,7 @@ Blinky b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
 //Blinky b3 = new Blinky(color(250,0,0), 580, 460);
 //Blinky b4 = new Blinky(color(250,0,0), 620, 460);
 boolean firstTime = false;
+int lives = 3;
 
 void setup(){
   size(1080,920);
@@ -76,6 +77,14 @@ void draw(){
     text("SCORE:" + totalScore, 20, 20);
     text("LEVEL:" + level, 900, 20);
     text("SP" + startingPellets, 500, 20);
+    text("LIVES", 20, 900);
+    fill(250,250,0);
+    if(lives > 0)
+      arc(110,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
+    if(lives > 1)
+      arc(150,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
+    if(lives > 2)
+      arc(190,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
     b1.display();
     //b2.display();
     //b3.display();
@@ -97,7 +106,12 @@ void draw(){
         test = new Board(0);
       }
    }else if(p.deathTimer == 0){
-     level = 0;
+     if(lives == 0){
+       level = 0;
+       screen = 3;
+     }else{
+       lives --;
+     }
      startingPellets = 206;
      p = new PacMan(color(250,250,0),540,580);
      b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
@@ -106,7 +120,6 @@ void draw(){
      //b4 = new Blinky(color(250,0,0), 620, 460);
      setUpTime = millis();
      test = new Board(0);
-     screen = 3;
    }
   }
   if (screen == 1){
@@ -161,6 +174,7 @@ void keyPressed() {
   if ((screen == 2 || screen == 3) && key == ' '){
     screen = 1;
     totalScore = 0;
+    lives = 3;
   }
 }
 
