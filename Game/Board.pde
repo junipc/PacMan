@@ -50,42 +50,52 @@ public class Board{
            }
         }
       }
+      int rand1R = (int)(Math.random()*19)+2;
+      int rand2R = (int)(Math.random()*19)+2;
+      int rand3R = (int)(Math.random()*19)+2;
+      int rand4R = (int)(Math.random()*19)+2;
+      int rand1C = (int)(Math.random()*23)+2;
+      int rand2C = (int)(Math.random()*23)+2;
+      int rand3C = (int)(Math.random()*23)+2;
+      int rand4C = (int)(Math.random()*23)+2;
+      int rand5C = (int)(Math.random()*23)+2;
+
+
+      //map[(int)(Math.random()*19)+2][(int)(Math.random()*23)+2] = 1;
       
-      //map[int(Math.random()*19)+2][int(Math.random()*23)+2] = 1;
+      //map[11][13] = 1; //we can add/remove/change centers of 'islands' if wanted 
+      //map[6][7] = 1;
+      //map[6][19] = 1;
+      //map[16][19] = 1;
+      //map[16][7] = 1;
+      //map[11][7] = 1;
+      //map[11][19] = 1;
+      //map[6][13] = 1;
+      //map[16][13] = 1;
       
-      map[11][13] = 1; //we can add/remove/change centers of 'islands' if wanted 
-      map[6][7] = 1;
-      map[6][19] = 1;
-      map[16][19] = 1;
-      map[16][7] = 1;
-      map[11][7] = 1;
-      map[11][19] = 1;
-      map[6][13] = 1;
-      map[16][13] = 1;
+      //map[11][23] = 1; //we can add/remove/change centers of 'islands' if wanted 
+      //map[6][23] = 1;
+      //map[16][23] = 1;
+      //map[6][3] = 1;
+      //map[16][3] = 1;
+      //map[11][3] = 1;
       
-      map[11][23] = 1; //we can add/remove/change centers of 'islands' if wanted 
-      map[6][23] = 1;
-      map[16][23] = 1;
-      map[6][3] = 1;
-      map[16][3] = 1;
-      map[11][3] = 1;
+      //currentExpanding.addLast(new int[]{11, 13});//we can add/remove/change centers of 'islands' if wanted 
+      //currentExpanding.addLast(new int[]{6, 7});
+      //currentExpanding.addLast(new int[]{6, 19});
+      //currentExpanding.addLast(new int[]{16, 19});
+      //currentExpanding.addLast(new int[]{16, 7});
+      //currentExpanding.addLast(new int[]{11, 7});
+      //currentExpanding.addLast(new int[]{11, 19});
+      //currentExpanding.addLast(new int[]{6, 13});
+      //currentExpanding.addLast(new int[]{16, 13});
       
-      currentExpanding.addLast(new int[]{11, 13});//we can add/remove/change centers of 'islands' if wanted 
-      currentExpanding.addLast(new int[]{6, 7});
-      currentExpanding.addLast(new int[]{6, 19});
-      currentExpanding.addLast(new int[]{16, 19});
-      currentExpanding.addLast(new int[]{16, 7});
-      currentExpanding.addLast(new int[]{11, 7});
-      currentExpanding.addLast(new int[]{11, 19});
-      currentExpanding.addLast(new int[]{6, 13});
-      currentExpanding.addLast(new int[]{16, 13});
-      
-      currentExpanding.addLast(new int[]{11, 23});
-      currentExpanding.addLast(new int[]{6, 23});
-      currentExpanding.addLast(new int[]{16, 23});
-      currentExpanding.addLast(new int[]{6, 3});
-      currentExpanding.addLast(new int[]{16, 3});
-      currentExpanding.addLast(new int[]{11, 3});
+      //currentExpanding.addLast(new int[]{11, 23});
+      //currentExpanding.addLast(new int[]{6, 23});
+      //currentExpanding.addLast(new int[]{16, 23});
+      //currentExpanding.addLast(new int[]{6, 3});
+      //currentExpanding.addLast(new int[]{16, 3});
+      //currentExpanding.addLast(new int[]{11, 3});
       
       while (currentExpanding.size() > 0){
         int[] currentXY = currentExpanding.getFirst();
