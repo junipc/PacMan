@@ -99,25 +99,18 @@ void draw(){
    }else if(p.deathTimer == 0){
      if(p.lives == 0){
        level = 0;
-       startingPellets = 206;
-       p = new PacMan(color(250,250,0),540,580);
-       b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
-       //b2 = new Blinky(color(250,0,0), 500, 460);
-       //b3 = new Blinky(color(250,0,0), 580, 460);
-       //b4 = new Blinky(color(250,0,0), 620, 460);
-       setUpTime = millis();
-       test = new Board(0);
        screen = 3;
      }else{
-       startingPellets = 206;
-       p = new PacMan(color(250,250,0),540,580);
-       b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
-       //b2 = new Blinky(color(250,0,0), 500, 460);
-       //b3 = new Blinky(color(250,0,0), 580, 460);
-       //b4 = new Blinky(color(250,0,0), 620, 460);
-       setUpTime = millis();
-       test = new Board(0);
+
      }
+     startingPellets = 206;
+     p = new PacMan(color(250,250,0),540,580);
+     b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
+     //b2 = new Blinky(color(250,0,0), 500, 460);
+     //b3 = new Blinky(color(250,0,0), 580, 460);
+     //b4 = new Blinky(color(250,0,0), 620, 460);
+     setUpTime = millis();
+     test = new Board(0);
    }
   }
   if (screen == 1){
