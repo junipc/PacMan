@@ -10,6 +10,7 @@ public class PacMan{
   boolean atCenter = true;
   boolean alive = true;
   int deathTimer = -1;
+  int lives = 3;
   
   PacMan(color c_, int x_, int y_){ //x_ and y_ must be 40n+20
     c = c_;
@@ -49,9 +50,6 @@ public class PacMan{
         arc(x,y,33,33,HALF_PI-PI/8,HALF_PI+PI/8);
       if(deathTimer > 0)
         deathTimer --;
-      else if(deathTimer == 0){
-        screen = 3;
-      }
     }
   }
   
