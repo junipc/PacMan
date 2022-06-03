@@ -26,20 +26,22 @@ public class PacMan{
   void revive(){
     alive = true;
   }
+  float waka(){
+    return PI*sin(frameCount/3)/6;
+  }
   void display(){
     noStroke();
     fill(c);
     if(alive){
       if(dx > 0)
-        arc(x,y,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
+        arc(x,y,33,33,QUARTER_PI+waka(), 2*PI-QUARTER_PI-waka());
       if(dy > 0)
-        arc(x,y,33,33,QUARTER_PI+HALF_PI, 2*PI-QUARTER_PI+HALF_PI);
+        arc(x,y,33,33,QUARTER_PI+HALF_PI+waka(), 2*PI-QUARTER_PI+HALF_PI-waka());
       if(dx < 0)
-        arc(x,y,33,33,QUARTER_PI+PI, 2*PI-QUARTER_PI+PI);
+        arc(x,y,33,33,QUARTER_PI+PI+waka(), 2*PI-QUARTER_PI+PI-waka());
       if(dy < 0)
-        arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
+        arc(x,y,33,33,QUARTER_PI+HALF_PI+PI+waka(), 2*PI-QUARTER_PI+HALF_PI+PI-waka());
     }else{
-      println(deathTimer);
       if(deathTimer > 60)
         arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
       else if(deathTimer > 45)
@@ -50,9 +52,6 @@ public class PacMan{
         arc(x,y,33,33,HALF_PI-PI/8,HALF_PI+PI/8);
       if(deathTimer > 0)
         deathTimer --;
-      else if(deathTimer == 0){
-        screen = 3;
-      }
     }
   }
   
