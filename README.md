@@ -98,5 +98,9 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - made Game Over screen that leads to the start screen with a key
 - note to use screen if ghost is over PacMan
 
+6/1:
+- Worked on survival mode board generation
+- rng board gen works, mode as input; can change number of 'islands' and where if wanted
+
 ## Design Document:
 https://docs.google.com/document/d/1o4uHIYr6bDUU8YjrVuAWTHnPCBCr8zDS339r6GEzFfo/edit?usp=sharing
