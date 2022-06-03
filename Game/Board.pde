@@ -59,7 +59,46 @@ public class Board{
       int rand3C = (int)(Math.random()*23)+2;
       int rand4C = (int)(Math.random()*23)+2;
       int rand5C = (int)(Math.random()*23)+2;
-
+      map[rand1R][rand1C] = 1;
+      map[rand1R][rand2C] = 1;
+      map[rand1R][rand3C] = 1;
+      map[rand1R][rand4C] = 1;
+      map[rand1R][rand5C] = 1;
+      map[rand2R][rand1C] = 1;
+      map[rand2R][rand2C] = 1;
+      map[rand2R][rand3C] = 1;
+      map[rand2R][rand4C] = 1;
+      map[rand2R][rand5C] = 1;
+      map[rand3R][rand1C] = 1;
+      map[rand3R][rand2C] = 1;
+      map[rand3R][rand3C] = 1;
+      map[rand3R][rand4C] = 1;
+      map[rand3R][rand5C] = 1;
+      map[rand4R][rand1C] = 1;
+      map[rand4R][rand2C] = 1;
+      map[rand4R][rand3C] = 1;
+      map[rand4R][rand4C] = 1;
+      map[rand4R][rand5C] = 1;
+      currentExpanding.addLast(new int[]{rand1R, rand1C});
+      currentExpanding.addLast(new int[]{rand1R, rand2C});
+      currentExpanding.addLast(new int[]{rand1R, rand3C});
+      currentExpanding.addLast(new int[]{rand1R, rand4C});
+      currentExpanding.addLast(new int[]{rand1R, rand5C});
+      currentExpanding.addLast(new int[]{rand2R, rand1C});
+      currentExpanding.addLast(new int[]{rand2R, rand2C});
+      currentExpanding.addLast(new int[]{rand2R, rand3C});
+      currentExpanding.addLast(new int[]{rand2R, rand4C});
+      currentExpanding.addLast(new int[]{rand2R, rand5C});
+      currentExpanding.addLast(new int[]{rand3R, rand1C});
+      currentExpanding.addLast(new int[]{rand3R, rand2C});
+      currentExpanding.addLast(new int[]{rand3R, rand3C});
+      currentExpanding.addLast(new int[]{rand3R, rand4C});
+      currentExpanding.addLast(new int[]{rand3R, rand5C});
+      currentExpanding.addLast(new int[]{rand4R, rand1C});
+      currentExpanding.addLast(new int[]{rand4R, rand2C});
+      currentExpanding.addLast(new int[]{rand4R, rand3C});
+      currentExpanding.addLast(new int[]{rand4R, rand4C});
+      currentExpanding.addLast(new int[]{rand4R, rand5C});
 
       //map[(int)(Math.random()*19)+2][(int)(Math.random()*23)+2] = 1;
       
@@ -140,6 +179,9 @@ public class Board{
         } 
         if (counter != 4){
           //currentExpanding.addLast(currentExpanding.getFirst());
+        }
+        if (Math.random() > .7){
+          currentExpanding.addLast(currentExpanding.getFirst());
         }
         currentExpanding.removeFirst();
         counter = 0;
