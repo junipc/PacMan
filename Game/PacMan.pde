@@ -83,24 +83,29 @@ public class PacMan{
           setDir(speed,0);
           move();
           atCenter = false;
+          chomp = true;
         }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
           setDir(speed*-1,0);
           move();
           atCenter = false;
+          chomp = true;
         }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
           setDir(0,speed*-1);
           move();
           atCenter = false;
+          chomp = true;
         }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
           setDir(0,speed);
           move();
           atCenter = false;
+          chomp = true;
         }
       }else{
         if(goesOver()){
           x = bx * 40 + 20;
           y = by * 40 + 20;
           atCenter = true;
+          chomp = false;
         }else{
           move();
         }
