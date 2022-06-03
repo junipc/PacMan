@@ -9,6 +9,7 @@ public class PacMan{
   int by;
   boolean atCenter = true;
   boolean alive = true;
+  boolean chomp = false;
   int deathTimer = -1;
   
   PacMan(color c_, int x_, int y_){ //x_ and y_ must be 40n+20
@@ -33,15 +34,26 @@ public class PacMan{
     noStroke();
     fill(c);
     if(alive){
-      if(dx > 0)
-        arc(x,y,33,33,QUARTER_PI+waka(), 2*PI-QUARTER_PI-waka());
-      if(dy > 0)
-        arc(x,y,33,33,QUARTER_PI+HALF_PI+waka(), 2*PI-QUARTER_PI+HALF_PI-waka());
-      if(dx < 0)
-        arc(x,y,33,33,QUARTER_PI+PI+waka(), 2*PI-QUARTER_PI+PI-waka());
-      if(dy < 0)
-        arc(x,y,33,33,QUARTER_PI+HALF_PI+PI+waka(), 2*PI-QUARTER_PI+HALF_PI+PI-waka());
-    }else{
+      if(chomp){
+        if(dx > 0)
+          arc(x,y,33,33,QUARTER_PI+waka(), 2*PI-QUARTER_PI-waka());
+        if(dy > 0)
+          arc(x,y,33,33,QUARTER_PI+HALF_PI+waka(), 2*PI-QUARTER_PI+HALF_PI-waka());
+        if(dx < 0)
+          arc(x,y,33,33,QUARTER_PI+PI+waka(), 2*PI-QUARTER_PI+PI-waka());
+        if(dy < 0)
+          arc(x,y,33,33,QUARTER_PI+HALF_PI+PI+waka(), 2*PI-QUARTER_PI+HALF_PI+PI-waka());
+      }else{
+        if(dx > 0)
+          arc(x,y,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
+        if(dy > 0)
+          arc(x,y,33,33,QUARTER_PI+HALF_PI, 2*PI-QUARTER_PI+HALF_PI);
+        if(dx < 0)
+          arc(x,y,33,33,QUARTER_PI+PI, 2*PI-QUARTER_PI+PI);
+        if(dy < 0)
+          arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
+      }
+  }else{
       if(deathTimer > 60)
         arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
       else if(deathTimer > 45)
