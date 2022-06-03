@@ -31,7 +31,7 @@ public class PacMan{
     fill(c);
     if(alive){
       if(dx > 0)
-        arc(x,y,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
+        arc(x,y,33,33,QUARTER_PI+(PI*sin(frameCount/3)/6), 2*PI-QUARTER_PI-(PI*sin(frameCount/3)/6));
       if(dy > 0)
         arc(x,y,33,33,QUARTER_PI+HALF_PI, 2*PI-QUARTER_PI+HALF_PI);
       if(dx < 0)
