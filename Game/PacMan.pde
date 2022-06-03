@@ -10,7 +10,6 @@ public class PacMan{
   boolean atCenter = true;
   boolean alive = true;
   int deathTimer = -1;
-  int lives = 3;
   
   PacMan(color c_, int x_, int y_){ //x_ and y_ must be 40n+20
     c = c_;
