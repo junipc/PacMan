@@ -8,6 +8,8 @@ public class PacMan{
   int bx;
   int by;
   boolean atCenter = true;
+  boolean alive = true;
+  int deathTimer = -1;
   
   PacMan(color c_, int x_, int y_){ //x_ and y_ must be 40n+20
     c = c_;
@@ -17,18 +19,40 @@ public class PacMan{
     by = (int)(y/40);
     speed = 1.05 * (level/2.0) + 2.15;
   }
-  
+  void die(){
+    alive = false;
+    deathTimer = 75;
+  }
+  void revive(){
+    alive = true;
+  }
+  float waka(){
+    return PI*sin(frameCount/3)/6;
+  }
   void display(){
     noStroke();
     fill(c);
-    if(dx > 0)
-    arc(x,y,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
-    if(dy > 0)
-    arc(x,y,33,33,QUARTER_PI+HALF_PI, 2*PI-QUARTER_PI+HALF_PI);
-    if(dx < 0)
-    arc(x,y,33,33,QUARTER_PI+PI, 2*PI-QUARTER_PI+PI);
-    if(dy < 0)
-    arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
+    if(alive){
+      if(dx > 0)
+        arc(x,y,33,33,QUARTER_PI+waka(), 2*PI-QUARTER_PI-waka());
+      if(dy > 0)
+        arc(x,y,33,33,QUARTER_PI+HALF_PI+waka(), 2*PI-QUARTER_PI+HALF_PI-waka());
+      if(dx < 0)
+        arc(x,y,33,33,QUARTER_PI+PI+waka(), 2*PI-QUARTER_PI+PI-waka());
+      if(dy < 0)
+        arc(x,y,33,33,QUARTER_PI+HALF_PI+PI+waka(), 2*PI-QUARTER_PI+HALF_PI+PI-waka());
+    }else{
+      if(deathTimer > 60)
+        arc(x,y,33,33,QUARTER_PI+HALF_PI+PI, 2*PI-QUARTER_PI+HALF_PI+PI);
+      else if(deathTimer > 45)
+        arc(x,y,33,33,0,PI);
+      else if(deathTimer > 30)
+        arc(x,y,33,33,QUARTER_PI,HALF_PI+QUARTER_PI);
+      else if(deathTimer > 15)
+        arc(x,y,33,33,HALF_PI-PI/8,HALF_PI+PI/8);
+      if(deathTimer > 0)
+        deathTimer --;
+    }
   }
   
   void setDir(float x, float y){
@@ -40,32 +64,34 @@ public class PacMan{
     y = (y + dy + height) % height;
   }
   void move(Board b){
-    if(atCenter){
-      eat(b);
-      if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
-        setDir(speed,0);
-        move();
-        atCenter = false;
-      }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
-        setDir(speed*-1,0);
-        move();
-        atCenter = false;
-      }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
-        setDir(0,speed*-1);
-        move();
-        atCenter = false;
-      }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
-        setDir(0,speed);
-        move();
-        atCenter = false;
-      }
-    }else{
-      if(goesOver()){
-        x = bx * 40 + 20;
-        y = by * 40 + 20;
-        atCenter = true;
+    if(alive){
+      if(atCenter){
+        eat(b);
+        if(keyIn.isPressed(Keyboard.K_RT) && canMove(b,1,0)){
+          setDir(speed,0);
+          move();
+          atCenter = false;
+        }else if(keyIn.isPressed(Keyboard.K_LT) && canMove(b,-1,0)){
+          setDir(speed*-1,0);
+          move();
+          atCenter = false;
+        }else if(keyIn.isPressed(Keyboard.K_UP) && canMove(b,0,-1)){
+          setDir(0,speed*-1);
+          move();
+          atCenter = false;
+        }else if(keyIn.isPressed(Keyboard.K_DN) && canMove(b,0,1)){
+          setDir(0,speed);
+          move();
+          atCenter = false;
+        }
       }else{
-        move();
+        if(goesOver()){
+          x = bx * 40 + 20;
+          y = by * 40 + 20;
+          atCenter = true;
+        }else{
+          move();
+        }
       }
     }
   }

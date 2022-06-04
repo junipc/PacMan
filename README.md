@@ -41,6 +41,14 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 5/31:
 - placed ghost movement code in Ghost in preparation for other ghosts' algorithms
 
+6/1:
+- PacMan death animation
+- PacMan and Ghost now properly resets upon a new game after Game Over.
+
+6/2:
+- lives for PacMan
+- PacMan passive animation (waka waka waka waka)
+
 ### Maya
 5/23:
 - tested merge conflict with Juniper in class
