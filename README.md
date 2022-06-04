@@ -49,6 +49,9 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - lives for PacMan
 - PacMan passive animation (waka waka waka waka)
 
+6/3:
+- PacMan now only moves its mouth when he is moving
+
 ### Maya
 5/23:
 - tested merge conflict with Juniper in class
