@@ -121,6 +121,9 @@ void draw(){
      setUpTime = millis();
      test = new Board(0);
    }
+   Portal tester = new Portal(4,4,8,8);
+   tester.displayp1();
+   tester.displayp2();
   }
   if (screen == 1){
     background(0);
