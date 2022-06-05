@@ -87,6 +87,23 @@ public abstract class Ghost{
       return false;
   }
   
+  int countTurns(Board b){
+    int turns = 0;
+    int cx = (bx + 1 + b.map[0].length) % b.map[0].length;
+    if(b.map[by][cx] != 1 || b.map[by][cx] != 4)
+      turns ++;
+    cx = (bx - 1 + b.map[0].length) % b.map[0].length;
+    if(b.map[by][cx] != 1 || b.map[by][cx] != 4)
+      turns ++;
+    int cy = (by + 1 + b.map.length) % b.map.length;
+    if(b.map[cy][bx] != 1 || b.map[cy][bx] != 4)
+      turns ++;
+    cy = (by - 1 + b.map.length) % b.map.length;
+    if(b.map[cy][bx] != 1 || b.map[cy][bx] != 4)
+      turns ++;
+    return turns;
+  }
+  
   void kill(PacMan p){
     if(p.alive)
     p.die();
