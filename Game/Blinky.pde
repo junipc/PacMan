@@ -8,6 +8,7 @@ public class Blinky extends Ghost{
   void move(PacMan p, Board b){
     ArrayList<int[]>turns = countTurns(b);
     int[]turn = closestTurn(turns, p.bx, p.by);
+    move(b,turn[2],turn[3]);
   }
   
 }

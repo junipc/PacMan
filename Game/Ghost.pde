@@ -121,16 +121,16 @@ public abstract class Ghost{
     int pby = (by - dby + b.map.length) % b.map.length;
     
     int cx = (bx + 1 + b.map[0].length) % b.map[0].length;
-    if((b.map[by][cx] != 1 || b.map[by][cx] != 4) && pbx != cx)
+    if((b.map[by][cx] != 1 && b.map[by][cx] != 4) && pbx != cx)
       turns.add(new int[]{cx,by,1,0});
     cx = (bx - 1 + b.map[0].length) % b.map[0].length;
-    if((b.map[by][cx] != 1 || b.map[by][cx] != 4) && pbx != cx)
+    if((b.map[by][cx] != 1 && b.map[by][cx] != 4) && pbx != cx)
       turns.add(new int[]{cx,by,-1,0});
     int cy = (by + 1 + b.map.length) % b.map.length;
-    if((b.map[cy][bx] != 1 || b.map[cy][bx] != 4) && pby != cy)
+    if((b.map[cy][bx] != 1 && b.map[cy][bx] != 4) && pby != cy)
       turns.add(new int[]{bx,cy,0,1});
     cy = (by - 1 + b.map.length) % b.map.length;
-    if((b.map[cy][bx] != 1 || b.map[cy][bx] != 4) && pby != cy)
+    if((b.map[cy][bx] != 1 && b.map[cy][bx] != 4) && pby != cy)
       turns.add(new int[]{bx,cy,0,-1});
     
     if(turns.size() == 0)
