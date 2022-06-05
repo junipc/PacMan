@@ -102,7 +102,7 @@ void draw(){
       else{
         level++;
         startingPellets = 206; //208 if powerPellets r removed for demo
-        p = new PacMan(color(250,250,0),540,580);
+        p = new PacMan(pacManCustom[pcustomIndex],540,580);
         b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
         //b2 = new Blinky(color(250,0,0), 500, 460);
         //b3 = new Blinky(color(250,0,0), 580, 460);
@@ -118,7 +118,7 @@ void draw(){
        lives --;
      }
      startingPellets = 206;
-     p = new PacMan(color(250,250,0),540,580);
+     p = new PacMan(pacManCustom[pcustomIndex],540,580);
      b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
      //b2 = new Blinky(color(250,0,0), 500, 460);
      //b3 = new Blinky(color(250,0,0), 580, 460);
@@ -241,6 +241,8 @@ void draw(){
     if (pcustomIndex == 0){
       text("Default", 470, 365);
     }
+    text("next", 800, 455);
+    text("back", 200, 455);
     text("Press the Space key to return to the start screen", 160, 600);
   }
   if (screen == 5){ //CUSTOMIZE GHOST
