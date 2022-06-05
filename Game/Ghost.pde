@@ -87,20 +87,20 @@ public abstract class Ghost{
       return false;
   }
   
-  int countTurns(Board b){
-    int turns = 0;
+  ArrayList<int[]> countTurns(Board b){
+    ArrayList<int[]>turns = new ArrayList();
     int cx = (bx + 1 + b.map[0].length) % b.map[0].length;
     if(b.map[by][cx] != 1 || b.map[by][cx] != 4)
-      turns ++;
+      turns.add(new int[]{cx,by});
     cx = (bx - 1 + b.map[0].length) % b.map[0].length;
     if(b.map[by][cx] != 1 || b.map[by][cx] != 4)
-      turns ++;
+      turns.add(new int[]{cx,by});
     int cy = (by + 1 + b.map.length) % b.map.length;
     if(b.map[cy][bx] != 1 || b.map[cy][bx] != 4)
-      turns ++;
+      turns.add(new int[]{bx,cy});
     cy = (by - 1 + b.map.length) % b.map.length;
     if(b.map[cy][bx] != 1 || b.map[cy][bx] != 4)
-      turns ++;
+      turns.add(new int[]{bx,cy});
     return turns;
   }
   
