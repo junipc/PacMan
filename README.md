@@ -102,5 +102,17 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - Worked on survival mode board generation
 - rng board gen works, mode as input; can change number of 'islands' and where if wanted
 
+6/2:
+- made rng more random with more islands
+
+6/3:
+- began portals for survival
+
+6/4:
+- finished all start screen button looks with characters
+- began cuztomization of pacman screen with arrows that help to decide
+- visuals for both sides of a portal as well as positioning (not rng yet)
+
+
 ## Design Document:
 https://docs.google.com/document/d/1o4uHIYr6bDUU8YjrVuAWTHnPCBCr8zDS339r6GEzFfo/edit?usp=sharing
