@@ -4,7 +4,6 @@ public class Portal{
   int[] sizes = new int[]{32,26,20};
   float animator = 1;
   float add = 1;
-  float doIt = 0;
   
   Portal(int r1, int c1, int r2, int c2){
     p1[0] = r1;
