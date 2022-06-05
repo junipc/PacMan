@@ -18,6 +18,7 @@ Blinky b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
 boolean firstTime = false;
 int lives = 3;
 float doIt = 0;
+color[] pacManCustom = new color[]{color(250,250,0), color(250, 120, 0), color(250, 0, 0), color(0, 250, 0), color(0,0,250), color(75,0,130), color(148,0,211)};
 
 void setup(){
   size(1080,920);
