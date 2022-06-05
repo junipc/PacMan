@@ -19,6 +19,7 @@ boolean firstTime = false;
 int lives = 3;
 float doIt = 0;
 color[] pacManCustom = new color[]{color(250,250,0), color(250, 120, 0), color(250, 0, 0), color(0, 250, 0), color(0,0,250), color(75,0,130), color(148,0,211)};
+int pcustomIndex = 0;
 PShape triangle1; //pacman customize button 1
 
 
@@ -217,18 +218,21 @@ void draw(){
     // to switch colors, pacman goes big in mid of screen then smaller as it switches to next, which becomes bigger
     background(0);
     fill(152,152,156);
-    triangle1 = new PShape(PShape.PATH);
-    //add it's vertices
-    triangle1.vertex(200+580,400);
-    triangle1.vertex(200+580+87,450);
-    triangle1.vertex(200+580,500);
-    beginShape(TRIANGLE);
-    vertex(triangle1.getVertex(0).x, triangle1.getVertex(0).y);
-    vertex(triangle1.getVertex(1).x, triangle1.getVertex(1).y);
-    vertex(triangle1.getVertex(2).x, triangle1.getVertex(2).y);
-    endShape(CLOSE);
-    //triangle(200+580, 400, 200+580+87, 450, 200+580, 500);
-    triangle(300, 400, 300-87, 450, 300, 500);
+    //triangle1 = new PShape(PShape.PATH);
+    ////add it's vertices
+    //triangle1.vertex(200+580,400);
+    //triangle1.vertex(200+580+87,450);
+    //triangle1.vertex(200+580,500);
+    //fill(152,152,156);
+    //beginShape(TRIANGLE);
+    //vertex(triangle1.getVertex(0).x, triangle1.getVertex(0).y);
+    //vertex(triangle1.getVertex(1).x, triangle1.getVertex(1).y);
+    //vertex(triangle1.getVertex(2).x, triangle1.getVertex(2).y);
+    //endShape(CLOSE);
+    rect(200+580, 400, 100, 100);
+    rect(180, 400, 100, 100);
+    fill(pacManCustom[pcustomIndex]);
+    arc(535,450,150,150,QUARTER_PI, 2*PI-QUARTER_PI);
     PFont font;
     font = createFont("emulogic.ttf", 128);
     textFont(font);
@@ -266,9 +270,30 @@ void mouseClicked(){
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 500 && mouseY < 500+60){//to PACMAN CUSTOMIZE
     screen = 4;
   }
+  if (screen == 4 && mouseX > 180 && mouseX < 280 && mouseY > 400 && mouseY < 500){
+    if (pcustomIndex == 0){
+      pcustomIndex = pacManCustom.length - 1;
+    }
+    else{
+      pcustomIndex--;
+    }
+    p = new PacMan(pacManCustom[pcustomIndex],540,580);
+  }
+  if (screen == 4 && mouseX > 780 && mouseX < 880 && mouseY > 400 && mouseY < 500){
+    if (pcustomIndex == pacManCustom.length - 1){
+      pcustomIndex = 0;
+    }
+    else{
+      pcustomIndex++;
+    }
+    p = new PacMan(pacManCustom[pcustomIndex],540,580);
+  }
+  
+  
+  
   //if(screen == 4 && triangle1.contains(mouseX,mouseY)){
   //  fill(152,152,156);
   //}else{
   //  fill(255,0,0);
-  }
+  //}
 }
