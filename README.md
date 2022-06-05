@@ -52,6 +52,10 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 6/3:
 - PacMan now only moves its mouth when he is moving
 
+6/4
+- ghosts' pathfinding now wraps around the screen
+- ghosts have their speed halved in the side tunnel
+
 ### Maya
 5/23:
 - tested merge conflict with Juniper in class
