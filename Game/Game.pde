@@ -210,7 +210,18 @@ void draw(){
     text("Press the Space key to return to the start screen", 160, 600);
   }
   if (screen == 4){ //CUSTOMIZE PACMAN
-    
+    // take color here, tell them red is default; use triangle on screen keys to switch between colors yk
+    // to switch colors, pacman goes big in mid of screen then smaller as it switches to next, which becomes bigger
+    background(0);
+    fill(152,152,156);
+    triangle(200+580, 400, 200+580+87, 450, 200+580, 500);
+    triangle(300, 400, 300-87, 450, 300, 500);
+    PFont font;
+    font = createFont("emulogic.ttf", 128);
+    textFont(font);
+    textSize(15);
+    fill(255,128,0);
+    text("Press the Space key to return to the start screen", 160, 600);
   }
   if (screen == 5){ //CUSTOMIZE GHOST
     
@@ -222,7 +233,7 @@ void draw(){
 
 void keyPressed() {
   keyIn.press(keyCode);
-  if ((screen == 2 || screen == 3) && key == ' '){
+  if ((screen == 2 || screen == 3 || screen == 4 || screen == 5) && key == ' '){
     screen = 1;
     totalScore = 0;
     lives = 3;
@@ -235,8 +246,11 @@ void keyReleased() {
 
 
 void mouseClicked(){
-  if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 300 && mouseY < 300+60){
+  if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 300 && mouseY < 300+60){ //to CLASSIC
     firstTime = true;
     screen = 0;
+  }
+  if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 500 && mouseY < 500+60){//to PACMAN CUSTOMIZE
+    screen = 4;
   }
 }
