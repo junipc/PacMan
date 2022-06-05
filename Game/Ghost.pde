@@ -32,6 +32,24 @@ public abstract class Ghost{
     x = (x + dx + width) % width;
     y = (y + dy + height) % height;
   }
+  void move(Board b, int incX, int incY){ //0 up, 1 right, 2 down, 3 left
+    if(canMove){
+      if(atCenter){
+        setDir(speed*incX, speed*incY);
+        incB(b,incX,incY);
+        move();
+        atCenter = false;
+      }else{
+        if(goesOver()){
+          x = bx * 40 + 20;
+          y = by * 40 + 20;
+          atCenter = true;
+        }else{
+          move();
+        }
+      }
+    }
+  }
   void move(Board b, int dir){ //0 up, 1 right, 2 down, 3 left
     if(canMove){
       if(atCenter){
