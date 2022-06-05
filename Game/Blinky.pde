@@ -31,7 +31,11 @@ public class Blinky extends Ghost{
     }
   }
   void updateSide(int cx, int cy, int dir, Route r){
-    if(cy < tempMap.length && cy >= 0 && cx < tempMap[0].length && cx >= 0 && tempMap[cy][cx] == 0){
+    if(cy < tempMap.length || cy >= 0 || cx < tempMap[0].length || cx >= 0){
+      cx = (cx + tempMap[0].length) % tempMap[0].length;
+      cy = (cy + tempMap.length) % tempMap.length;
+    }
+    if(tempMap[cy][cx] == 0){
       tempMap[cy][cx] = 1;
       ArrayList<Integer>nDirs = new ArrayList();
       for(int i = 0 ; i < r.dirs.size(); i++){
