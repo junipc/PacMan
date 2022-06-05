@@ -89,18 +89,34 @@ public abstract class Ghost{
   
   ArrayList<int[]> countTurns(Board b){
     ArrayList<int[]>turns = new ArrayList();
+    int dbx = 0;
+    int dby = 0;
+    if(dx > 0)
+      dbx = 1;
+    else if (dx < 0)
+      dbx = -1;
+    if(dy > 0)
+      dby = 1;
+    else if (dy < 0)
+      dby = -1;
+    int pbx = (bx - dbx + b.map[0].length) % b.map[0].length;
+    int pby = (by - dby + b.map.length) % b.map.length;
+    
     int cx = (bx + 1 + b.map[0].length) % b.map[0].length;
-    if(b.map[by][cx] != 1 || b.map[by][cx] != 4)
+    if((b.map[by][cx] != 1 || b.map[by][cx] != 4) && pbx != cx)
       turns.add(new int[]{cx,by});
     cx = (bx - 1 + b.map[0].length) % b.map[0].length;
-    if(b.map[by][cx] != 1 || b.map[by][cx] != 4)
+    if((b.map[by][cx] != 1 || b.map[by][cx] != 4) && pbx != cx)
       turns.add(new int[]{cx,by});
     int cy = (by + 1 + b.map.length) % b.map.length;
-    if(b.map[cy][bx] != 1 || b.map[cy][bx] != 4)
+    if((b.map[cy][bx] != 1 || b.map[cy][bx] != 4) && pby != cy)
       turns.add(new int[]{bx,cy});
     cy = (by - 1 + b.map.length) % b.map.length;
-    if(b.map[cy][bx] != 1 || b.map[cy][bx] != 4)
+    if((b.map[cy][bx] != 1 || b.map[cy][bx] != 4) && pby != cy)
       turns.add(new int[]{bx,cy});
+    
+    if(turns.size() == 0)
+      turns.add(new int[]{pbx,pby});
     return turns;
   }
   
