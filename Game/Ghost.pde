@@ -21,6 +21,10 @@ public abstract class Ghost{
   abstract void move(PacMan p, Board b);
   
   void setDir(float x, float y){
+    if(by == 11 && (bx <= 4 || bx >= 22)){
+      x *= .5;
+      y *= .5;
+    }
     dx = x;
     dy = y;
   }
