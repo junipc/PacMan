@@ -238,6 +238,9 @@ void draw(){
     textFont(font);
     textSize(15);
     fill(255,128,0);
+    if (pcustomIndex == 0){
+      text("Default", 470, 365);
+    }
     text("Press the Space key to return to the start screen", 160, 600);
   }
   if (screen == 5){ //CUSTOMIZE GHOST
