@@ -120,8 +120,19 @@ public abstract class Ghost{
     return turns;
   }
   
-  int[] closestTurn(ArrayList<int[]>turns){
-    return new int[]{};
+  int[] closestTurn(ArrayList<int[]>turns, int cx, int cy){
+    int[]first = turns.get(0);
+    float minDist = dist(first[0],first[1],cx,cy);
+    int num = 0;
+    for(int i = 1; i < turns.size(); i++){
+      int[]testSq = turns.get(i);
+      float testDist = dist(testSq[0],testSq[1],cx,cy);
+      if(testDist < minDist){
+        minDist = testDist;
+        num = i;
+      }
+    }
+    return turns.get(num);
   }
   
   void kill(PacMan p){
