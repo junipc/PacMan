@@ -23,6 +23,7 @@ color[] pacManCustom = new color[]{color(250,250,0), color(250, 120, 0), color(2
 int pcustomIndex = 0;
 PShape triangle1; //pacman customize button 1
 //Portal tester = new Portal(4,4,8,8);
+//int MODE; //(classic/surv)
 
 
 void setup(){
@@ -260,6 +261,8 @@ void draw(){
      b1 = new Blinky(color(250,0,0), 1020, 860, p.speed);
      p.display();
      b1.display();
+     p.move(test);
+     b1.move(p, test);
   } 
 
   
@@ -283,6 +286,7 @@ void keyReleased() {
 void mouseClicked(){
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 300 && mouseY < 300+60){ //to CLASSIC
     firstTime = true;
+    //MODE = 0;
     screen = 0;
   }
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 500 && mouseY < 500+60){//to PACMAN CUSTOMIZE
@@ -307,7 +311,8 @@ void mouseClicked(){
     p = new PacMan(pacManCustom[pcustomIndex],540,580);
   }
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 400 && mouseY < 400+60){
-    screen = 6;
+    //MODE = 1; //surv
+    screen = 6; //or 0
   }
   
   
