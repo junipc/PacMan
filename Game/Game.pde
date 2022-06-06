@@ -17,6 +17,7 @@ Blinky b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
 //Blinky b4 = new Blinky(color(250,0,0), 620, 460);
 boolean firstTime = false;
 int lives = 3;
+boolean ghostsCanMove = true;
 
 void setup(){
   size(1080,920);
@@ -112,6 +113,7 @@ void draw(){
      }else{
        lives --;
      }
+     ghostsCanMove = true;
      startingPellets = 206;
      p = new PacMan(color(250,250,0),540,580);
      b1 = new Blinky(color(250,0,0), 460, 460, p.speed);

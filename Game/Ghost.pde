@@ -8,7 +8,6 @@ public abstract class Ghost{
   int bx;
   int by;
   boolean atCenter = true;
-  boolean canMove = true;
   Ghost(color c_, int x_, int y_, float s){
     c = c_;
     x = x_;
@@ -34,7 +33,7 @@ public abstract class Ghost{
   }
 
   void move(Board b, int incX, int incY){ //0 up, 1 right, 2 down, 3 left
-    if(canMove){
+    if(ghostsCanMove){
       if(atCenter){
         setDir(speed*incX, speed*incY);
         incB(b,incX,incY);
@@ -52,7 +51,7 @@ public abstract class Ghost{
     }
   }
   void move(Board b, int dir){ //0 up, 1 right, 2 down, 3 left
-    if(canMove){
+    if(ghostsCanMove){
       if(atCenter){
         if(dir == 0){
           setDir(0,speed*-1);
@@ -158,8 +157,10 @@ public abstract class Ghost{
   }
   
   void kill(PacMan p){
-    if(p.alive)
-    p.die();
+    if(p.alive){
+      ghostsCanMove = false;
+      p.die();
+    }
   }
   
   void display(){

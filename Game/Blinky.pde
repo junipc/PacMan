@@ -6,6 +6,8 @@ public class Blinky extends Ghost{
   }
   
   void move(PacMan p, Board b){
+    if(bx == p.bx && by == p.by)
+      kill(p);
     ArrayList<int[]>turns = countTurns(b);
     int[]turn;
     if(inCage())
