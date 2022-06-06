@@ -306,7 +306,7 @@ void mouseClicked(){
     }
     p = new PacMan(pacManCustom[pcustomIndex],540,580);
   }
-  if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 600 && mouseY < 600+60){
+  if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 400 && mouseY < 400+60){
     screen = 6;
   }
   
