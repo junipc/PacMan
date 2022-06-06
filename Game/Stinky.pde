@@ -1,9 +1,9 @@
 import java.util.*;
-public class Perfection extends Ghost{
+public class Stinky extends Ghost{
   ArrayDeque<Route>frontier;
   int[][] tempMap;
   
-  Perfection(color c, int x, int y, float s){
+  Stinky(color c, int x, int y, float s){
     super(c,x,y,s);
   }
   
