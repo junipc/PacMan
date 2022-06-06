@@ -17,12 +17,16 @@ Blinky b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
 //Blinky b4 = new Blinky(color(250,0,0), 620, 460);
 boolean firstTime = false;
 int lives = 3;
+<<<<<<< HEAD
+boolean ghostsCanMove = true;
+=======
 float doIt = 0;
 color[] pacManCustom = new color[]{color(250,250,0), color(250, 120, 0), color(250, 0, 0), color(0, 250, 0), color(0,0,250), color(75,0,130), color(148,0,211)};
 int pcustomIndex = 0;
 PShape triangle1; //pacman customize button 1
 //Portal tester = new Portal(4,4,8,8);
 
+>>>>>>> main
 
 void setup(){
   size(1080,920);
@@ -118,6 +122,7 @@ void draw(){
      }else{
        lives --;
      }
+     ghostsCanMove = true;
      startingPellets = 206;
      p = new PacMan(pacManCustom[pcustomIndex],540,580);
      b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
