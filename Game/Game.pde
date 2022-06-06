@@ -17,7 +17,16 @@ Blinky b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
 //Blinky b4 = new Blinky(color(250,0,0), 620, 460);
 boolean firstTime = false;
 int lives = 3;
+<<<<<<< HEAD
 boolean ghostsCanMove = true;
+=======
+float doIt = 0;
+color[] pacManCustom = new color[]{color(250,250,0), color(250, 120, 0), color(250, 0, 0), color(0, 250, 0), color(0,0,250), color(75,0,130), color(148,0,211)};
+int pcustomIndex = 0;
+PShape triangle1; //pacman customize button 1
+//Portal tester = new Portal(4,4,8,8);
+
+>>>>>>> main
 
 void setup(){
   size(1080,920);
@@ -26,7 +35,7 @@ void setup(){
 }
 
 void draw(){
-  if (screen == 0){
+  if (screen == 0){ //CLASSIC
     if (firstTime == true){
       setUpTime = millis();
       firstTime = false;
@@ -98,7 +107,7 @@ void draw(){
       else{
         level++;
         startingPellets = 206; //208 if powerPellets r removed for demo
-        p = new PacMan(color(250,250,0),540,580);
+        p = new PacMan(pacManCustom[pcustomIndex],540,580);
         b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
         //b2 = new Blinky(color(250,0,0), 500, 460);
         //b3 = new Blinky(color(250,0,0), 580, 460);
@@ -108,14 +117,14 @@ void draw(){
       }
    }else if(p.deathTimer == 0){
      if(lives == 0){
-       level = 0;
+       level = 1;
        screen = 3;
      }else{
        lives --;
      }
      ghostsCanMove = true;
      startingPellets = 206;
-     p = new PacMan(color(250,250,0),540,580);
+     p = new PacMan(pacManCustom[pcustomIndex],540,580);
      b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
      //b2 = new Blinky(color(250,0,0), 500, 460);
      //b3 = new Blinky(color(250,0,0), 580, 460);
@@ -123,8 +132,11 @@ void draw(){
      setUpTime = millis();
      test = new Board(0);
    }
+   //tester.displayp1();
+   //tester.displayp2();
+   //tester.teleport();
   }
-  if (screen == 1){
+  if (screen == 1){//START
     background(0);
     PFont font;
     font = createFont("pac-font.ttf", 128);
@@ -141,8 +153,48 @@ void draw(){
     rect(430, 300, 215, 60);
     fill(250,0,0);
     text("CLASSIC", 465, 340);
+    fill(110,110,251);
+    rect(430, 400, 215, 60);
+    fill(250,0,0);
+    text("SURVIVAL *doesnt work yet*", 460, 440);
+    fill(250,250,0);
+    arc(670,530,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
+    arc(405,530,33,33,QUARTER_PI+PI, 2*PI-QUARTER_PI+PI);
+    fill(110,110,251);
+    rect(430, 500, 215, 60);
+    fill(250,0,0);
+    text("CUSTOMIZE", 448, 540);
+    fill(110,110,251);
+    rect(430, 600, 215, 60);
+    fill(250,0,0);
+    text("CUSTOMIZE", 448, 640);
+    //
+    fill(250,0,0);
+    int x = 670;
+    int y = 630;
+    arc(x,y,30,30,PI,2*PI,OPEN);
+    rect(x-15,y,30,12);
+    line(x-15,y,x-15,y+12);
+    line(x+15,y,x+15,y+12);
+    triangle(x-15,y+12,x-10,y+12,x-15,y+18);
+    triangle(x-10,y+12,x,y+12,x-5,y+18);
+    triangle(x,y+12,x+10,y+12,x+5,y+18);
+    triangle(x+15,y+12,x+10,y+12,x+15,y+18);
+    //
+    x = 405;
+    y = 630;
+    noStroke();
+    fill(250,0,0);
+    arc(x,y,30,30,PI,2*PI,OPEN);
+    rect(x-15,y,30,12);
+    line(x-15,y,x-15,y+12);
+    line(x+15,y,x+15,y+12);
+    triangle(x-15,y+12,x-10,y+12,x-15,y+18);
+    triangle(x-10,y+12,x,y+12,x-5,y+18);
+    triangle(x,y+12,x+10,y+12,x+5,y+18);
+    triangle(x+15,y+12,x+10,y+12,x+15,y+18);
   }
-  if (screen == 2){
+  if (screen == 2){//WIN
     background(0);
     PFont font;
     font = createFont("emulogic.ttf", 128);
@@ -155,7 +207,7 @@ void draw(){
     textSize(15);
     text("Press the Space key to return to the start screen", 100, 600);
   }
-  if (screen == 3){
+  if (screen == 3){//LOSE
     background(0);
     PFont font;
     font = createFont("emulogic.ttf", 128);
@@ -167,13 +219,49 @@ void draw(){
     textSize(15);
     text("Press the Space key to return to the start screen", 160, 600);
   }
+  if (screen == 4){ //CUSTOMIZE PACMAN
+    // take color here, tell them red is default; use triangle on screen keys to switch between colors yk
+    // to switch colors, pacman goes big in mid of screen then smaller as it switches to next, which becomes bigger
+    background(0);
+    fill(152,152,156);
+    //triangle1 = new PShape(PShape.PATH);
+    ////add it's vertices
+    //triangle1.vertex(200+580,400);
+    //triangle1.vertex(200+580+87,450);
+    //triangle1.vertex(200+580,500);
+    //fill(152,152,156);
+    //beginShape(TRIANGLE);
+    //vertex(triangle1.getVertex(0).x, triangle1.getVertex(0).y);
+    //vertex(triangle1.getVertex(1).x, triangle1.getVertex(1).y);
+    //vertex(triangle1.getVertex(2).x, triangle1.getVertex(2).y);
+    //endShape(CLOSE);
+    rect(200+580, 400, 100, 100);
+    rect(180, 400, 100, 100);
+    fill(pacManCustom[pcustomIndex]);
+    arc(535,450,150,150,QUARTER_PI, 2*PI-QUARTER_PI);
+    PFont font;
+    font = createFont("emulogic.ttf", 128);
+    textFont(font);
+    textSize(15);
+    fill(255,128,0);
+    if (pcustomIndex == 0){
+      text("Default", 470, 365);
+    }
+    text("next", 800, 455);
+    text("back", 200, 455);
+    text("Press the Space key to return to the start screen", 160, 600);
+  }
+  if (screen == 5){ //CUSTOMIZE GHOST
+    
+  }
+
   
   
 }
 
 void keyPressed() {
   keyIn.press(keyCode);
-  if ((screen == 2 || screen == 3) && key == ' '){
+  if ((screen == 2 || screen == 3 || screen == 4 || screen == 5) && key == ' '){
     screen = 1;
     totalScore = 0;
     lives = 3;
@@ -186,8 +274,37 @@ void keyReleased() {
 
 
 void mouseClicked(){
-  if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 300 && mouseY < 300+60){
+  if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 300 && mouseY < 300+60){ //to CLASSIC
     firstTime = true;
     screen = 0;
   }
+  if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 500 && mouseY < 500+60){//to PACMAN CUSTOMIZE
+    screen = 4;
+  }
+  if (screen == 4 && mouseX > 180 && mouseX < 280 && mouseY > 400 && mouseY < 500){
+    if (pcustomIndex == 0){
+      pcustomIndex = pacManCustom.length - 1;
+    }
+    else{
+      pcustomIndex--;
+    }
+    p = new PacMan(pacManCustom[pcustomIndex],540,580);
+  }
+  if (screen == 4 && mouseX > 780 && mouseX < 880 && mouseY > 400 && mouseY < 500){
+    if (pcustomIndex == pacManCustom.length - 1){
+      pcustomIndex = 0;
+    }
+    else{
+      pcustomIndex++;
+    }
+    p = new PacMan(pacManCustom[pcustomIndex],540,580);
+  }
+  
+  
+  
+  //if(screen == 4 && triangle1.contains(mouseX,mouseY)){
+  //  fill(152,152,156);
+  //}else{
+  //  fill(255,0,0);
+  //}
 }
