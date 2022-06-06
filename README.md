@@ -56,6 +56,10 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - ghosts' pathfinding now wraps around the screen
 - ghosts have their speed halved in the side tunnel
 
+6/5
+- implemented Blinky's pathfinding from the actual Pac-Man Game (simple distance instead of search algo)
+- the old Blinky is renamed to Perfection
+
 ### Maya
 5/23:
 - tested merge conflict with Juniper in class
