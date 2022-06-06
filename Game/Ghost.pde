@@ -8,7 +8,6 @@ public abstract class Ghost{
   int bx;
   int by;
   boolean atCenter = true;
-  boolean canMove = true;
   Ghost(color c_, int x_, int y_, float s){
     c = c_;
     x = x_;
@@ -21,6 +20,10 @@ public abstract class Ghost{
   abstract void move(PacMan p, Board b);
   
   void setDir(float x, float y){
+    if(by == 11 && (bx <= 4 || bx >= 22)){
+      x *= .5;
+      y *= .5;
+    }
     dx = x;
     dy = y;
   }
@@ -28,8 +31,27 @@ public abstract class Ghost{
     x = (x + dx + width) % width;
     y = (y + dy + height) % height;
   }
+
+  void move(Board b, int incX, int incY){ //0 up, 1 right, 2 down, 3 left
+    if(ghostsCanMove){
+      if(atCenter){
+        setDir(speed*incX, speed*incY);
+        incB(b,incX,incY);
+        move();
+        atCenter = false;
+      }else{
+        if(goesOver()){
+          x = bx * 40 + 20;
+          y = by * 40 + 20;
+          atCenter = true;
+        }else{
+          move();
+        }
+      }
+    }
+  }
   void move(Board b, int dir){ //0 up, 1 right, 2 down, 3 left
-    if(canMove){
+    if(ghostsCanMove){
       if(atCenter){
         if(dir == 0){
           setDir(0,speed*-1);
@@ -83,9 +105,62 @@ public abstract class Ghost{
       return false;
   }
   
+  boolean inCage(){
+    return bx >= 10 && bx <= 16 && by >= 9 && by <= 13;
+  }
+  ArrayList<int[]> countTurns(Board b){
+    ArrayList<int[]>turns = new ArrayList();
+    int dbx = 0;
+    int dby = 0;
+    if(dx > 0)
+      dbx = 1;
+    else if (dx < 0)
+      dbx = -1;
+    if(dy > 0)
+      dby = 1;
+    else if (dy < 0)
+      dby = -1;
+    int pbx = (bx - dbx + b.map[0].length) % b.map[0].length;
+    int pby = (by - dby + b.map.length) % b.map.length;
+    
+    int cx = (bx + 1 + b.map[0].length) % b.map[0].length;
+    if((b.map[by][cx] != 1) && pbx != cx && (inCage() || b.map[by][cx] != 4))
+      turns.add(new int[]{cx,by,1,0});
+    cx = (bx - 1 + b.map[0].length) % b.map[0].length;
+    if((b.map[by][cx] != 1) && pbx != cx && (inCage() || b.map[by][cx] != 4))
+      turns.add(new int[]{cx,by,-1,0});
+    int cy = (by + 1 + b.map.length) % b.map.length;
+    if((b.map[cy][bx] != 1) && pby != cy && (inCage() || b.map[cy][bx] != 4))
+      turns.add(new int[]{bx,cy,0,1});
+    cy = (by - 1 + b.map.length) % b.map.length;
+    if((b.map[cy][bx] != 1) && pby != cy && (inCage() || b.map[cy][bx] != 4))
+      turns.add(new int[]{bx,cy,0,-1});
+    
+    if(turns.size() == 0)
+      turns.add(new int[]{pbx,pby,-1*dbx,-1*dby});
+    return turns;
+  }
+  
+  int[] closestTurn(ArrayList<int[]>turns, int cx, int cy){
+    int[]first = turns.get(0);
+    float minDist = dist(first[0],first[1],cx,cy);
+    int num = 0;
+    for(int i = 1; i < turns.size(); i++){
+      int[]testSq = turns.get(i);
+      float testDist = dist(testSq[0],testSq[1],cx,cy);
+      if(testDist < minDist){
+        minDist = testDist;
+        num = i;
+      }
+    }
+    return turns.get(num);
+  }
+  
   void kill(PacMan p){
-    if(p.alive)
-    p.die();
+    if(p.alive){
+      ghostsCanMove = false;
+      p.die();
+    }
   }
   
   void display(){
