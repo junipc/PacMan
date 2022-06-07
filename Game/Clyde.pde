@@ -13,7 +13,7 @@ public class Clyde extends Ghost{
     if(inCage())
       turn = closestTurn(turns,13,9);
     else{
-      pDist = dist(bx,by,p.bx,p.by);
+      float pDist = dist(bx,by,p.bx,p.by);
       if(pDist < 6)
         turn = closestTurn(turns, 1, 23);
       else
