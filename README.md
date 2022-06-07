@@ -65,6 +65,10 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - implemented Pinky
 - Perfection is now named Stinky (because it's perfect so nobody likes it)
 
+6/7
+- implemented Clyde
+- implemented Inky
+
 ### Maya
 5/23:
 - tested merge conflict with Juniper in class

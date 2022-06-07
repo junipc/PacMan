@@ -258,11 +258,11 @@ void draw(){
      test = new Board(1);
      test.display();
      p = new PacMan(color(250,250,0),60,60);
-     b1 = new Blinky(color(250,0,0), 1020, 860, p.speed);
+     g1 = new Blinky(color(250,0,0), 1020, 860, p.speed);
      p.display();
-     b1.display();
+     g1.display();
      p.move(test);
-     b1.move(p, test);
+     g1.move(p, test);
   } 
 
   
