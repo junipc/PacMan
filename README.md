@@ -69,6 +69,7 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - implemented Clyde
 - implemented Inky
 - score now reset to the score of the beginning of the level upon death
+- speed tweak (ghosts now move SLIGHTLY slower at 95% for first 5 levels)
 
 ### Maya
 5/23:
