@@ -15,6 +15,7 @@ Blinky g1 = new Blinky(color(250,0,0), 540, 340, p.speed);
 Pinky g2 = new Pinky(color(255, 184, 255), 500, 460, p.speed);
 Inky g3 = new Inky(color(0, 255, 255), 580, 460, p.speed); //at 30
 Clyde g4 = new Clyde(color(255, 184, 82), 620, 460,  p.speed); // at 60 eaten
+Stinky g5 = new Stinky(color(223, 0, 254), 460, 460, p.speed);
  // Stinky at 90 eaten
 boolean firstTime = false;
 int lives = 3;
@@ -72,16 +73,18 @@ void draw(){
       g2.move(p,test);
     }
     if (startingPellets <= 206 - 30){
+      test.map[9][13] = 4; //for some time
       g3.move(p,test);
     }
     if (startingPellets <= 206 - 60){
+      test.map[9][13] = 4; //for some time
       g4.move(p, test);
     }
     if (passedTime >= 7000 && passedTime < 13000){
       test.map[9][13] = 4;
     }
-    if (passedTime >= 13000){
-      test.map[9][13] = 1;
+    if (passedTime >= 13000 && startingPellets > 206 - 30){
+      //test.map[9][13] = 1; //not rn worry ab open close timing last
     }
     p.display();
     textSize(12);
@@ -254,7 +257,17 @@ void draw(){
     text("Press the Space key to return to the start screen", 160, 600);
   }
   if (screen == 5){ //CUSTOMIZE GHOST
-    
+    background(0);
+    fill(152,152,156);
+    PFont font;
+    font = createFont("emulogic.ttf", 128);
+    textFont(font);
+    textSize(15);
+    fill(255,128,0);
+    text("Are you up for the challenge?", 160, 200);
+    text("GIVE ME STINKY!", 200, 300);
+    text("No Stinky (default)", 200, 500);
+
   }
   if (screen == 6){//SURVIVAL
      background(255);
