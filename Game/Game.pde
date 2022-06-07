@@ -2,6 +2,7 @@ String playerName;
 int screen = 1;
 public Board test = new Board(0);
 int totalScore = 0;
+int levelScore = 0;
 ArrayList<Pellet> notEaten = new ArrayList<Pellet>();
 int startingPellets = 206; //208 if powerpellets switch back for demo
 Keyboard keyIn = new Keyboard();
@@ -274,6 +275,7 @@ void keyPressed() {
   if ((screen == 2 || screen == 3 || screen == 4 || screen == 5) && key == ' '){
     screen = 1;
     totalScore = 0;
+    levelScore = 0;
     lives = 3;
   }
 }
