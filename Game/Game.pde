@@ -11,10 +11,11 @@ int setUpTime;
 int counter = 5;
 int level = 1;
 PacMan p = new PacMan(color(250,250,0),540,580);
-Blinky g1 = new Blinky(color(250,0,0), 460, 460, p.speed);
-//Blinky g2 = new Blinky(color(250,0,0), 500, 460);
-//Blinky g3 = new Blinky(color(250,0,0), 580, 460);
-//Blinky g4 = new Blinky(color(250,0,0), 620, 460);
+Blinky g1 = new Blinky(color(250,0,0), 540, 340, p.speed);
+Pinky g2 = new Pinky(color(255, 184, 255), 500, 460, p.speed);
+Inky g3 = new Inky(color(0, 255, 255), 580, 460, p.speed); //at 30
+Clyde g4 = new Clyde(color(255, 184, 82), 620, 460,  p.speed); // at 60 eaten
+ // Stinky at 90 eaten
 boolean firstTime = false;
 int lives = 3;
 boolean ghostsCanMove = true;
@@ -24,7 +25,7 @@ int pcustomIndex = 0;
 PShape triangle1; //pacman customize button 1
 //Portal tester = new Portal(4,4,8,8);
 //int MODE; //(classic/surv)
-
+float tempTimer = 0;
 
 void setup(){
   size(1080,920);
@@ -48,36 +49,38 @@ void draw(){
     textSize(12);
     fill(255,128,0);
     if (passedTime <= 1000) {
-      text("READY! " + counter, 490, 345);  
+      text("READY! " + counter, 490, 385);  
     }
     else if (passedTime <= 2000) {
-      text("READY! " + (counter-1), 490, 345);
+      text("READY! " + (counter-1), 490, 385);
     }
     else if (passedTime <= 3000) {
-      text("READY! " + (counter-2), 490, 345);
+      text("READY! " + (counter-2), 490, 385);
     }
     else if (passedTime <= 4000) {
-      text("READY! " + (counter-3), 490, 345);
+      text("READY! " + (counter-3), 490, 385);
     }
     else if (passedTime <= 5000) {
-      text("READY! " + (counter-4), 490, 345);
+      text("READY! " + (counter-4), 490, 385);
     }
     else if (passedTime > readyTime) {
       //passedTime = 6000;
       p.move(test);
     }
     if (passedTime > readyTime + 3000) {
-      g1.move(p,test);
-      //b1.move(test,0);
+      g1.move(p, test);
+      g2.move(p,test);
     }
-    if (passedTime > 6000 && passedTime < 7000){
+    if (startingPellets <= 206 - 30){
+      g3.move(p,test);
+    }
+    if (startingPellets <= 206 - 60){
+      g4.move(p, test);
+    }
+    if (passedTime >= 7000 && passedTime < 13000){
       test.map[9][13] = 4;
     }
-    if (passedTime >= 7000 && passedTime < 12000){
-      test.map[9][13] = 4;
-      //b1 = new Blinky(color(250,0,0), 540, 340);
-    }
-    if (passedTime >= 12000){
+    if (passedTime >= 13000){
       test.map[9][13] = 1;
     }
     p.display();
@@ -95,9 +98,9 @@ void draw(){
     if(lives > 2)
       arc(190,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
     g1.display();
-    //g2.display();
-    //g3.display();
-    //g4.display();
+    g2.display();
+    g3.display();
+    g4.display();
     if (startingPellets == 0){
       if (level == 10){
         level = 0;
@@ -107,10 +110,10 @@ void draw(){
         level++;
         startingPellets = 206; //208 if powerPellets r removed for demo
         p = new PacMan(pacManCustom[pcustomIndex],540,580);
-        g1 = new Blinky(color(250,0,0), 460, 460, p.speed);
-        //g2 = new Blinky(color(250,0,0), 500, 460);
-        //g3 = new Blinky(color(250,0,0), 580, 460);
-        //g4 = new Blinky(color(250,0,0), 620, 460);
+        g1 = new Blinky(color(250,0,0), 540, 340, p.speed);
+        g2 = new Pinky(color(255, 184, 255), 500, 460, p.speed);
+        g3 = new Inky(color(0, 255, 255), 580, 460, p.speed); //at 30
+        g4 = new Clyde(color(255, 184, 82), 620, 460,  p.speed); // at 60 eaten
         setUpTime = millis();
         test = new Board(0);
       }
@@ -124,10 +127,10 @@ void draw(){
      ghostsCanMove = true;
      startingPellets = 206;
      p = new PacMan(pacManCustom[pcustomIndex],540,580);
-     g1 = new Blinky(color(250,0,0), 460, 460, p.speed);
-     //g2 = new Blinky(color(250,0,0), 500, 460);
-     //g3 = new Blinky(color(250,0,0), 580, 460);
-     //g4 = new Blinky(color(250,0,0), 620, 460);
+     g1 = new Blinky(color(250,0,0), 540, 340, p.speed);
+     g2 = new Pinky(color(255, 184, 255), 500, 460, p.speed);
+     g3 = new Inky(color(0, 255, 255), 580, 460, p.speed); //at 30
+     g4 = new Clyde(color(255, 184, 82), 620, 460,  p.speed); // at 60 eaten
      setUpTime = millis();
      test = new Board(0);
    }
