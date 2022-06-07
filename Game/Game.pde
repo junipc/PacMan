@@ -23,7 +23,7 @@ int pcustomIndex = 0;
 PShape triangle1; //pacman customize button 1
 //Portal tester = new Portal(4,4,8,8);
 //int MODE; //(classic/surv)
-
+boolean fright = false;
 
 void setup(){
   size(1080,920);
