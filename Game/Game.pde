@@ -24,6 +24,7 @@ PShape triangle1; //pacman customize button 1
 //Portal tester = new Portal(4,4,8,8);
 //int MODE; //(classic/surv)
 boolean fright = false;
+float gSpeed;
 
 void setup(){
   size(1080,920);
@@ -106,6 +107,10 @@ void draw(){
         level++;
         startingPellets = 206; //208 if powerPellets r removed for demo
         p = new PacMan(pacManCustom[pcustomIndex],540,580);
+        if(level <= 5)
+          gSpeed = p.speed * .95;
+        else
+          gSpeed = p.speed;
         g1 = new Blinky(color(250,0,0), 460, 460, p.speed);
         //g2 = new Blinky(color(250,0,0), 500, 460);
         //g3 = new Blinky(color(250,0,0), 580, 460);
