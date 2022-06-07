@@ -57,8 +57,17 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - ghosts have their speed halved in the side tunnel
 
 6/5
-- implemented Blinky's pathfinding from the actual Pac-Man Game (simple distance instead of search algo)
+- implemented the general ghost pathfinding to a target tile from the actual Pac-Man Game (simple distance instead of search algo)
+- implemented Blinky's pathfinding
 - the old Blinky is renamed to Perfection
+
+6/6
+- implemented Pinky
+- Perfection is now named Stinky (because it's perfect so nobody likes it)
+
+6/7
+- implemented Clyde
+- implemented Inky
 
 ### Maya
 5/23:

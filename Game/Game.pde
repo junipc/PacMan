@@ -11,10 +11,10 @@ int setUpTime;
 int counter = 5;
 int level = 1;
 PacMan p = new PacMan(color(250,250,0),540,580);
-Blinky b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
-//Blinky b2 = new Blinky(color(250,0,0), 500, 460);
-//Blinky b3 = new Blinky(color(250,0,0), 580, 460);
-//Blinky b4 = new Blinky(color(250,0,0), 620, 460);
+Blinky g1 = new Blinky(color(250,0,0), 460, 460, p.speed);
+//Blinky g2 = new Blinky(color(250,0,0), 500, 460);
+//Blinky g3 = new Blinky(color(250,0,0), 580, 460);
+//Blinky g4 = new Blinky(color(250,0,0), 620, 460);
 boolean firstTime = false;
 int lives = 3;
 boolean ghostsCanMove = true;
@@ -67,7 +67,7 @@ void draw(){
       p.move(test);
     }
     if (passedTime > readyTime + 3500) {
-      b1.move(p,test);
+      g1.move(p,test);
       //b1.move(test,0);
     }
     if (passedTime > 6000 && passedTime < 7000){
@@ -94,10 +94,10 @@ void draw(){
       arc(150,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
     if(lives > 2)
       arc(190,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
-    b1.display();
-    //b2.display();
-    //b3.display();
-    //b4.display();
+    g1.display();
+    //g2.display();
+    //g3.display();
+    //g4.display();
     if (startingPellets == 0){
       if (level == 10){
         level = 0;
@@ -107,10 +107,10 @@ void draw(){
         level++;
         startingPellets = 206; //208 if powerPellets r removed for demo
         p = new PacMan(pacManCustom[pcustomIndex],540,580);
-        b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
-        //b2 = new Blinky(color(250,0,0), 500, 460);
-        //b3 = new Blinky(color(250,0,0), 580, 460);
-        //b4 = new Blinky(color(250,0,0), 620, 460);
+        g1 = new Blinky(color(250,0,0), 460, 460, p.speed);
+        //g2 = new Blinky(color(250,0,0), 500, 460);
+        //g3 = new Blinky(color(250,0,0), 580, 460);
+        //g4 = new Blinky(color(250,0,0), 620, 460);
         setUpTime = millis();
         test = new Board(0);
       }
@@ -124,10 +124,10 @@ void draw(){
      ghostsCanMove = true;
      startingPellets = 206;
      p = new PacMan(pacManCustom[pcustomIndex],540,580);
-     b1 = new Blinky(color(250,0,0), 460, 460, p.speed);
-     //b2 = new Blinky(color(250,0,0), 500, 460);
-     //b3 = new Blinky(color(250,0,0), 580, 460);
-     //b4 = new Blinky(color(250,0,0), 620, 460);
+     g1 = new Blinky(color(250,0,0), 460, 460, p.speed);
+     //g2 = new Blinky(color(250,0,0), 500, 460);
+     //g3 = new Blinky(color(250,0,0), 580, 460);
+     //g4 = new Blinky(color(250,0,0), 620, 460);
      setUpTime = millis();
      test = new Board(0);
    }
@@ -258,11 +258,11 @@ void draw(){
      test = new Board(1);
      test.display();
      p = new PacMan(color(250,250,0),60,60);
-     b1 = new Blinky(color(250,0,0), 1020, 860, p.speed);
+     g1 = new Blinky(color(250,0,0), 1020, 860, p.speed);
      p.display();
-     b1.display();
+     g1.display();
      p.move(test);
-     b1.move(p, test);
+     g1.move(p, test);
   } 
 
   
