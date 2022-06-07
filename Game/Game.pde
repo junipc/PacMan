@@ -66,19 +66,19 @@ void draw(){
       //passedTime = 6000;
       p.move(test);
     }
-    if (passedTime > readyTime + 3500) {
+    if (passedTime > readyTime + 3000) {
       g1.move(p,test);
       //b1.move(test,0);
     }
     if (passedTime > 6000 && passedTime < 7000){
       test.map[9][13] = 4;
     }
-    if (passedTime >= 7000 && passedTime < 8000){
+    if (passedTime >= 7000 && passedTime < 12000){
       test.map[9][13] = 4;
       //b1 = new Blinky(color(250,0,0), 540, 340);
     }
-    if (passedTime >= 8000 && passedTime <= 8500){
-      //test.map[9][13] = 1;
+    if (passedTime >= 12000){
+      test.map[9][13] = 1;
     }
     p.display();
     textSize(12);
