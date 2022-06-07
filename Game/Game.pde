@@ -3,10 +3,8 @@ int screen = 1;
 public Board test = new Board(0);
 int totalScore = 0;
 int levelScore = 0;
-ArrayList<Pellet> notEaten = new ArrayList<Pellet>();
 int startingPellets = 206; //208 if powerpellets switch back for demo
 Keyboard keyIn = new Keyboard();
-ArrayList<PowerPellet> powerNotEaten = new ArrayList<PowerPellet>();
 int readyTime = 5000;
 int setUpTime;
 int counter = 5;
@@ -121,6 +119,8 @@ void draw(){
        screen = 3;
      }else{
        lives --;
+       totalScore -= levelScore;
+       levelScore = 0;
      }
      ghostsCanMove = true;
      startingPellets = 206;
