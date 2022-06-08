@@ -312,11 +312,15 @@ void draw(){
      g2 = new Pinky(color(255, 184, 255), 1020, 740, gSpeed);
      g3 = new Inky(color(0, 255, 255), 900, 860, gSpeed); //at 30
      g4 = new Clyde(color(255, 184, 82), 1020, 620,  gSpeed); // at 60 eaten
+     g5 = new Stinky(color(223, 0, 254), 780, 860, p.speed*.95); //at 90
      p.display();
      g1.display();
      g2.display();
      g3.display();
      g4.display();
+     if (stinky){
+       g5.display();
+     }
      p.move(test);
      g1.move(p, test);
   } 
