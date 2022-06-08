@@ -23,7 +23,7 @@ public abstract class Ghost{
     if(fright){
       x *= .65;
       y *= .65;
-    }else if(by == 11 && (bx <= 4 || bx >= 22)){ //SHOULD NOT SLOW DOWN IN SURVIVAL!
+    }else if(by == 10 && (bx <= 4 || bx >= 22)){ //SHOULD NOT SLOW DOWN IN SURVIVAL!
       x *= .5;
       y *= .5;
     }
