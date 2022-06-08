@@ -83,8 +83,14 @@ public class Stinky extends Ghost{
   }
   
   void move(PacMan p, Board b){
-    newStep(b.map);
-    move(b, step(p));
+    if(fright){
+      ArrayList<int[]>turns = countTurns(b);
+      int[]turn = closestTurn(turns,0,0);
+      move(b,turn[2],turn[3]);
+    }else{
+      newStep(b.map);
+      move(b, step(p));
+    }
   }
   
   
