@@ -280,16 +280,18 @@ void draw(){
   }
   if (screen == 5){ //CUSTOMIZE GHOST
     background(0);
-    fill(152,152,156);
     PFont font;
     font = createFont("emulogic.ttf", 128);
     textFont(font);
     textSize(15);
+    fill(76,76,78);
+    rect(160, 465, 300, 60);
+    rect(590, 465, 300, 60);
     fill(255,128,0);
-    text("Are you up for the challenge?", 160, 200);
-    text("GIVE ME STINKY!", 200, 300);
-    text("No Stinky (default)", 200, 500);
-
+    text("Are you up for the challenge?", 320, 200);
+    text("GIVE ME STINKY!", 200, 500);
+    text("No Stinky (default)", 600, 500);
+    text("Press the Space key to return to the start screen", 160, 800);
   }
   if (screen == 6){//SURVIVAL
      background(255);
@@ -358,6 +360,10 @@ void mouseClicked(){
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 400 && mouseY < 400+60){
     //MODE = 1; //surv
     screen = 6; //or 0
+  }
+  
+  if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 600 && mouseY < 600+60){
+    screen = 5; 
   }
   
   
