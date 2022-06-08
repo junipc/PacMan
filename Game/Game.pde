@@ -1,5 +1,5 @@
 String playerName;
-int screen = 1;
+int screen = 0;
 public Board test = new Board(0);
 int totalScore = 0;
 int levelScore = 0;
@@ -307,6 +307,15 @@ void draw(){
     text("Press the Space key to return to the start screen", 160, 800);
   }
   if (screen == 6){//SURVIVAL
+    if (firstTime == true){
+      setUpTime = millis();
+      firstTime = false;
+      test = new Board(0);
+      scatter = true;
+    }
+    background(255);
+    int passedTime = millis() - setUpTime;
+     ghostsCanMove = true;
      background(255);
      test = new Board(1);
      test.display();
@@ -316,6 +325,32 @@ void draw(){
      g3 = new Inky(color(0, 255, 255), 900, 860, gSpeed); //at 30
      g4 = new Clyde(color(255, 184, 82), 1020, 620,  gSpeed); // at 60 eaten
      g5 = new Stinky(color(223, 0, 254), 780, 860, p.speed*.95); //at 90
+     //if (passedTime <= 1000) {
+     //  text("READY! " + counter, 490, 385);  
+     //}
+     //else if (passedTime <= 2000) {
+     //  text("READY! " + (counter-1), 490, 385);
+     //}
+     //else if (passedTime <= 3000) {
+     //  text("READY! " + (counter-2), 490, 385);
+     //}
+     //else if (passedTime <= 4000) {
+     //  text("READY! " + (counter-3), 490, 385);
+     //}
+     //else if (passedTime <= 5000) {
+     //  text("READY! " + (counter-4), 490, 385);
+     //}
+     //else if (passedTime > 5000) {
+     //  //passedTime = 6000;
+     //  p.move(test);
+     //  g1.move(p, test);
+     //  g2.move(p, test);
+     //  g3.move(p, test);
+     //  g4.move(p, test);
+     //  if (stinky){
+     //    g5.move(p, test);
+     //  }
+     //}
      p.display();
      g1.display();
      g2.display();
@@ -326,6 +361,12 @@ void draw(){
      }
      p.move(test);
      g1.move(p, test);
+     g2.move(p, test);
+     g3.move(p, test);
+     g4.move(p, test);
+     if (stinky){
+       g5.move(p, test);
+     }
      if (Math.random() > .95 && !alreadyPortal){
        //add a portal
        alreadyPortal = true;
