@@ -13,19 +13,23 @@ public class Pinky extends Ghost{
     if(inCage())
       turn = closestTurn(turns,13,9);
     else{
-      int incX = 0;
-      int incY = 0;
-      if(p.dx > 0){
-        incX = 3;
-      }else if(p.dx < 0){
-        incX = -3;
+      if(scatter)
+        turn = closestTurn(turns,1,-1);
+      else{
+        int incX = 0;
+        int incY = 0;
+        if(p.dx > 0){
+          incX = 3;
+        }else if(p.dx < 0){
+          incX = -3;
+        }
+        if(p.dy > 0){
+          incY = 3;
+        }else if(p.dy < 0){
+          incY = -3;
+        }
+        turn = closestTurn(turns, p.bx + incX, p.by + incY);
       }
-      if(p.dy > 0){
-        incY = 3;
-      }else if(p.dy < 0){
-        incY = -3;
-      }
-      turn = closestTurn(turns, p.bx + incX, p.by + incY);
     }
     move(b,turn[2],turn[3]);
   }
