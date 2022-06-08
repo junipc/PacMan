@@ -148,6 +148,8 @@ public class PacMan{
        b.map[by][bx] = 2;
         totalScore += 100;
         levelScore += 100;
+        fright = true;
+        frightTimer = 300;
     }
   }
 }
