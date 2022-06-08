@@ -297,8 +297,14 @@ void draw(){
      test.display();
      p = new PacMan(color(250,250,0),60,60);
      g1 = new Blinky(color(250,0,0), 1020, 860, gSpeed);
+     g2 = new Pinky(color(255, 184, 255), 1020, 740, gSpeed);
+     g3 = new Inky(color(0, 255, 255), 900, 860, gSpeed); //at 30
+     g4 = new Clyde(color(255, 184, 82), 1020, 620,  gSpeed); // at 60 eaten
      p.display();
      g1.display();
+     g2.display();
+     g3.display();
+     g4.display();
      p.move(test);
      g1.move(p, test);
   } 
