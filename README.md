@@ -72,6 +72,7 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - speed tweak (ghosts now move SLIGHTLY slower at 95% for first 5 levels)
 - frightened mode movement (no animation or trigger yet)
 - scatter mode movement with timing
+- coded in new board that resembles the original game much better and has no wide passages
 
 ### Maya
 5/23:
