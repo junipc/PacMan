@@ -3,7 +3,7 @@ int screen = 1;
 public Board test = new Board(0);
 int totalScore = 0;
 int levelScore = 0;
-int startingPellets = 206; //208 if powerpellets switch back for demo
+int startingPellets = 202; //208 if powerpellets switch back for demo
 Keyboard keyIn = new Keyboard();
 final int readyTime = 5000;
 int setUpTime;
@@ -76,22 +76,22 @@ void draw(){
     if (passedTime > 5000 + 3000) {
       g2.move(p,test);
     }
-    if (startingPellets <= 206 - 30){
+    if (startingPellets <= 202 - 30){
       test.map[9][13] = 4; //for some time
       g3.move(p,test);
     }
-    if (startingPellets <= 206 - 60){
+    if (startingPellets <= 202 - 60){
       test.map[9][13] = 4; //for some time
       g4.move(p, test);
     }
-    if (startingPellets <= 206 - 90 && stinky){
+    if (startingPellets <= 202 - 90 && stinky){
       test.map[9][13] = 4; //for some time
       g5.move(p, test);
     }
     if (passedTime >= 7000 && passedTime < 13000){
       test.map[9][13] = 4;
     }
-    if (passedTime >= 13000 && startingPellets > 206 - 30){
+    if (passedTime >= 13000 && startingPellets > 202 - 30){
       //test.map[9][13] = 1; //not rn worry ab open close timing last
     }
     if(scatter){
@@ -107,7 +107,7 @@ void draw(){
     fill(255);
     text("SCORE:" + totalScore, 20, 20);
     text("LEVEL:" + level, 900, 20);
-    text("SP" + startingPellets, 500, 20);
+    text(startingPellets + " PELLETS", 500, 20);
     text("LIVES", 20, 900);
     fill(250,250,0);
     if(lives > 0)
@@ -130,7 +130,7 @@ void draw(){
       }
       else{
         level++;
-        startingPellets = 206; //208 if powerPellets r removed for demo
+        startingPellets = 202;
         p = new PacMan(pacManCustom[pcustomIndex],540,500);
         if(level <= 5)
           gSpeed = p.speed * .95;
@@ -154,7 +154,7 @@ void draw(){
        totalScore -= levelScore;
        levelScore = 0;
      }
-     startingPellets = 206;
+     startingPellets = 202;
      p = new PacMan(pacManCustom[pcustomIndex],540,500);
      if(level <= 5)
        gSpeed = p.speed * .95;
