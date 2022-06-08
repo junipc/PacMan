@@ -23,7 +23,7 @@ public abstract class Ghost{
     if(fright){
       x *= .65;
       y *= .65;
-    }else if(by == 11 && (bx <= 4 || bx >= 22)){ //SHOULD NOT SLOW DOWN IN SURVIVAL!
+    }else if(by == 10 && (bx <= 4 || bx >= 22)){ //SHOULD NOT SLOW DOWN IN SURVIVAL!
       x *= .5;
       y *= .5;
     }
@@ -109,7 +109,7 @@ public abstract class Ghost{
   }
   
   boolean inCage(){
-    return bx >= 10 && bx <= 16 && by >= 9 && by <= 13;
+    return bx >= 10 && bx <= 16 && by >= 9 && by <= 11;
   }
   ArrayList<int[]> countTurns(Board b){
     ArrayList<int[]>turns = new ArrayList();
@@ -145,18 +145,23 @@ public abstract class Ghost{
   }
   
   int[] closestTurn(ArrayList<int[]>turns, int cx, int cy){
-    int[]first = turns.get(0);
-    float minDist = dist(first[0],first[1],cx,cy);
-    int num = 0;
-    for(int i = 1; i < turns.size(); i++){
-      int[]testSq = turns.get(i);
-      float testDist = dist(testSq[0],testSq[1],cx,cy);
-      if(testDist < minDist){
-        minDist = testDist;
-        num = i;
+    if(fright){
+      int randNum = (int)(random(turns.size()));
+      return turns.get(randNum);
+    }else{
+      int[]first = turns.get(0);
+      float minDist = dist(first[0],first[1],cx,cy);
+      int num = 0;
+      for(int i = 1; i < turns.size(); i++){
+        int[]testSq = turns.get(i);
+        float testDist = dist(testSq[0],testSq[1],cx,cy);
+        if(testDist < minDist){
+          minDist = testDist;
+          num = i;
+        }
       }
+      return turns.get(num);
     }
-    return turns.get(num);
   }
   
   void kill(PacMan p){
