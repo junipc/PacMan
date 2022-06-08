@@ -107,7 +107,7 @@ void draw(){
     fill(255);
     text("SCORE:" + totalScore, 20, 20);
     text("LEVEL:" + level, 900, 20);
-    text("SP" + startingPellets, 500, 20);
+    text(startingPellets + " PELLETS", 500, 20);
     text("LIVES", 20, 900);
     fill(250,250,0);
     if(lives > 0)
