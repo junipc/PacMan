@@ -28,6 +28,7 @@ PShape triangle1; //pacman customize button 1
 boolean fright = false;
 float gSpeed;
 float tempTimer = 0;
+boolean stinky = false;
 
 void setup(){
   size(1080,920);
@@ -364,6 +365,13 @@ void mouseClicked(){
   
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 600 && mouseY < 600+60){
     screen = 5; 
+  }
+  
+  if (screen == 5 && mouseX > 160 && mouseX < 160+300 && mouseY > 465 && mouseY < 465+60){
+    stinky = true;
+  }
+    if (screen == 5 && mouseX > 590 && mouseX < 590+300 && mouseY > 465 && mouseY < 465+60){
+    stinky = false;
   }
   
   
