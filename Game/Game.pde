@@ -145,10 +145,15 @@ void draw(){
      }
      startingPellets = 206;
      p = new PacMan(pacManCustom[pcustomIndex],540,580);
+     if(level <= 5)
+       gSpeed = p.speed * .95;
+     else
+       gSpeed = p.speed;
      g1 = new Blinky(color(250,0,0), 540, 340, gSpeed);
      g2 = new Pinky(color(255, 184, 255), 500, 460, gSpeed);
      g3 = new Inky(color(0, 255, 255), 580, 460, gSpeed); //at 30
      g4 = new Clyde(color(255, 184, 82), 620, 460,  gSpeed); // at 60 eaten
+     println(gSpeed);
      setUpTime = millis();
      test = new Board(0);
      firstTime = true;
