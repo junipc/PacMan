@@ -362,7 +362,7 @@ void mouseClicked(){
     else{
       pcustomIndex--;
     }
-    p = new PacMan(pacManCustom[pcustomIndex],540,580);
+    p = new PacMan(pacManCustom[pcustomIndex],540,500);
   }
   if (screen == 4 && mouseX > 780 && mouseX < 880 && mouseY > 400 && mouseY < 500){
     if (pcustomIndex == pacManCustom.length - 1){
@@ -371,7 +371,7 @@ void mouseClicked(){
     else{
       pcustomIndex++;
     }
-    p = new PacMan(pacManCustom[pcustomIndex],540,580);
+    p = new PacMan(pacManCustom[pcustomIndex],540,500);
   }
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 400 && mouseY < 400+60){
     //MODE = 1; //surv
