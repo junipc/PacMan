@@ -82,6 +82,10 @@ void draw(){
       test.map[9][13] = 4; //for some time
       g4.move(p, test);
     }
+    if (startingPellets <= 206 - 90 && stinky){
+      test.map[9][13] = 4; //for some time
+      g5.move(p, test);
+    }
     if (passedTime >= 7000 && passedTime < 13000){
       test.map[9][13] = 4;
     }
@@ -106,6 +110,9 @@ void draw(){
     g2.display();
     g3.display();
     g4.display();
+    if (stinky){
+      g5.display();
+    }
     if (startingPellets == 0){
       if (level == 10){
         level = 0;
@@ -139,6 +146,7 @@ void draw(){
        g2 = new Pinky(color(255, 184, 255), 500, 460, gSpeed);
        g3 = new Inky(color(0, 255, 255), 580, 460, gSpeed); //at 30
        g4 = new Clyde(color(255, 184, 82), 620, 460,  gSpeed); // at 60 eaten
+       g5 = new Stinky(color(223, 0, 254), 460, 460, p.speed*.95); //at 90
        setUpTime = millis();
        test = new Board(0);
        startingPellets = 206;
@@ -154,6 +162,7 @@ void draw(){
      g2 = new Pinky(color(255, 184, 255), 500, 460, gSpeed);
      g3 = new Inky(color(0, 255, 255), 580, 460, gSpeed); //at 30
      g4 = new Clyde(color(255, 184, 82), 620, 460,  gSpeed); // at 60 eaten
+     g5 = new Stinky(color(223, 0, 254), 460, 460, p.speed*.95); //at 90
      println(gSpeed);
      setUpTime = millis();
      test = new Board(0);
