@@ -5,7 +5,7 @@ int totalScore = 0;
 int levelScore = 0;
 int startingPellets = 206; //208 if powerpellets switch back for demo
 Keyboard keyIn = new Keyboard();
-int readyTime = 5000;
+final int readyTime = 5000;
 int setUpTime;
 int counter = 5;
 int level = 1;
@@ -65,11 +65,11 @@ void draw(){
     else if (passedTime <= 5000) {
       text("READY! " + (counter-4), 490, 385);
     }
-    else if (passedTime > readyTime) {
+    else if (passedTime > 5000) {
       //passedTime = 6000;
       p.move(test);
     }
-    if (passedTime > readyTime + 3000) {
+    if (passedTime > 5000 + 3000) {
       g1.move(p, test);
       g2.move(p,test);
     }
@@ -133,8 +133,16 @@ void draw(){
        lives --;
        totalScore -= levelScore;
        levelScore = 0;
+       p = new PacMan(pacManCustom[pcustomIndex],540,580);
+       g1 = new Blinky(color(250,0,0), 540, 340, gSpeed);
+       g2 = new Pinky(color(255, 184, 255), 500, 460, gSpeed);
+       g3 = new Inky(color(0, 255, 255), 580, 460, gSpeed); //at 30
+       g4 = new Clyde(color(255, 184, 82), 620, 460,  gSpeed); // at 60 eaten
+       setUpTime = millis();
+       test = new Board(0);
+       startingPellets = 206;
+       firstTime = true;
      }
-     ghostsCanMove = true;
      startingPellets = 206;
      p = new PacMan(pacManCustom[pcustomIndex],540,580);
      g1 = new Blinky(color(250,0,0), 540, 340, gSpeed);
@@ -143,6 +151,8 @@ void draw(){
      g4 = new Clyde(color(255, 184, 82), 620, 460,  gSpeed); // at 60 eaten
      setUpTime = millis();
      test = new Board(0);
+     firstTime = true;
+     ghostsCanMove = true;
    }
    //tester.displayp1();
    //tester.displayp2();
