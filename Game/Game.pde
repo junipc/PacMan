@@ -9,12 +9,12 @@ final int readyTime = 5000;
 int setUpTime;
 int counter = 5;
 int level = 1;
-PacMan p = new PacMan(color(250,250,0),540,580);
+PacMan p = new PacMan(color(250,250,0),540,500);
 Blinky g1 = new Blinky(color(250,0,0), 540, 340, p.speed*.95);
-Pinky g2 = new Pinky(color(255, 184, 255), 500, 460, p.speed*.95);
-Inky g3 = new Inky(color(0, 255, 255), 580, 460, p.speed*.95); //at 30
-Clyde g4 = new Clyde(color(255, 184, 82), 620, 460,  p.speed*.95); // at 60 eaten
-Stinky g5 = new Stinky(color(223, 0, 254), 460, 460, p.speed*.95);
+Pinky g2 = new Pinky(color(255, 184, 255), 500, 420, p.speed*.95);
+Inky g3 = new Inky(color(0, 255, 255), 580, 420, p.speed*.95); //at 30
+Clyde g4 = new Clyde(color(255, 184, 82), 620, 420,  p.speed*.95); // at 60 eaten
+Stinky g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95);
  // Stinky at 90 eaten
 boolean firstTime = false;
 int lives = 3;
@@ -131,15 +131,15 @@ void draw(){
       else{
         level++;
         startingPellets = 206; //208 if powerPellets r removed for demo
-        p = new PacMan(pacManCustom[pcustomIndex],540,580);
+        p = new PacMan(pacManCustom[pcustomIndex],540,500);
         if(level <= 5)
           gSpeed = p.speed * .95;
         else
           gSpeed = p.speed;
         g1 = new Blinky(color(250,0,0), 540, 340, gSpeed);
-        g2 = new Pinky(color(255, 184, 255), 500, 460, gSpeed);
-        g3 = new Inky(color(0, 255, 255), 580, 460, gSpeed); //at 30
-        g4 = new Clyde(color(255, 184, 82), 620, 460,  gSpeed); // at 60 eaten
+        g2 = new Pinky(color(255, 184, 255), 500, 420, gSpeed);
+        g3 = new Inky(color(0, 255, 255), 580, 420, gSpeed); //at 30
+        g4 = new Clyde(color(255, 184, 82), 620, 420,  gSpeed); // at 60 eaten
         setUpTime = millis();
         test = new Board(0);
         scatter = true;
@@ -154,16 +154,16 @@ void draw(){
        levelScore = 0;
      }
      startingPellets = 206;
-     p = new PacMan(pacManCustom[pcustomIndex],540,580);
+     p = new PacMan(pacManCustom[pcustomIndex],540,500);
      if(level <= 5)
        gSpeed = p.speed * .95;
      else
        gSpeed = p.speed;
      g1 = new Blinky(color(250,0,0), 540, 340, gSpeed);
-     g2 = new Pinky(color(255, 184, 255), 500, 460, gSpeed);
-     g3 = new Inky(color(0, 255, 255), 580, 460, gSpeed); //at 30
-     g4 = new Clyde(color(255, 184, 82), 620, 460,  gSpeed); // at 60 eaten
-     g5 = new Stinky(color(223, 0, 254), 460, 460, p.speed*.95); //at 90
+     g2 = new Pinky(color(255, 184, 255), 500, 420, gSpeed);
+     g3 = new Inky(color(0, 255, 255), 580, 420, gSpeed); //at 30
+     g4 = new Clyde(color(255, 184, 82), 620, 420,  gSpeed); // at 60 eaten
+     g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95); //at 90
      println(gSpeed);
      setUpTime = millis();
      test = new Board(0);
