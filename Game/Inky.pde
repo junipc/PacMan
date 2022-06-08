@@ -13,9 +13,13 @@ public class Inky extends Ghost{
     if(inCage())
       turn = closestTurn(turns,13,9);
     else{
-      int vx = 2*(p.bx - g1.bx);
-      int vy = 2*(p.by - g1.by);
-      turn = closestTurn(turns, g1.bx + vx, g1.by + vy);
+      if(scatter)
+        turn = closestTurn(turns,25,23);
+      else{
+        int vx = 2*(p.bx - g1.bx);
+        int vy = 2*(p.by - g1.by);
+        turn = closestTurn(turns, g1.bx + vx, g1.by + vy);
+      }
     }
     move(b,turn[2],turn[3]);
   }

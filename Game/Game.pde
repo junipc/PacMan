@@ -26,6 +26,7 @@ PShape triangle1; //pacman customize button 1
 //Portal tester = new Portal(4,4,8,8);
 //int MODE; //(classic/surv)
 boolean fright = false;
+boolean scatter = true;
 float gSpeed;
 float tempTimer = 0;
 boolean stinky = false;
