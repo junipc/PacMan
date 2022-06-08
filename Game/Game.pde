@@ -140,6 +140,7 @@ void draw(){
         g2 = new Pinky(color(255, 184, 255), 500, 420, gSpeed);
         g3 = new Inky(color(0, 255, 255), 580, 420, gSpeed); //at 30
         g4 = new Clyde(color(255, 184, 82), 620, 420,  gSpeed); // at 60 eaten
+        g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95); //at 90
         setUpTime = millis();
         test = new Board(0);
         scatter = true;
@@ -164,7 +165,6 @@ void draw(){
      g3 = new Inky(color(0, 255, 255), 580, 420, gSpeed); //at 30
      g4 = new Clyde(color(255, 184, 82), 620, 420,  gSpeed); // at 60 eaten
      g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95); //at 90
-     println(gSpeed);
      setUpTime = millis();
      test = new Board(0);
      scatter = true;

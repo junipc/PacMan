@@ -109,7 +109,7 @@ public abstract class Ghost{
   }
   
   boolean inCage(){
-    return bx >= 10 && bx <= 16 && by >= 9 && by <= 13;
+    return bx >= 10 && bx <= 16 && by >= 9 && by <= 11;
   }
   ArrayList<int[]> countTurns(Board b){
     ArrayList<int[]>turns = new ArrayList();
