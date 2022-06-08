@@ -30,6 +30,7 @@ boolean scatter = true;
 float gSpeed;
 float tempTimer = 0;
 boolean stinky = false;
+boolean alreadyPortal = false; //survival; if theres alr a portal dont spawn lol
 
 void setup(){
   size(1080,920);
@@ -325,6 +326,12 @@ void draw(){
      }
      p.move(test);
      g1.move(p, test);
+     if (Math.random() > .95 && !alreadyPortal){
+       //add a portal
+       alreadyPortal = true;
+     }
+     
+     //if portal gets used, alr portal = false;
   } 
 
   
