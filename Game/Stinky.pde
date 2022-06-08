@@ -92,7 +92,13 @@ public class Stinky extends Ghost{
       move(b, step(p));
     }
   }
-  
+  void goHome(){
+    x = 460;
+    y = 420;
+    bx = 11;
+    by = 10;
+    atCenter = true;
+  }
   
   boolean canMove(Board b, int incX, int incY){
     int nextX = (bx + incX + b.map[0].length) % b.map[0].length;

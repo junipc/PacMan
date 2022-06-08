@@ -26,4 +26,11 @@ public class Clyde extends Ghost{
     move(b,turn[2],turn[3]);
   }
   
+  void goHome(){
+    x = 620;
+    y = 420;
+    bx = 15;
+    by = 10;
+    atCenter = true;
+  }
 }

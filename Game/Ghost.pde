@@ -18,6 +18,7 @@ public abstract class Ghost{
   }
   
   abstract void move(PacMan p, Board b);
+  abstract void goHome();
   
   void setDir(float x, float y){
     if(fright){
@@ -165,7 +166,9 @@ public abstract class Ghost{
   }
   
   void kill(PacMan p){
-    if(p.alive){
+    if(fright){
+      goHome();
+    }else if(p.alive){
       ghostsCanMove = false;
       p.die();
     }

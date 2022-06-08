@@ -149,7 +149,7 @@ public class PacMan{
         totalScore += 100;
         levelScore += 100;
         fright = true;
-        frightTimer = 300;
+        frightTimer = 360;
     }
   }
 }
