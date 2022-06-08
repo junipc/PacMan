@@ -12,8 +12,12 @@ public class Blinky extends Ghost{
     int[]turn;
     if(inCage())
       turn = closestTurn(turns,13,9);
-    else
-      turn = closestTurn(turns, p.bx, p.by);
+    else{
+      if(scatter)
+        turn = closestTurn(turns,25,-1);
+      else
+        turn = closestTurn(turns, p.bx, p.by);
+    }
     move(b,turn[2],turn[3]);
   }
   
