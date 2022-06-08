@@ -43,6 +43,7 @@ void draw(){
       setUpTime = millis();
       firstTime = false;
       test = new Board(0);
+      scatter = true;
     }
     background(255);
     int passedTime = millis() - setUpTime;
@@ -93,6 +94,14 @@ void draw(){
     if (passedTime >= 13000 && startingPellets > 206 - 30){
       //test.map[9][13] = 1; //not rn worry ab open close timing last
     }
+    if(scatter){
+      if(level == 1 && passedTime >= 20000)
+        scatter = false;
+      else if(level >= 2 && level <= 5 && passedTime >= 15000)
+        scatter = false;
+      else if(level >= 6 && passedTime >= 8000)
+        scatter = false;
+    }
     p.display();
     textSize(12);
     fill(255);
@@ -133,6 +142,7 @@ void draw(){
         g4 = new Clyde(color(255, 184, 82), 620, 460,  gSpeed); // at 60 eaten
         setUpTime = millis();
         test = new Board(0);
+        scatter = true;
       }
    }else if(p.deathTimer == 0){
      if(lives == 0){
@@ -142,16 +152,6 @@ void draw(){
        lives --;
        totalScore -= levelScore;
        levelScore = 0;
-       p = new PacMan(pacManCustom[pcustomIndex],540,580);
-       g1 = new Blinky(color(250,0,0), 540, 340, gSpeed);
-       g2 = new Pinky(color(255, 184, 255), 500, 460, gSpeed);
-       g3 = new Inky(color(0, 255, 255), 580, 460, gSpeed); //at 30
-       g4 = new Clyde(color(255, 184, 82), 620, 460,  gSpeed); // at 60 eaten
-       g5 = new Stinky(color(223, 0, 254), 460, 460, p.speed*.95); //at 90
-       setUpTime = millis();
-       test = new Board(0);
-       startingPellets = 206;
-       firstTime = true;
      }
      startingPellets = 206;
      p = new PacMan(pacManCustom[pcustomIndex],540,580);
@@ -167,6 +167,7 @@ void draw(){
      println(gSpeed);
      setUpTime = millis();
      test = new Board(0);
+     scatter = true;
      firstTime = true;
      ghostsCanMove = true;
    }
