@@ -23,7 +23,7 @@ float doIt = 0;
 color[] pacManCustom = new color[]{color(250,250,0), color(250, 120, 0), color(250, 0, 0), color(0, 250, 0), color(0,0,250), color(75,0,130), color(148,0,211)};
 int pcustomIndex = 0;
 PShape triangle1; //pacman customize button 1
-//Portal tester = new Portal(4,4,8,8);
+Portal tester = new Portal(4,4,8,8);
 //int MODE; //(classic/surv)
 boolean fright = false;
 boolean scatter = true;
@@ -172,9 +172,9 @@ void draw(){
      firstTime = true;
      ghostsCanMove = true;
    }
-   //tester.displayp1();
-   //tester.displayp2();
-   //tester.teleport();
+   tester.displayp1();
+   tester.displayp2();
+   tester.teleport();
   }
   if (screen == 1){//START
     background(0);
