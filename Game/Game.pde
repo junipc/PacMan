@@ -68,9 +68,9 @@ void draw(){
     else if (passedTime > 5000) {
       //passedTime = 6000;
       p.move(test);
+      g1.move(p, test);
     }
     if (passedTime > 5000 + 3000) {
-      g1.move(p, test);
       g2.move(p,test);
     }
     if (startingPellets <= 206 - 30){
