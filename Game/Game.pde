@@ -5,7 +5,7 @@ int totalScore = 0;
 int levelScore = 0;
 int startingPellets = 206; //208 if powerpellets switch back for demo
 Keyboard keyIn = new Keyboard();
-int readyTime = 5000;
+final int readyTime = 5000;
 int setUpTime;
 int counter = 5;
 int level = 1;
@@ -28,6 +28,7 @@ PShape triangle1; //pacman customize button 1
 boolean fright = false;
 float gSpeed;
 float tempTimer = 0;
+boolean stinky = false;
 
 void setup(){
   size(1080,920);
@@ -65,12 +66,12 @@ void draw(){
     else if (passedTime <= 5000) {
       text("READY! " + (counter-4), 490, 385);
     }
-    else if (passedTime > readyTime) {
+    else if (passedTime > 5000) {
       //passedTime = 6000;
       p.move(test);
-    }
-    if (passedTime > readyTime + 3000) {
       g1.move(p, test);
+    }
+    if (passedTime > 5000 + 3000) {
       g2.move(p,test);
     }
     if (startingPellets <= 206 - 30){
@@ -80,6 +81,10 @@ void draw(){
     if (startingPellets <= 206 - 60){
       test.map[9][13] = 4; //for some time
       g4.move(p, test);
+    }
+    if (startingPellets <= 206 - 90 && stinky){
+      test.map[9][13] = 4; //for some time
+      g5.move(p, test);
     }
     if (passedTime >= 7000 && passedTime < 13000){
       test.map[9][13] = 4;
@@ -105,6 +110,9 @@ void draw(){
     g2.display();
     g3.display();
     g4.display();
+    if (stinky){
+      g5.display();
+    }
     if (startingPellets == 0){
       if (level == 10){
         level = 0;
@@ -133,8 +141,17 @@ void draw(){
        lives --;
        totalScore -= levelScore;
        levelScore = 0;
+       p = new PacMan(pacManCustom[pcustomIndex],540,580);
+       g1 = new Blinky(color(250,0,0), 540, 340, gSpeed);
+       g2 = new Pinky(color(255, 184, 255), 500, 460, gSpeed);
+       g3 = new Inky(color(0, 255, 255), 580, 460, gSpeed); //at 30
+       g4 = new Clyde(color(255, 184, 82), 620, 460,  gSpeed); // at 60 eaten
+       g5 = new Stinky(color(223, 0, 254), 460, 460, p.speed*.95); //at 90
+       setUpTime = millis();
+       test = new Board(0);
+       startingPellets = 206;
+       firstTime = true;
      }
-     ghostsCanMove = true;
      startingPellets = 206;
      p = new PacMan(pacManCustom[pcustomIndex],540,580);
      if(level <= 5)
@@ -145,9 +162,12 @@ void draw(){
      g2 = new Pinky(color(255, 184, 255), 500, 460, gSpeed);
      g3 = new Inky(color(0, 255, 255), 580, 460, gSpeed); //at 30
      g4 = new Clyde(color(255, 184, 82), 620, 460,  gSpeed); // at 60 eaten
+     g5 = new Stinky(color(223, 0, 254), 460, 460, p.speed*.95); //at 90
      println(gSpeed);
      setUpTime = millis();
      test = new Board(0);
+     firstTime = true;
+     ghostsCanMove = true;
    }
    //tester.displayp1();
    //tester.displayp2();
@@ -270,16 +290,18 @@ void draw(){
   }
   if (screen == 5){ //CUSTOMIZE GHOST
     background(0);
-    fill(152,152,156);
     PFont font;
     font = createFont("emulogic.ttf", 128);
     textFont(font);
     textSize(15);
+    fill(76,76,78);
+    rect(160, 465, 300, 60);
+    rect(590, 465, 300, 60);
     fill(255,128,0);
-    text("Are you up for the challenge?", 160, 200);
-    text("GIVE ME STINKY!", 200, 300);
-    text("No Stinky (default)", 200, 500);
-
+    text("Are you up for the challenge?", 320, 200);
+    text("GIVE ME STINKY!", 200, 500);
+    text("No Stinky (default)", 600, 500);
+    text("Press the Space key to return to the start screen", 160, 800);
   }
   if (screen == 6){//SURVIVAL
      background(255);
@@ -287,8 +309,18 @@ void draw(){
      test.display();
      p = new PacMan(color(250,250,0),60,60);
      g1 = new Blinky(color(250,0,0), 1020, 860, gSpeed);
+     g2 = new Pinky(color(255, 184, 255), 1020, 740, gSpeed);
+     g3 = new Inky(color(0, 255, 255), 900, 860, gSpeed); //at 30
+     g4 = new Clyde(color(255, 184, 82), 1020, 620,  gSpeed); // at 60 eaten
+     g5 = new Stinky(color(223, 0, 254), 780, 860, p.speed*.95); //at 90
      p.display();
      g1.display();
+     g2.display();
+     g3.display();
+     g4.display();
+     if (stinky){
+       g5.display();
+     }
      p.move(test);
      g1.move(p, test);
   } 
@@ -342,6 +374,17 @@ void mouseClicked(){
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 400 && mouseY < 400+60){
     //MODE = 1; //surv
     screen = 6; //or 0
+  }
+  
+  if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 600 && mouseY < 600+60){
+    screen = 5; 
+  }
+  
+  if (screen == 5 && mouseX > 160 && mouseX < 160+300 && mouseY > 465 && mouseY < 465+60){
+    stinky = true;
+  }
+    if (screen == 5 && mouseX > 590 && mouseX < 590+300 && mouseY > 465 && mouseY < 465+60){
+    stinky = false;
   }
   
   
