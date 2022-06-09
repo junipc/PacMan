@@ -168,6 +168,12 @@ public abstract class Ghost{
   void kill(PacMan p){
     if(fright){
       goHome();
+      int killPoints = 200;
+      for(int i = 0; i < eatStreak; i++)
+        killPoints *= 2;
+      totalScore += killPoints;
+      levelScore += killPoints;
+      eatStreak++;
     }else if(p.alive){
       ghostsCanMove = false;
       p.die();

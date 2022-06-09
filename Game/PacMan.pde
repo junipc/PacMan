@@ -149,6 +149,7 @@ public class PacMan{
         totalScore += 50;
         levelScore += 50;
         fright = true;
+        eatStreak = 0;
         if(level <= 1)
           frightTimer = 600;
         else if(level <= 4)
