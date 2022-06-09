@@ -143,6 +143,27 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - began cuztomization of pacman screen with arrows that help to decide
 - visuals for both sides of a portal as well as positioning (not rng yet)
 
+6/5:
+- PacMan customization works with a color bank
+- next and back buttons allow a player to customize PacMan
+
+6/6:
+- PacMan and ghosts are on the survival board
+- Survival mode button added
+
+6/7:
+- Stinky can be chosen as a 5th ghost by player; releases at 90 eaten pellets (or is just there in survival mode)
+- Blinky release time is now concurrent w/ real Pacman timing
+- fixed tiny bugs
+- All four ghosts spawn and work
+- All four ghosts release at the right times (same as PacMan, a bit after, 30 pellets eaten, 60 eaten)
+
+
+6/8:
+- Fixed spawning bugs w/ new board
+- Finished ghost customization with a symbol
+- Portals disappear/stop working upon usage
+
 
 ## Design Document:
 https://docs.google.com/document/d/1o4uHIYr6bDUU8YjrVuAWTHnPCBCr8zDS339r6GEzFfo/edit?usp=sharing

@@ -208,9 +208,9 @@ public class Board{
         if (counter != 4){
           //currentExpanding.addLast(currentExpanding.getFirst());
         }
-        if (Math.random() > .7){
-          currentExpanding.addLast(currentExpanding.getFirst());
-        }
+        //if (Math.random() > .8){
+        //  currentExpanding.addLast(currentExpanding.getFirst());
+        //}
         currentExpanding.removeFirst();
         counter = 0;
       }
