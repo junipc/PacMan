@@ -32,6 +32,7 @@ float gSpeed;
 float tempTimer = 0;
 boolean stinky = false;
 boolean alreadyPortal = false; //survival; if theres alr a portal dont spawn lol
+int eatStreak = 0;
 
 void setup(){
   size(1080,920);
@@ -46,8 +47,7 @@ void draw(){
       firstTime = false;
       test = new Board(0);
       scatter = true;
-      fright = false;
-      frightTimer = -1;
+      frightTimer = 0;
     }
     background(255);
     int passedTime = millis() - setUpTime;
@@ -157,8 +157,7 @@ void draw(){
         setUpTime = millis();
         test = new Board(0);
         scatter = true;
-        fright = false;
-        frightTimer = -1;
+        frightTimer = 0;
       }
    }else if(p.deathTimer == 0){
      if(lives == 0){
@@ -183,8 +182,7 @@ void draw(){
      setUpTime = millis();
      test = new Board(0);
      scatter = true;
-     fright = false;
-     frightTimer = -1;
+     frightTimer = 0;
      firstTime = true;
      ghostsCanMove = true;
    }
