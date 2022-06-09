@@ -190,8 +190,20 @@ public abstract class Ghost{
     triangle(x+15,y+12,x+10,y+12,x+15,y+18);
     if(fright){
       fill(255);
-      rect(x-6,y-2,3,3);
-      rect(x+4,y-2,3,3);
+      stroke(255);
+      rect(x-6,y-3,3,3);
+      rect(x+4,y-3,3,3);
+      strokeWeight(2);
+      line(x-12,y+9,x-8,y+7);
+      line(x-8,y+7,x-4,y+9);
+      line(x-4,y+9,x,y+7);
+      line(x,y+7,x+4,y+9);
+      line(x+4,y+9,x+8,y+7);
+      line(x+8,y+7,x+12,y+9);
+      //line(x+6,y+9,x+9,y+7);
+      //line(x+9,y+7,x+12,y+9);
+      strokeWeight(1);
+      noStroke();
     }
   }
 }
