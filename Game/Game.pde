@@ -33,6 +33,10 @@ float tempTimer = 0;
 boolean stinky = false;
 boolean alreadyPortal = false; //survival; if theres alr a portal dont spawn lol
 int eatStreak = 0;
+boolean killing;
+int kp;
+float kx;
+float ky;
 
 void setup(){
   size(1080,920);
@@ -42,6 +46,12 @@ void setup(){
 
 void draw(){
   if (screen == 0){ //CLASSIC
+    if(killing){
+      fill(0,255,255);
+      textSize(10);
+      textAlign(CENTER);
+      text(kp,kx,ky);
+    }else{
     if (firstTime == true){
       setUpTime = millis();
       firstTime = false;
@@ -54,6 +64,7 @@ void draw(){
     test.display();
     PFont font;
     font = createFont("emulogic.ttf", 128);
+    textAlign(LEFT);
     textFont(font);
     textSize(12);
     fill(255,128,0);
@@ -189,6 +200,7 @@ void draw(){
    //tester.displayp1();
    //tester.displayp2();
    //tester.teleport();
+  }
   }
   if (screen == 1){//START
     background(0);
