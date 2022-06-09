@@ -33,10 +33,10 @@ float tempTimer = 0;
 boolean stinky = false;
 boolean alreadyPortal = false; //survival; if theres alr a portal dont spawn lol
 int eatStreak = 0;
-boolean killing;
 int kp;
 float kx;
 float ky;
+int killingTimer;
 
 void setup(){
   size(1080,920);
@@ -46,11 +46,14 @@ void setup(){
 
 void draw(){
   if (screen == 0){ //CLASSIC
-    if(killing){
-      fill(0,255,255);
-      textSize(10);
-      textAlign(CENTER);
-      text(kp,kx,ky);
+    if(killingTimer > 0){
+      if(killingTimer == 30){
+        fill(0,255,255);
+        textSize(10);
+        textAlign(CENTER);
+        text(kp,kx,ky);
+      }
+      killingTimer--;
     }else{
     if (firstTime == true){
       setUpTime = millis();

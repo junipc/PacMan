@@ -172,7 +172,7 @@ public abstract class Ghost{
         killPoints *= 2;
       totalScore += killPoints;
       levelScore += killPoints;
-      killing = true;
+      killingTimer = 30;
       kx = x;
       ky = y;
       kp = killPoints;
