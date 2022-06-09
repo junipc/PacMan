@@ -1,5 +1,5 @@
 String playerName;
-int screen = 0;
+int screen = 1;
 public Board test = new Board(0);
 int totalScore = 0;
 int levelScore = 0;
@@ -23,7 +23,7 @@ float doIt = 0;
 color[] pacManCustom = new color[]{color(250,250,0), color(250, 120, 0), color(250, 0, 0), color(0, 250, 0), color(0,0,250), color(75,0,130), color(148,0,211)};
 int pcustomIndex = 0;
 PShape triangle1; //pacman customize button 1
-//Portal tester = new Portal(4,4,8,8);
+Portal tester = new Portal(4,4,8,8);
 //int MODE; //(classic/surv)
 boolean fright = false;
 boolean scatter = true;
@@ -305,6 +305,35 @@ void draw(){
     text("GIVE ME STINKY!", 200, 500);
     text("No Stinky (default)", 600, 500);
     text("Press the Space key to return to the start screen", 160, 800);
+    fill(223, 0, 254);
+    int x = 310;
+    int y = 350;
+    arc(x,y,30*3,30*3,PI,2*PI,OPEN);
+    rect(x-15*3,y,30*3,12*3);
+    line(x-15*3,y,x-15*3,y+12*3);
+    line(x+15*3,y,x+15*3,y+12*3);
+    triangle(x-15*3,y+12*3,x-10*3,y+12*3,x-15*3,y+18*3);
+    triangle(x-10*3,y+12*3,x,y+12*3,x-5*3,y+18*3);
+    triangle(x,y+12*3,x+10*3,y+12*3,x+5*3,y+18*3);
+    triangle(x+15*3,y+12*3,x+10*3,y+12*3,x+15*3,y+18*3);
+    x = 740;
+    fill(250,0,0);
+    circle(x, y+10, 130);
+    fill(0);
+    circle(x, y+10, 110);
+    fill(223, 0, 254);
+    arc(x,y,30*3,30*3,PI,2*PI,OPEN);
+    rect(x-15*3,y,30*3,12*3);
+    line(x-15*3,y,x-15*3,y+12*3);
+    line(x+15*3,y,x+15*3,y+12*3);
+    triangle(x-15*3,y+12*3,x-10*3,y+12*3,x-15*3,y+18*3);
+    triangle(x-10*3,y+12*3,x,y+12*3,x-5*3,y+18*3);
+    triangle(x,y+12*3,x+10*3,y+12*3,x+5*3,y+18*3);
+    triangle(x+15*3,y+12*3,x+10*3,y+12*3,x+15*3,y+18*3);
+    fill(250,0,0);
+    translate(width/2, height/2);
+    rotate(PI/3.0);
+    rect(-50, -225, 120, 10);
   }
   if (screen == 6){//SURVIVAL
     if (firstTime == true){
@@ -325,32 +354,32 @@ void draw(){
      g3 = new Inky(color(0, 255, 255), 900, 860, gSpeed); //at 30
      g4 = new Clyde(color(255, 184, 82), 1020, 620,  gSpeed); // at 60 eaten
      g5 = new Stinky(color(223, 0, 254), 780, 860, p.speed*.95); //at 90
-     //if (passedTime <= 1000) {
-     //  text("READY! " + counter, 490, 385);  
-     //}
-     //else if (passedTime <= 2000) {
-     //  text("READY! " + (counter-1), 490, 385);
-     //}
-     //else if (passedTime <= 3000) {
-     //  text("READY! " + (counter-2), 490, 385);
-     //}
-     //else if (passedTime <= 4000) {
-     //  text("READY! " + (counter-3), 490, 385);
-     //}
-     //else if (passedTime <= 5000) {
-     //  text("READY! " + (counter-4), 490, 385);
-     //}
-     //else if (passedTime > 5000) {
-     //  //passedTime = 6000;
-     //  p.move(test);
-     //  g1.move(p, test);
-     //  g2.move(p, test);
-     //  g3.move(p, test);
-     //  g4.move(p, test);
-     //  if (stinky){
-     //    g5.move(p, test);
-     //  }
-     //}
+     if (passedTime <= 1000) {
+       text("READY! " + counter, 490, 385);  
+     }
+     else if (passedTime <= 2000) {
+       text("READY! " + (counter-1), 490, 385);
+     }
+     else if (passedTime <= 3000) {
+       text("READY! " + (counter-2), 490, 385);
+     }
+     else if (passedTime <= 4000) {
+       text("READY! " + (counter-3), 490, 385);
+     }
+     else if (passedTime <= 5000) {
+       text("READY! " + (counter-4), 490, 385);
+     }
+     else if (passedTime > 5000) {
+       //passedTime = 6000;
+       p.move(test);
+       g1.move(p, test);
+       g2.move(p, test);
+       g3.move(p, test);
+       g4.move(p, test);
+       if (stinky){
+         g5.move(p, test);
+       }
+     }
      p.display();
      g1.display();
      g2.display();
@@ -368,7 +397,7 @@ void draw(){
        g5.move(p, test);
      }
      if (Math.random() > .95 && !alreadyPortal){
-       //add a portal
+       //Portal added = new Portal((int)(Math.random()*22)+1, etc -- also check if its a wall or not yk)
        alreadyPortal = true;
      }
      

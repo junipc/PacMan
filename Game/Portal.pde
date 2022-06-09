@@ -23,27 +23,30 @@ public class Portal{
   }
   
   void displayp1(){
-    if (doIt == 500){
-    if (animator >= 4){
-      add = -1;
+    if (canUse){
+      if (doIt == 500){
+      if (animator >= 4){
+        add = -1;
+      }
+      if (animator <= -2){
+        add = 1;
+      }
+      animator += 1 * add;
+      doIt = millis();
+      }
+      noStroke();
+      fill(54, 17, 102);
+      circle(40 * p1[1] + 20,40 * p1[0] + 20, sizes[0] + animator);
+      fill(87, 28, 163);
+      circle(40 * p1[1] + 20,40 * p1[0] + 20, sizes[1] + animator);
+      fill(147, 66, 252);    
+      circle(40 * p1[1] + 20,40 * p1[0] + 20, sizes[2] + animator);    
     }
-    if (animator <= -2){
-      add = 1;
-    }
-    animator += 1 * add;
-    doIt = millis();
-    }
-    noStroke();
-    fill(54, 17, 102);
-    circle(40 * p1[1] + 20,40 * p1[0] + 20, sizes[0] + animator);
-    fill(87, 28, 163);
-    circle(40 * p1[1] + 20,40 * p1[0] + 20, sizes[1] + animator);
-    fill(147, 66, 252);    
-    circle(40 * p1[1] + 20,40 * p1[0] + 20, sizes[2] + animator);    
   }
   
     void displayp2(){
-    if (doIt == 500){
+    if (canUse){
+      if (doIt == 500){
       if (animator >= 4){
         add = -1;
       }
@@ -60,6 +63,7 @@ public class Portal{
     circle(40 * p2[1] + 20,40 * p2[0] + 20, sizes[1] + animator);
     fill(147, 66, 252);    
     circle(40 * p2[1] + 20,40 * p2[0] + 20, sizes[2] + animator);    
+    }
   }
   
   void teleport(){ //tps in survival mode have 1 time usage
@@ -76,6 +80,10 @@ public class Portal{
       p.bx = (int)(p.x/40);
       p.by = (int)(p.y/40);
       canUse = false;
+      noStroke();
+      fill(54, 17, 102);
+      //circle(40 * p2[1] + 20,40 * p2[0] + 20, 32); //remove portal
+      alreadyPortal = false;
     }
     //if canUse = false then it self destructs LOL
   }
