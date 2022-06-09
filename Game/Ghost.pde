@@ -176,7 +176,10 @@ public abstract class Ghost{
   
   void display(){
     noStroke();
-    fill(c);
+    if(fright)
+      fill(0,0,248);
+    else
+      fill(c);
     arc(x,y,30,30,PI,2*PI,OPEN);
     rect(x-15,y,30,12);
     line(x-15,y,x-15,y+12);
@@ -185,5 +188,10 @@ public abstract class Ghost{
     triangle(x-10,y+12,x,y+12,x-5,y+18);
     triangle(x,y+12,x+10,y+12,x+5,y+18);
     triangle(x+15,y+12,x+10,y+12,x+15,y+18);
+    if(fright){
+      fill(255);
+      rect(x-6,y-2,3,3);
+      rect(x+4,y-2,3,3);
+    }
   }
 }
