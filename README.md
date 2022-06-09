@@ -79,6 +79,9 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - ghost orientation display (the eyes!)
 - ghost fright display (includes blinking near the end)
 
+6/9
+- eating frightened ghosts rewards points, which is displayed and pauses the game for a short time
+
 ### Maya
 5/23:
 - tested merge conflict with Juniper in class
