@@ -26,11 +26,17 @@ PShape triangle1; //pacman customize button 1
 Portal tester = new Portal(4,4,8,8);
 //int MODE; //(classic/surv)
 boolean fright = false;
+float frightTimer = 0;
 boolean scatter = true;
 float gSpeed;
 float tempTimer = 0;
 boolean stinky = false;
 boolean alreadyPortal = false; //survival; if theres alr a portal dont spawn lol
+int eatStreak = 0;
+int kp;
+float kx;
+float ky;
+int killingTimer;
 
 void setup(){
   size(1080,920);
@@ -40,17 +46,28 @@ void setup(){
 
 void draw(){
   if (screen == 0){ //CLASSIC
+    if(killingTimer > 0){
+      if(killingTimer == 30){
+        fill(0,255,255);
+        textSize(10);
+        textAlign(CENTER);
+        text(kp,kx,ky);
+      }
+      killingTimer--;
+    }else{
     if (firstTime == true){
       setUpTime = millis();
       firstTime = false;
       test = new Board(0);
       scatter = true;
+      frightTimer = 0;
     }
     background(255);
     int passedTime = millis() - setUpTime;
     test.display();
     PFont font;
     font = createFont("emulogic.ttf", 128);
+    textAlign(LEFT);
     textFont(font);
     textSize(12);
     fill(255,128,0);
@@ -103,6 +120,13 @@ void draw(){
       else if(level >= 6 && passedTime >= 8000)
         scatter = false;
     }
+    if(frightTimer > 0){
+      frightTimer--;
+    }
+    if(frightTimer == 0){
+      fright = false;
+      frightTimer = -1;
+    }
     p.display();
     textSize(12);
     fill(255);
@@ -133,7 +157,9 @@ void draw(){
         level++;
         startingPellets = 202;
         p = new PacMan(pacManCustom[pcustomIndex],540,500);
-        if(level <= 5)
+        if(level <= 4)
+          gSpeed = p.speed * .90;
+        else if(level <= 6)
           gSpeed = p.speed * .95;
         else
           gSpeed = p.speed;
@@ -145,6 +171,7 @@ void draw(){
         setUpTime = millis();
         test = new Board(0);
         scatter = true;
+        frightTimer = 0;
       }
    }else if(p.deathTimer == 0){
      if(lives == 0){
@@ -169,12 +196,14 @@ void draw(){
      setUpTime = millis();
      test = new Board(0);
      scatter = true;
+     frightTimer = 0;
      firstTime = true;
      ghostsCanMove = true;
    }
    //tester.displayp1();
    //tester.displayp2();
    //tester.teleport();
+  }
   }
   if (screen == 1){//START
     background(0);

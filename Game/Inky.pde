@@ -24,4 +24,11 @@ public class Inky extends Ghost{
     move(b,turn[2],turn[3]);
   }
   
+  void goHome(){
+    x = 580;
+    y = 420;
+    bx = 14;
+    by = 10;
+    atCenter = true;
+  }
 }
