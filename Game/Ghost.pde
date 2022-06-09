@@ -208,13 +208,25 @@ public abstract class Ghost{
     }
     
     else{
+      fill(255); //sclerae
       if(dx > 0){
-        fill(255);
         ellipse(x-4,y-2,10,13);
         ellipse(x+10,y-2,10,13);
-        fill(0,0,248);
+
+      }
+      if(dx < 0){
+        ellipse(x-10,y-2,10,13);
+        ellipse(x+4,y-2,10,13);
+      }
+      
+      fill(0,0,248); //pupils
+      if(dx > 0){
         rect(x-5,y-3,5,5);
         rect(x+9,y-3,5,5);
+      }
+      if(dx < 0){
+        rect(x-14,y-3,5,5);
+        rect(x,y-3,5,5);
       }
     }
   }
