@@ -148,6 +148,15 @@ public class PacMan{
        b.map[by][bx] = 2;
         totalScore += 100;
         levelScore += 100;
+        fright = true;
+        if(level <= 1)
+          frightTimer = 600;
+        else if(level <= 4)
+          frightTimer = 450;
+        else if(level <= 7)
+          frightTimer = 300;
+        else
+          frightTimer = 180;
     }
   }
 }

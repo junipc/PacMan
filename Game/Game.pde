@@ -26,6 +26,7 @@ PShape triangle1; //pacman customize button 1
 Portal tester = new Portal(4,4,8,8);
 //int MODE; //(classic/surv)
 boolean fright = false;
+float frightTimer = 0;
 boolean scatter = true;
 float gSpeed;
 float tempTimer = 0;
@@ -103,6 +104,13 @@ void draw(){
       else if(level >= 6 && passedTime >= 8000)
         scatter = false;
     }
+    if(frightTimer > 0){
+      frightTimer--;
+    }
+    if(frightTimer == 0){
+      fright = false;
+      frightTimer = -1;
+    }
     p.display();
     textSize(12);
     fill(255);
@@ -133,7 +141,9 @@ void draw(){
         level++;
         startingPellets = 202;
         p = new PacMan(pacManCustom[pcustomIndex],540,500);
-        if(level <= 5)
+        if(level <= 4)
+          gSpeed = p.speed * .90;
+        else if(level <= 6)
           gSpeed = p.speed * .95;
         else
           gSpeed = p.speed;

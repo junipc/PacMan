@@ -18,11 +18,12 @@ public abstract class Ghost{
   }
   
   abstract void move(PacMan p, Board b);
+  abstract void goHome();
   
   void setDir(float x, float y){
     if(fright){
-      x *= .65;
-      y *= .65;
+      x *= .63;
+      y *= .63;
     }else if(by == 10 && (bx <= 4 || bx >= 22)){ //SHOULD NOT SLOW DOWN IN SURVIVAL!
       x *= .5;
       y *= .5;
@@ -127,16 +128,16 @@ public abstract class Ghost{
     int pby = (by - dby + b.map.length) % b.map.length;
     
     int cx = (bx + 1 + b.map[0].length) % b.map[0].length;
-    if((b.map[by][cx] != 1) && pbx != cx && (inCage() || b.map[by][cx] != 4))
+    if((b.map[by][cx] != 1) && pbx != cx && ((inCage() && ! fright) || b.map[by][cx] != 4))
       turns.add(new int[]{cx,by,1,0});
     cx = (bx - 1 + b.map[0].length) % b.map[0].length;
-    if((b.map[by][cx] != 1) && pbx != cx && (inCage() || b.map[by][cx] != 4))
+    if((b.map[by][cx] != 1) && pbx != cx && ((inCage() && ! fright) || b.map[by][cx] != 4))
       turns.add(new int[]{cx,by,-1,0});
     int cy = (by + 1 + b.map.length) % b.map.length;
-    if((b.map[cy][bx] != 1) && pby != cy && (inCage() || b.map[cy][bx] != 4))
+    if((b.map[cy][bx] != 1) && pby != cy && ((inCage() && ! fright) || b.map[cy][bx] != 4))
       turns.add(new int[]{bx,cy,0,1});
     cy = (by - 1 + b.map.length) % b.map.length;
-    if((b.map[cy][bx] != 1) && pby != cy && (inCage() || b.map[cy][bx] != 4))
+    if((b.map[cy][bx] != 1) && pby != cy && ((inCage() && ! fright) || b.map[cy][bx] != 4))
       turns.add(new int[]{bx,cy,0,-1});
     
     if(turns.size() == 0)
@@ -165,7 +166,9 @@ public abstract class Ghost{
   }
   
   void kill(PacMan p){
-    if(p.alive){
+    if(fright){
+      goHome();
+    }else if(p.alive){
       ghostsCanMove = false;
       p.die();
     }
@@ -173,7 +176,13 @@ public abstract class Ghost{
   
   void display(){
     noStroke();
-    fill(c);
+    if(fright)
+      if(frightTimer > 90 || frightTimer % 16 < 8)
+        fill(0,0,248);
+      else
+        fill(255);
+    else
+      fill(c);
     arc(x,y,30,30,PI,2*PI,OPEN);
     rect(x-15,y,30,12);
     line(x-15,y,x-15,y+12);
@@ -182,5 +191,66 @@ public abstract class Ghost{
     triangle(x-10,y+12,x,y+12,x-5,y+18);
     triangle(x,y+12,x+10,y+12,x+5,y+18);
     triangle(x+15,y+12,x+10,y+12,x+15,y+18);
+    
+    if(fright){
+      if(frightTimer > 90 || frightTimer % 16 < 8){
+        fill(255);
+        stroke(255);
+      }else{
+        fill(248,0,0);
+        stroke(248,0,0);
+      }
+      rect(x-6,y-3,3,3);
+      rect(x+4,y-3,3,3);
+      strokeWeight(2);
+      line(x-12,y+9,x-8,y+7);
+      line(x-8,y+7,x-4,y+9);
+      line(x-4,y+9,x,y+7);
+      line(x,y+7,x+4,y+9);
+      line(x+4,y+9,x+8,y+7);
+      line(x+8,y+7,x+12,y+9);
+      //line(x+6,y+9,x+9,y+7);
+      //line(x+9,y+7,x+12,y+9);
+      strokeWeight(1);
+      noStroke();
+    }
+    
+    else{
+      fill(255); //sclerae
+      if(dx > 0){
+        ellipse(x-4,y-2,10,13);
+        ellipse(x+10,y-2,10,13);
+      }
+      if(dx < 0){
+        ellipse(x-10,y-2,10,13);
+        ellipse(x+4,y-2,10,13);
+      }
+      if(dy > 0){
+        ellipse(x-7,y,10,13);
+        ellipse(x+7,y,10,13);
+      }
+      if(dy < 0){
+        ellipse(x-7,y-5,10,13);
+        ellipse(x+7,y-5,10,13);
+      }
+      
+      fill(0,0,248); //pupils
+      if(dx > 0){
+        rect(x-5,y-3,5,5);
+        rect(x+9,y-3,5,5);
+      }
+      if(dx < 0){
+        rect(x-14,y-3,5,5);
+        rect(x,y-3,5,5);
+      }
+      if(dy > 0){
+        rect(x-9,y+1,5,5);
+        rect(x+5,y+1,5,5);
+      }
+      if(dy < 0){
+        rect(x-9,y-11,5,5);
+        rect(x+5,y-11,5,5);
+      }
+    }
   }
 }

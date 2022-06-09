@@ -34,4 +34,11 @@ public class Pinky extends Ghost{
     move(b,turn[2],turn[3]);
   }
   
+  void goHome(){
+    x = 500;
+    y = 420;
+    bx = 12;
+    by = 10;
+    atCenter = true;
+  }
 }

@@ -21,4 +21,12 @@ public class Blinky extends Ghost{
     move(b,turn[2],turn[3]);
   }
   
+  void goHome(){
+    x = 540;
+    y = 420;
+    bx = 13;
+    by = 10;
+    atCenter = true;
+  }
+  
 }
