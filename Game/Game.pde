@@ -16,7 +16,7 @@ Inky g3 = new Inky(color(0, 255, 255), 580, 420, p.speed*.95); //at 30
 Clyde g4 = new Clyde(color(255, 184, 82), 620, 420,  p.speed*.95); // at 60 eaten
 Stinky g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95);
  // Stinky at 90 eaten
-boolean firstTime = false;
+boolean firstTime = true; //hm or false idk
 int lives = 3;
 boolean ghostsCanMove = true;
 float doIt = 0;
@@ -37,6 +37,7 @@ int kp;
 float kx;
 float ky;
 int killingTimer;
+Portal added;
 
 void setup(){
   size(1080,920);
@@ -61,6 +62,12 @@ void draw(){
       test = new Board(0);
       scatter = true;
       frightTimer = 0;
+      p = new PacMan(color(250,250,0),540,500);
+      g1 = new Blinky(color(250,0,0), 540, 340, p.speed*.95);
+      g2 = new Pinky(color(255, 184, 255), 500, 420, p.speed*.95);
+      g3 = new Inky(color(0, 255, 255), 580, 420, p.speed*.95); //at 30
+      g4 = new Clyde(color(255, 184, 82), 620, 420,  p.speed*.95); // at 60 eaten
+      g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95);
     }
     background(255);
     int passedTime = millis() - setUpTime;
@@ -368,21 +375,20 @@ void draw(){
     if (firstTime == true){
       setUpTime = millis();
       firstTime = false;
-      test = new Board(0);
-      scatter = true;
+      test = new Board(1);
+     p = new PacMan(color(250,250,0),60,60);
+     g1 = new Blinky(color(250,0,0), 1020, 860, p.speed*.95);
+     g2 = new Pinky(color(255, 184, 255), 1020, 740, p.speed*.95);
+     g3 = new Inky(color(0, 255, 255), 900, 860, p.speed*.95); //at 30
+     g4 = new Clyde(color(255, 184, 82), 1020, 620,  p.speed*.95); // at 60 eaten
+     g5 = new Stinky(color(223, 0, 254), 780, 860, p.speed*.95); //at 90
     }
     background(255);
     int passedTime = millis() - setUpTime;
-     ghostsCanMove = true;
      background(255);
-     test = new Board(1);
      test.display();
-     p = new PacMan(color(250,250,0),60,60);
-     g1 = new Blinky(color(250,0,0), 1020, 860, gSpeed);
-     g2 = new Pinky(color(255, 184, 255), 1020, 740, gSpeed);
-     g3 = new Inky(color(0, 255, 255), 900, 860, gSpeed); //at 30
-     g4 = new Clyde(color(255, 184, 82), 1020, 620,  gSpeed); // at 60 eaten
-     g5 = new Stinky(color(223, 0, 254), 780, 860, p.speed*.95); //at 90
+
+     fill(250,0,0);
      if (passedTime <= 1000) {
        text("READY! " + counter, 490, 385);  
      }
@@ -399,6 +405,7 @@ void draw(){
        text("READY! " + (counter-4), 490, 385);
      }
      else if (passedTime > 5000) {
+       ghostsCanMove = true;
        //passedTime = 6000;
        p.move(test);
        g1.move(p, test);
@@ -409,6 +416,37 @@ void draw(){
          g5.move(p, test);
        }
      }
+     if (passedTime >= 30*1000+5000 && passedTime < 60*1000+5000){
+       level = 2;
+     }
+     else if (passedTime >= 60*1000+5000 && passedTime < 90*1000+5000){
+       level = 3;
+     }
+     else if (passedTime >= 90*1000+5000 && passedTime < 120*1000+5000){
+       level = 4;
+     }
+     else if (passedTime >=120*1000+5000 && passedTime < 150*1000+5000){
+       level = 5;
+     }
+     else if (passedTime >= 150*1000+5000 && passedTime < 180*1000+5000){
+       level = 6;
+     }
+     else if (passedTime >= 180*1000+5000 && passedTime < 210*1000+5000){
+       level = 7;
+     }
+     else if (passedTime >= 210*1000+5000 && passedTime < 240*1000+5000){
+       level = 8;
+     }
+     else if (passedTime >= 240*1000+5000 && passedTime < 270*1000+5000){
+       level = 9;
+     }
+     else if (passedTime >= 270*1000+5000 && passedTime < 300*1000+5000){
+       level = 10;
+     }
+     else if (passedTime > 300*1000+5000){
+       level = 0;
+       screen = 2;
+     }
      p.display();
      g1.display();
      g2.display();
@@ -417,19 +455,26 @@ void draw(){
      if (stinky){
        g5.display();
      }
-     p.move(test);
-     g1.move(p, test);
-     g2.move(p, test);
-     g3.move(p, test);
-     g4.move(p, test);
-     if (stinky){
-       g5.move(p, test);
-     }
+     totalScore = Math.max(0,passedTime/1000 -5);
+     fill(255);
+     text("LEVEL:" + level, 900, 20);
+     text("SCORE:" + totalScore, 20, 20);
+     //p.move(test);
+     //g1.move(p, test);
+     //g2.move(p, test);
+     //g3.move(p, test);
+     //g4.move(p, test);
+     //if (stinky){
+     //  g5.move(p, test);
+     //}
      if (Math.random() > .95 && !alreadyPortal){
-       //Portal added = new Portal((int)(Math.random()*22)+1, etc -- also check if its a wall or not yk)
+      //added = new Portal((int)(Math.random()*22)+1, etc -- also check if its a wall or not yk)
        alreadyPortal = true;
      }
-     
+    // if (alreadyPortal && !added.canUse){
+   //   alreadyPortal = false;
+ // *removes portal w creation of new location bcs alr portal = false
+   //  }
      //if portal gets used, alr portal = false;
   } 
 
