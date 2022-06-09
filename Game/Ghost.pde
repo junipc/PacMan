@@ -212,7 +212,6 @@ public abstract class Ghost{
       if(dx > 0){
         ellipse(x-4,y-2,10,13);
         ellipse(x+10,y-2,10,13);
-
       }
       if(dx < 0){
         ellipse(x-10,y-2,10,13);
@@ -221,6 +220,10 @@ public abstract class Ghost{
       if(dy > 0){
         ellipse(x-7,y,10,13);
         ellipse(x+7,y,10,13);
+      }
+      if(dy < 0){
+        ellipse(x-7,y-5,10,13);
+        ellipse(x+7,y-5,10,13);
       }
       
       fill(0,0,248); //pupils
@@ -235,6 +238,10 @@ public abstract class Ghost{
       if(dy > 0){
         rect(x-9,y+1,5,5);
         rect(x+5,y+1,5,5);
+      }
+      if(dy < 0){
+        rect(x-9,y-11,5,5);
+        rect(x+5,y-11,5,5);
       }
     }
   }
