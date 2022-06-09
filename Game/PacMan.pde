@@ -140,14 +140,14 @@ public class PacMan{
   void eat(Board b){
     if(b.map[by][bx] == 0){
       b.map[by][bx] = 2;
-      totalScore += 50;
-      levelScore += 50;
+      totalScore += 10;
+      levelScore += 10;
       startingPellets--;
     }
     if(b.map[by][bx] == 3){
        b.map[by][bx] = 2;
-        totalScore += 100;
-        levelScore += 100;
+        totalScore += 50;
+        levelScore += 50;
         fright = true;
         if(level <= 1)
           frightTimer = 600;
