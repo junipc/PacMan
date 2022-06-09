@@ -46,6 +46,8 @@ void draw(){
       firstTime = false;
       test = new Board(0);
       scatter = true;
+      fright = false;
+      frightTimer = -1;
     }
     background(255);
     int passedTime = millis() - setUpTime;
@@ -155,6 +157,8 @@ void draw(){
         setUpTime = millis();
         test = new Board(0);
         scatter = true;
+        fright = false;
+        frightTimer = -1;
       }
    }else if(p.deathTimer == 0){
      if(lives == 0){
@@ -179,6 +183,8 @@ void draw(){
      setUpTime = millis();
      test = new Board(0);
      scatter = true;
+     fright = false;
+     frightTimer = -1;
      firstTime = true;
      ghostsCanMove = true;
    }
