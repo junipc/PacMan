@@ -16,7 +16,7 @@ Inky g3 = new Inky(color(0, 255, 255), 580, 420, p.speed*.95); //at 30
 Clyde g4 = new Clyde(color(255, 184, 82), 620, 420,  p.speed*.95); // at 60 eaten
 Stinky g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95);
  // Stinky at 90 eaten
-boolean firstTime = false;
+boolean firstTime = true; //hm or false idk
 int lives = 3;
 boolean ghostsCanMove = true;
 float doIt = 0;
@@ -368,14 +368,13 @@ void draw(){
     if (firstTime == true){
       setUpTime = millis();
       firstTime = false;
-      test = new Board(0);
+      test = new Board(1);
       scatter = true;
     }
     background(255);
     int passedTime = millis() - setUpTime;
      ghostsCanMove = true;
      background(255);
-     test = new Board(1);
      test.display();
      p = new PacMan(color(250,250,0),60,60);
      g1 = new Blinky(color(250,0,0), 1020, 860, gSpeed);
