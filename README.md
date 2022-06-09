@@ -76,6 +76,8 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 6/8
 - coded in new board that resembles the original game much better and has no wide passages
 - fright mode trigger and timing and ghosts return home
+- ghost orientation display (the eyes!)
+- ghost fright display (includes blinking near the end)
 
 ### Maya
 5/23:
