@@ -1,5 +1,5 @@
 String playerName;
-int screen = 6;
+int screen = 1;
 public Board test = new Board(0);
 int totalScore = 0;
 int levelScore = 0;
@@ -37,6 +37,7 @@ int kp;
 float kx;
 float ky;
 int killingTimer;
+Portal added;
 
 void setup(){
   size(1080,920);
@@ -415,6 +416,37 @@ void draw(){
          g5.move(p, test);
        }
      }
+     if (passedTime >= 30*1000+5000 && passedTime < 60*1000+5000){
+       level = 2;
+     }
+     else if (passedTime >= 60*1000+5000 && passedTime < 90*1000+5000){
+       level = 3;
+     }
+     else if (passedTime >= 90*1000+5000 && passedTime < 120*1000+5000){
+       level = 4;
+     }
+     else if (passedTime >=120*1000+5000 && passedTime < 150*1000+5000){
+       level = 5;
+     }
+     else if (passedTime >= 150*1000+5000 && passedTime < 180*1000+5000){
+       level = 6;
+     }
+     else if (passedTime >= 180*1000+5000 && passedTime < 210*1000+5000){
+       level = 7;
+     }
+     else if (passedTime >= 210*1000+5000 && passedTime < 240*1000+5000){
+       level = 8;
+     }
+     else if (passedTime >= 240*1000+5000 && passedTime < 270*1000+5000){
+       level = 9;
+     }
+     else if (passedTime >= 270*1000+5000 && passedTime < 300*1000+5000){
+       level = 10;
+     }
+     else if (passedTime > 300*1000+5000){
+       level = 0;
+       screen = 2;
+     }
      p.display();
      g1.display();
      g2.display();
@@ -423,8 +455,10 @@ void draw(){
      if (stinky){
        g5.display();
      }
+     totalScore = Math.max(0,passedTime/1000 -5);
      fill(255);
      text("LEVEL:" + level, 900, 20);
+     text("SCORE:" + totalScore, 20, 20);
      //p.move(test);
      //g1.move(p, test);
      //g2.move(p, test);
@@ -434,10 +468,13 @@ void draw(){
      //  g5.move(p, test);
      //}
      if (Math.random() > .95 && !alreadyPortal){
-       //Portal added = new Portal((int)(Math.random()*22)+1, etc -- also check if its a wall or not yk)
+      //added = new Portal((int)(Math.random()*22)+1, etc -- also check if its a wall or not yk)
        alreadyPortal = true;
      }
-     
+    // if (alreadyPortal && !added.canUse){
+   //   alreadyPortal = false;
+ // *removes portal w creation of new location bcs alr portal = false
+   //  }
      //if portal gets used, alr portal = false;
   } 
 
