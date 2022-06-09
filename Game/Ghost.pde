@@ -188,6 +188,7 @@ public abstract class Ghost{
     triangle(x-10,y+12,x,y+12,x-5,y+18);
     triangle(x,y+12,x+10,y+12,x+5,y+18);
     triangle(x+15,y+12,x+10,y+12,x+15,y+18);
+    
     if(fright){
       fill(255);
       stroke(255);
@@ -204,6 +205,17 @@ public abstract class Ghost{
       //line(x+9,y+7,x+12,y+9);
       strokeWeight(1);
       noStroke();
+    }
+    
+    else{
+      if(dx > 0){
+        fill(255);
+        ellipse(x-4,y-2,10,13);
+        ellipse(x+10,y-2,10,13);
+        fill(0,0,248);
+        rect(x-5,y-3,5,5);
+        rect(x+9,y-3,5,5);
+      }
     }
   }
 }
