@@ -140,7 +140,9 @@ void draw(){
         level++;
         startingPellets = 202;
         p = new PacMan(pacManCustom[pcustomIndex],540,500);
-        if(level <= 5)
+        if(level <= 4)
+          gSpeed = p.speed * .90;
+        else if(level <= 6)
           gSpeed = p.speed * .95;
         else
           gSpeed = p.speed;

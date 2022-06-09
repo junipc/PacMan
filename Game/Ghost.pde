@@ -22,8 +22,8 @@ public abstract class Ghost{
   
   void setDir(float x, float y){
     if(fright){
-      x *= .65;
-      y *= .65;
+      x *= .63;
+      y *= .63;
     }else if(by == 10 && (bx <= 4 || bx >= 22)){ //SHOULD NOT SLOW DOWN IN SURVIVAL!
       x *= .5;
       y *= .5;
