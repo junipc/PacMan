@@ -177,7 +177,10 @@ public abstract class Ghost{
   void display(){
     noStroke();
     if(fright)
-      fill(0,0,248);
+      if(frightTimer > 90 || frightTimer % 16 < 8)
+        fill(0,0,248);
+      else
+        fill(255);
     else
       fill(c);
     arc(x,y,30,30,PI,2*PI,OPEN);
@@ -190,8 +193,13 @@ public abstract class Ghost{
     triangle(x+15,y+12,x+10,y+12,x+15,y+18);
     
     if(fright){
-      fill(255);
-      stroke(255);
+      if(frightTimer > 90 || frightTimer % 16 < 8){
+        fill(255);
+        stroke(255);
+      }else{
+        fill(248,0,0);
+        stroke(248,0,0);
+      }
       rect(x-6,y-3,3,3);
       rect(x+4,y-3,3,3);
       strokeWeight(2);
