@@ -2,7 +2,6 @@ String playerName;
 int screen = 1;
 public Board test = new Board(0);
 int totalScore = 0;
-int levelScore = 0;
 int startingPellets = 202; //208 if powerpellets switch back for demo
 Keyboard keyIn = new Keyboard();
 final int readyTime = 5000;
@@ -16,8 +15,8 @@ Inky g3 = new Inky(color(0, 255, 255), 580, 420, p.speed*.95); //at 30
 Clyde g4 = new Clyde(color(255, 184, 82), 620, 420,  p.speed*.95); // at 60 eaten
 Stinky g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95);
  // Stinky at 90 eaten
-boolean firstTime = true; //hm or false idk
-int lives = 3;
+boolean firstTime = false;
+int lives = 4;
 boolean ghostsCanMove = true;
 float doIt = 0;
 color[] pacManCustom = new color[]{color(250,250,0), color(250, 120, 0), color(250, 0, 0), color(0, 250, 0), color(0,0,250), color(75,0,130), color(148,0,211)};
@@ -59,7 +58,6 @@ void draw(){
     if (firstTime == true){
       setUpTime = millis();
       firstTime = false;
-      test = new Board(0);
       scatter = true;
       frightTimer = 0;
       p = new PacMan(color(250,250,0),540,500);
@@ -100,18 +98,18 @@ void draw(){
     }
     if (passedTime > 5000 + 3000) {
       g2.move(p,test);
-    }
-    if (startingPellets <= 202 - 30){
-      test.map[9][13] = 4; //for some time
-      g3.move(p,test);
-    }
-    if (startingPellets <= 202 - 60){
-      test.map[9][13] = 4; //for some time
-      g4.move(p, test);
-    }
-    if (startingPellets <= 202 - 90 && stinky){
-      test.map[9][13] = 4; //for some time
-      g5.move(p, test);
+      if (startingPellets <= 202 - 30){
+        test.map[9][13] = 4; //for some time
+        g3.move(p,test);
+      }
+      if (startingPellets <= 202 - 60){
+        test.map[9][13] = 4; //for some time
+        g4.move(p, test);
+      }
+      if (startingPellets <= 202 - 90 && stinky){
+        test.map[9][13] = 4; //for some time
+        g5.move(p, test);
+      }
     }
     if (passedTime >= 7000 && passedTime < 13000){
       test.map[9][13] = 4;
@@ -148,6 +146,8 @@ void draw(){
       arc(150,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
     if(lives > 2)
       arc(190,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
+    if(lives > 3)
+      arc(230,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
     g1.display();
     g2.display();
     g3.display();
@@ -186,10 +186,7 @@ void draw(){
        screen = 3;
      }else{
        lives --;
-       totalScore -= levelScore;
-       levelScore = 0;
      }
-     startingPellets = 202;
      p = new PacMan(pacManCustom[pcustomIndex],540,500);
      if(level <= 5)
        gSpeed = p.speed * .95;
@@ -201,7 +198,11 @@ void draw(){
      g4 = new Clyde(color(255, 184, 82), 620, 420,  gSpeed); // at 60 eaten
      g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95); //at 90
      setUpTime = millis();
-     test = new Board(0);
+     if(lives==0){
+       startingPellets = 202;
+     }else{
+       test.map[9][13] = 1;
+     }
      scatter = true;
      frightTimer = 0;
      firstTime = true;
@@ -487,7 +488,6 @@ void keyPressed() {
   if ((screen == 2 || screen == 3 || screen == 4 || screen == 5) && key == ' '){
     screen = 1;
     totalScore = 0;
-    levelScore = 0;
     lives = 3;
   }
 }
@@ -502,6 +502,7 @@ void mouseClicked(){
     firstTime = true;
     //MODE = 0;
     screen = 0;
+    test = new Board(0);
   }
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 500 && mouseY < 500+60){//to PACMAN CUSTOMIZE
     screen = 4;

@@ -82,6 +82,11 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 6/9
 - eating frightened ghosts rewards points, which is displayed and pauses the game for a short time
 
+6/10
+- score display fix at win or lose screen
+- pellets no longer reset upon death, as per the original game
+- extra life
+
 ### Maya
 5/23:
 - tested merge conflict with Juniper in class
