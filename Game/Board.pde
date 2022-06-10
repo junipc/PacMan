@@ -166,53 +166,45 @@ public class Board{
       
       while (currentExpanding.size() > 0){
         int[] currentXY = currentExpanding.getFirst();
-        int counter = 0;
+
         //shldnt ever go out bcs boundary is walls so shld never get within 2 of walls
         //2 above so no paths blocked; 1 above shldnt be bad bcs arraydeq only has edge ones
         if (map[currentXY[0]][currentXY[1]+2] != 1 && map[currentXY[0]+1][currentXY[1]+2] != 1 && map[currentXY[0]-1][currentXY[1]+2] != 1){
-          if (Math.random() > .3){
+          if (Math.random() >.4){
             map[currentXY[0]][currentXY[1]+1] = 1;
             currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]+1});
           }
-          else{
-            counter++;
-           }
         } 
         if (map[currentXY[0]+2][currentXY[1]] != 1 && map[currentXY[0]+2][currentXY[1]+1] != 1 && map[currentXY[0]+2][currentXY[1]-1] != 1){
-           if (Math.random() >.3){ 
+          if (Math.random() >.4){ 
             map[currentXY[0]+1][currentXY[1]] = 1;
             currentExpanding.addLast(new int[]{currentXY[0]+1, currentXY[1]});
-           }
-           else{
-            counter++;// currentExpanding.addLast(currentExpanding.getFirst());
-           }
+          }
         } 
         if (map[currentXY[0]][currentXY[1]-2] != 1 && map[currentXY[0]+1][currentXY[1]-2] != 1 && map[currentXY[0]-1][currentXY[1]-2] != 1){
-           if (Math.random() >.3){
+          if (Math.random() >.4){
             map[currentXY[0]][currentXY[1]-1] = 1;
             currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]-1});
-           }
-           else{
-            counter++;// currentExpanding.addLast(currentExpanding.getFirst());
-           }
+          }
         } 
         if (map[currentXY[0]-2][currentXY[1]] != 1 && map[currentXY[0]-2][currentXY[1]+1] != 1 && map[currentXY[0]-2][currentXY[1]-1] != 1){
-           if (Math.random() >.3){
+          if (Math.random() >.4){
             map[currentXY[0]-1][currentXY[1]] = 1;
             currentExpanding.addLast(new int[]{currentXY[0]-1, currentXY[1]});
-           }
-           else{
-            counter++;// currentExpanding.addLast(currentExpanding.getFirst());
-           }
+          }     
         } 
-        if (counter != 4){
-          //currentExpanding.addLast(currentExpanding.getFirst());
-        }
         //if (Math.random() > .8){
         //  currentExpanding.addLast(currentExpanding.getFirst());
         //}
         currentExpanding.removeFirst();
-        counter = 0;
+      }
+      for (int i = 2; i < 21;i++){
+        for (int j = 2; j < 25; j++){
+          if (map[i][j] == 2 && map[i][j+1] == 2 && map[i+1][j] == 2 && map[i+1][j+1] == 2){
+            map[i][j] = 1;
+            
+          }
+        }
       }
     }
   }
