@@ -503,8 +503,3 @@ void mouseClicked(){
   //  fill(255,0,0);
   //}
 }
-
-//TODO
-//better scatter/chase sequence
-//cheat mode
-//more lives
