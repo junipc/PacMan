@@ -198,9 +198,7 @@ void draw(){
      g4 = new Clyde(color(255, 184, 82), 620, 420,  gSpeed); // at 60 eaten
      g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95); //at 90
      setUpTime = millis();
-     if(lives==0){
-       startingPellets = 202;
-     }else{
+     if(lives!=0){
        test.map[9][13] = 1;
      }
      scatter = true;
@@ -503,6 +501,7 @@ void mouseClicked(){
     //MODE = 0;
     screen = 0;
     test = new Board(0);
+    startingPellets = 202;
   }
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 500 && mouseY < 500+60){//to PACMAN CUSTOMIZE
     screen = 4;
