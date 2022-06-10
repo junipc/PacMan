@@ -1,5 +1,5 @@
 String playerName;
-int screen = 6;
+int screen = 1;
 public Board test = new Board(0);
 int totalScore = 0;
 int startingPellets = 202; //208 if powerpellets switch back for demo
