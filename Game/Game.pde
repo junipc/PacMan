@@ -193,7 +193,6 @@ void draw(){
      setUpTime = millis();
      if(lives==0){
        startingPellets = 202;
-       test = new Board(0);
      }else{
        test.map[9][13] = 1;
      }
