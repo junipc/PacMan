@@ -99,10 +99,10 @@ void draw(){
         test.map[9][13] = 4; //for some time
         g4.move(p, test);
       }
-    }
-    if (startingPellets <= 202 - 90 && stinky){
-      test.map[9][13] = 4; //for some time
-      g5.move(p, test);
+      if (startingPellets <= 202 - 90 && stinky){
+        test.map[9][13] = 4; //for some time
+        g5.move(p, test);
+      }
     }
     if (passedTime >= 7000 && passedTime < 13000){
       test.map[9][13] = 4;
