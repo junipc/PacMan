@@ -83,6 +83,8 @@ public class Stinky extends Ghost{
   }
   
   void move(PacMan p, Board b){
+    if(bx == p.bx && by == p.by)
+      kill(p);
     if(fright){
       ArrayList<int[]>turns = countTurns(b);
       int[]turn = closestTurn(turns,0,0);
