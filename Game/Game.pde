@@ -58,7 +58,6 @@ void draw(){
     if (firstTime == true){
       setUpTime = millis();
       firstTime = false;
-      test = new Board(0);
       scatter = true;
       frightTimer = 0;
     }
@@ -93,14 +92,14 @@ void draw(){
     }
     if (passedTime > 5000 + 3000) {
       g2.move(p,test);
-    }
-    if (startingPellets <= 202 - 30){
-      test.map[9][13] = 4; //for some time
-      g3.move(p,test);
-    }
-    if (startingPellets <= 202 - 60){
-      test.map[9][13] = 4; //for some time
-      g4.move(p, test);
+      if (startingPellets <= 202 - 30){
+        test.map[9][13] = 4; //for some time
+        g3.move(p,test);
+      }
+      if (startingPellets <= 202 - 60){
+        test.map[9][13] = 4; //for some time
+        g4.move(p, test);
+      }
     }
     if (startingPellets <= 202 - 90 && stinky){
       test.map[9][13] = 4; //for some time
@@ -180,10 +179,9 @@ void draw(){
        screen = 3;
      }else{
        lives --;
-       totalScore -= levelScore;
-       levelScore = 0;
+       //totalScore -= levelScore;
+       //levelScore = 0;
      }
-     startingPellets = 202;
      p = new PacMan(pacManCustom[pcustomIndex],540,500);
      if(level <= 5)
        gSpeed = p.speed * .95;
@@ -195,7 +193,12 @@ void draw(){
      g4 = new Clyde(color(255, 184, 82), 620, 420,  gSpeed); // at 60 eaten
      g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95); //at 90
      setUpTime = millis();
-     test = new Board(0);
+     if(lives==0){
+       startingPellets = 202;
+       test = new Board(0);
+     }else{
+       test.map[9][13] = 1;
+     }
      scatter = true;
      frightTimer = 0;
      firstTime = true;
@@ -458,6 +461,7 @@ void mouseClicked(){
     firstTime = true;
     //MODE = 0;
     screen = 0;
+    test = new Board(0);
   }
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 500 && mouseY < 500+60){//to PACMAN CUSTOMIZE
     screen = 4;
@@ -503,3 +507,8 @@ void mouseClicked(){
   //  fill(255,0,0);
   //}
 }
+
+//TODO
+//better scatter/chase sequence
+//cheat mode
+//more lives
