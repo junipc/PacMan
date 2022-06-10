@@ -1,6 +1,7 @@
 import java.util.*;
 public class Board{
   int[][] map;
+  ArrayList<int[]> noPelletsForSurvival = new ArrayList<int[]>();
   //int score = 0; //do i need to make static or
   
   public Board(int mode){
@@ -59,7 +60,7 @@ public class Board{
       map[2][25] = 3;
       */
     }
-    if (mode == 1){//survival rng
+    if (mode == 1){//CHANGE TO 1
       ArrayDeque<int[]>currentExpanding = new ArrayDeque<int[]>();
       int[][] tempMap = new int[23][27];
       for (int i = 0; i < 23; i++){
@@ -127,82 +128,82 @@ public class Board{
       currentExpanding.addLast(new int[]{rand4R, rand3C});
       currentExpanding.addLast(new int[]{rand4R, rand4C});
       currentExpanding.addLast(new int[]{rand4R, rand5C});
+      //int counter = 0;
+      //while (currentExpanding.size() > 0 && counter < 100){
+      //  int[] currentXY = currentExpanding.getFirst();
 
-      //map[(int)(Math.random()*19)+2][(int)(Math.random()*23)+2] = 1;
-      
-      //map[11][13] = 1; //we can add/remove/change centers of 'islands' if wanted 
-      //map[6][7] = 1;
-      //map[6][19] = 1;
-      //map[16][19] = 1;
-      //map[16][7] = 1;
-      //map[11][7] = 1;
-      //map[11][19] = 1;
-      //map[6][13] = 1;
-      //map[16][13] = 1;
-      
-      //map[11][23] = 1; //we can add/remove/change centers of 'islands' if wanted 
-      //map[6][23] = 1;
-      //map[16][23] = 1;
-      //map[6][3] = 1;
-      //map[16][3] = 1;
-      //map[11][3] = 1;
-      
-      //currentExpanding.addLast(new int[]{11, 13});//we can add/remove/change centers of 'islands' if wanted 
-      //currentExpanding.addLast(new int[]{6, 7});
-      //currentExpanding.addLast(new int[]{6, 19});
-      //currentExpanding.addLast(new int[]{16, 19});
-      //currentExpanding.addLast(new int[]{16, 7});
-      //currentExpanding.addLast(new int[]{11, 7});
-      //currentExpanding.addLast(new int[]{11, 19});
-      //currentExpanding.addLast(new int[]{6, 13});
-      //currentExpanding.addLast(new int[]{16, 13});
-      
-      //currentExpanding.addLast(new int[]{11, 23});
-      //currentExpanding.addLast(new int[]{6, 23});
-      //currentExpanding.addLast(new int[]{16, 23});
-      //currentExpanding.addLast(new int[]{6, 3});
-      //currentExpanding.addLast(new int[]{16, 3});
-      //currentExpanding.addLast(new int[]{11, 3});
-      
+      //  //shldnt ever go out bcs boundary is walls so shld never get within 2 of walls
+      //  //2 above so no paths blocked; 1 above shldnt be bad bcs arraydeq only has edge ones
+      //  if (map[currentXY[0]][currentXY[1]+2] != 1 && map[currentXY[0]+1][currentXY[1]+2] != 1 && map[currentXY[0]-1][currentXY[1]+2] != 1){
+      //    if (Math.random() >.4){
+      //      map[currentXY[0]][currentXY[1]+1] = 1;
+      //      currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]+1});
+      //    }
+      //  } 
+      //  if (map[currentXY[0]+2][currentXY[1]] != 1 && map[currentXY[0]+2][currentXY[1]+1] != 1 && map[currentXY[0]+2][currentXY[1]-1] != 1){
+      //    if (Math.random() >.4){ 
+      //      map[currentXY[0]+1][currentXY[1]] = 1;
+      //      currentExpanding.addLast(new int[]{currentXY[0]+1, currentXY[1]});
+      //    }
+      //  } 
+      //  if (map[currentXY[0]][currentXY[1]-2] != 1 && map[currentXY[0]+1][currentXY[1]-2] != 1 && map[currentXY[0]-1][currentXY[1]-2] != 1){
+      //    if (Math.random() >.4){
+      //      map[currentXY[0]][currentXY[1]-1] = 1;
+      //      currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]-1});
+      //    }
+      //  } 
+      //  if (map[currentXY[0]-2][currentXY[1]] != 1 && map[currentXY[0]-2][currentXY[1]+1] != 1 && map[currentXY[0]-2][currentXY[1]-1] != 1){
+      //    if (Math.random() >.4){
+      //      map[currentXY[0]-1][currentXY[1]] = 1;
+      //      currentExpanding.addLast(new int[]{currentXY[0]-1, currentXY[1]});
+      //    }     
+      //  } 
+      //  //if (Math.random() > .8){
+      //  //  currentExpanding.addLast(currentExpanding.getFirst());
+      //  //}
+      //  currentExpanding.removeFirst();
+      //  counter++;
+      //}
       while (currentExpanding.size() > 0){
         int[] currentXY = currentExpanding.getFirst();
 
         //shldnt ever go out bcs boundary is walls so shld never get within 2 of walls
         //2 above so no paths blocked; 1 above shldnt be bad bcs arraydeq only has edge ones
         if (map[currentXY[0]][currentXY[1]+2] != 1 && map[currentXY[0]+1][currentXY[1]+2] != 1 && map[currentXY[0]-1][currentXY[1]+2] != 1){
-          if (Math.random() >.4){
             map[currentXY[0]][currentXY[1]+1] = 1;
             currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]+1});
-          }
         } 
         if (map[currentXY[0]+2][currentXY[1]] != 1 && map[currentXY[0]+2][currentXY[1]+1] != 1 && map[currentXY[0]+2][currentXY[1]-1] != 1){
-          if (Math.random() >.4){ 
             map[currentXY[0]+1][currentXY[1]] = 1;
             currentExpanding.addLast(new int[]{currentXY[0]+1, currentXY[1]});
-          }
         } 
         if (map[currentXY[0]][currentXY[1]-2] != 1 && map[currentXY[0]+1][currentXY[1]-2] != 1 && map[currentXY[0]-1][currentXY[1]-2] != 1){
-          if (Math.random() >.4){
             map[currentXY[0]][currentXY[1]-1] = 1;
             currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]-1});
-          }
         } 
         if (map[currentXY[0]-2][currentXY[1]] != 1 && map[currentXY[0]-2][currentXY[1]+1] != 1 && map[currentXY[0]-2][currentXY[1]-1] != 1){
-          if (Math.random() >.4){
             map[currentXY[0]-1][currentXY[1]] = 1;
             currentExpanding.addLast(new int[]{currentXY[0]-1, currentXY[1]});
-          }     
         } 
         //if (Math.random() > .8){
         //  currentExpanding.addLast(currentExpanding.getFirst());
         //}
         currentExpanding.removeFirst();
+        counter++;
       }
-      for (int i = 2; i < 21;i++){
-        for (int j = 2; j < 25; j++){
-          if (map[i][j] == 2 && map[i][j+1] == 2 && map[i+1][j] == 2 && map[i+1][j+1] == 2){
-            map[i][j] = 1;
+      
+      //for (int i = 2; i < 21;i++){
+      //  for (int j = 2; j < 25; j++){
+      //    if (map[i][j] == 2 && map[i][j+1] == 2 && map[i+1][j] == 2 && map[i+1][j+1] == 2){
+      //      map[i][j] = 1;
             
+      //    }
+      //  }
+      //}
+      for (int i = 0; i < 23; i++){
+        for (int j = 0; j < 27; j++){
+          if (map[i][j] == 2){
+            noPelletsForSurvival.add(new int[]{i, j});
           }
         }
       }

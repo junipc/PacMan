@@ -1,5 +1,5 @@
 String playerName;
-int screen = 1;
+int screen = 6;
 public Board test = new Board(0);
 int totalScore = 0;
 int startingPellets = 202; //208 if powerpellets switch back for demo
@@ -377,12 +377,12 @@ void draw(){
       setUpTime = millis();
       firstTime = false;
       test = new Board(1);
-     p = new PacMan(color(250,250,0),60,60);
-     g1 = new Blinky(color(250,0,0), 1020, 860, p.speed*.95);
-     g2 = new Pinky(color(255, 184, 255), 1020, 740, p.speed*.95);
-     g3 = new Inky(color(0, 255, 255), 900, 860, p.speed*.95); //at 30
-     g4 = new Clyde(color(255, 184, 82), 1020, 620,  p.speed*.95); // at 60 eaten
-     g5 = new Stinky(color(223, 0, 254), 780, 860, p.speed*.95); //at 90
+      p = new PacMan(color(250,250,0),60,60);
+      g1 = new Blinky(color(250,0,0), 1020, 860, p.speed*.95);
+      g2 = new Pinky(color(255, 184, 255), 1020, 740, p.speed*.95);
+      g3 = new Inky(color(0, 255, 255), 900, 860, p.speed*.95); //at 30
+      g4 = new Clyde(color(255, 184, 82), 1020, 620,  p.speed*.95); // at 60 eaten
+      g5 = new Stinky(color(223, 0, 254), 780, 860, p.speed*.95); //at 90
     }
     background(255);
     int passedTime = millis() - setUpTime;
@@ -460,17 +460,19 @@ void draw(){
      fill(255);
      text("LEVEL:" + level, 900, 20);
      text("SCORE:" + totalScore, 20, 20);
-     //p.move(test);
-     //g1.move(p, test);
-     //g2.move(p, test);
-     //g3.move(p, test);
-     //g4.move(p, test);
-     //if (stinky){
-     //  g5.move(p, test);
-     //}
      if (Math.random() > .95 && !alreadyPortal){
+       for (int i = 0; i < 23; i++){
+         for (int j = 0; j < 27; j++){
+           if (test.map[i][j] == 2){
+             
+           }
+         }
+       }
       //added = new Portal((int)(Math.random()*22)+1, etc -- also check if its a wall or not yk)
        alreadyPortal = true;
+     }
+     if(p.deathTimer == 0){
+     
      }
     // if (alreadyPortal && !added.canUse){
    //   alreadyPortal = false;
