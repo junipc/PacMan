@@ -141,13 +141,11 @@ public class PacMan{
     if(b.map[by][bx] == 0){
       b.map[by][bx] = 2;
       totalScore += 10;
-      levelScore += 10;
       startingPellets--;
     }
     if(b.map[by][bx] == 3){
        b.map[by][bx] = 2;
         totalScore += 50;
-        levelScore += 50;
         fright = true;
         eatStreak = 0;
         if(level <= 1)

@@ -171,7 +171,6 @@ public abstract class Ghost{
       for(int i = 0; i < eatStreak; i++)
         killPoints *= 2;
       totalScore += killPoints;
-      levelScore += killPoints;
       killingTimer = 30;
       kx = x;
       ky = y;
