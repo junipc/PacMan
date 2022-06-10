@@ -16,7 +16,7 @@ Clyde g4 = new Clyde(color(255, 184, 82), 620, 420,  p.speed*.95); // at 60 eate
 Stinky g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95);
  // Stinky at 90 eaten
 boolean firstTime = false;
-int lives = 3;
+int lives = 4;
 boolean ghostsCanMove = true;
 float doIt = 0;
 color[] pacManCustom = new color[]{color(250,250,0), color(250, 120, 0), color(250, 0, 0), color(0, 250, 0), color(0,0,250), color(75,0,130), color(148,0,211)};
@@ -139,6 +139,8 @@ void draw(){
       arc(150,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
     if(lives > 2)
       arc(190,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
+    if(lives > 3)
+      arc(230,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
     g1.display();
     g2.display();
     g3.display();
