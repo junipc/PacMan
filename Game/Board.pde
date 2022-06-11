@@ -183,25 +183,25 @@ public class Board{
         int[] currentXY = currentExpanding.getFirst();
         if (map[currentXY[0]][currentXY[1]+2] != 1 && map[currentXY[0]+1][currentXY[1]+2] != 1 && map[currentXY[0]-1][currentXY[1]+2] != 1){
             map[currentXY[0]][currentXY[1]+1] = 1;
-            if (Math.random() > .2){
+            if (Math.random() > .02){
               currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]+1});
             }
         } 
         if (map[currentXY[0]+2][currentXY[1]] != 1 && map[currentXY[0]+2][currentXY[1]+1] != 1 && map[currentXY[0]+2][currentXY[1]-1] != 1){
             map[currentXY[0]+1][currentXY[1]] = 1;
-            if (Math.random() > .2){
+            if (Math.random() > .02){
               currentExpanding.addLast(new int[]{currentXY[0]+1, currentXY[1]});
             }
         } 
         if (map[currentXY[0]][currentXY[1]-2] != 1 && map[currentXY[0]+1][currentXY[1]-2] != 1 && map[currentXY[0]-1][currentXY[1]-2] != 1){
             map[currentXY[0]][currentXY[1]-1] = 1;
-            if (Math.random() > .2){  
+            if (Math.random() > .02){  
               currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]-1});
             }
         } 
         if (map[currentXY[0]-2][currentXY[1]] != 1 && map[currentXY[0]-2][currentXY[1]+1] != 1 && map[currentXY[0]-2][currentXY[1]-1] != 1){
             map[currentXY[0]-1][currentXY[1]] = 1;
-            if (Math.random() > .2){  
+            if (Math.random() > .02){  
               currentExpanding.addLast(new int[]{currentXY[0]-1, currentXY[1]});
             }
         } 
@@ -218,27 +218,27 @@ public class Board{
       //}
       for (int i = 1; i < 22; i++){
         for (int j = 1; j < 26; j++){
-          if (map[i][j] == 2){
-            int bad = 0;
-            if (map[i+1][j] == 1){
-              bad++;
-            }
-            if (map[i-1][j] == 1){
-              bad++;
-            }
-            if (map[i][j+1] == 1){
-              bad++;
-            }
-            if (map[i][j-1] == 1){ //isnt good is only good if dead end starts from left lol cause checking L to R, so might gotta do all 4 dir of 2d arr checking
-              bad++;
-            }
-            if (bad > 2){
-              map[i][j] = 1;
-            }
-            bad = 0;
-            //check other 3 dir
+          //if (map[i][j] == 2){
+          //  int bad = 0;
+          //  if (map[i+1][j] == 1){
+          //    bad++;
+          //  }
+          //  if (map[i-1][j] == 1){
+          //    bad++;
+          //  }
+          //  if (map[i][j+1] == 1){
+          //    bad++;
+          //  }
+          //  if (map[i][j-1] == 1){ //isnt good is only good if dead end starts from left lol cause checking L to R, so might gotta do all 4 dir of 2d arr checking
+          //    bad++;
+          //  }
+          //  if (bad > 2){
+          //    map[i][j] = 1;
+          //  }
+          //  bad = 0;
+          //  //check other 3 dir
             
-          }
+          //}
           if (map[i][j] == 2){
             noPelletsForSurvival.add(new int[]{i, j});
           }

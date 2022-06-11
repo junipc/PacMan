@@ -235,7 +235,7 @@ void draw(){
     fill(110,110,251);
     rect(430, 400, 215, 60);
     fill(250,0,0);
-    text("SURVIVAL *doesnt work yet*", 460, 440);
+    text("SURVIVAL", 460, 440);
     fill(250,250,0);
     arc(670,530,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
     arc(405,530,33,33,QUARTER_PI+PI, 2*PI-QUARTER_PI+PI);
@@ -377,6 +377,7 @@ void draw(){
   if (screen == 6){//SURVIVAL
     if (firstTime == true){
       lives = 1;
+      scatter = false;
       setUpTime = millis();
       firstTime = false;
       test = new Board(1);
@@ -432,7 +433,9 @@ void draw(){
      }
      else if (passedTime >= 60*1000+5000 && passedTime < 90*1000+5000){
        level = 3;
-       levelUp = true;
+       if (prevLevel != level){
+         levelUp = true;
+       }     
      }
      else if (passedTime >= 90*1000+5000 && passedTime < 120*1000+5000){
        level = 4;
@@ -489,6 +492,7 @@ void draw(){
        if (stinky){
          g5.speed *= 1.1;
        }
+       p.speed *= 1.07;
        levelUp = false;
      }
      if (p.deathTimer == 0){ //upon death, stuff stops moving?
