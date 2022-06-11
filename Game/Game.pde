@@ -1,5 +1,5 @@
 String playerName;
-int screen = 1;
+int screen = 6;
 public Board test = new Board(0);
 int totalScore = 0;
 int startingPellets = 202; //208 if powerpellets switch back for demo
@@ -15,7 +15,7 @@ Inky g3 = new Inky(color(0, 255, 255), 580, 420, p.speed*.95); //at 30
 Clyde g4 = new Clyde(color(255, 184, 82), 620, 420,  p.speed*.95); // at 60 eaten
 Stinky g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95);
  // Stinky at 90 eaten
-boolean firstTime = false;
+boolean firstTime = true;
 int lives = 4;
 boolean ghostsCanMove = true;
 float doIt = 0;
