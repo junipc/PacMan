@@ -515,21 +515,23 @@ void draw(){
      if(lives > 0){
       arc(110,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
      }
-     if (!alreadyPortal){
-       int index1 = (int)(Math.random() * test.noPelletsForSurvival.size());
-       int index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
-       while (index1 == index2){
-        index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+     if (passedTime >= 5000){
+       if (!alreadyPortal){
+         int index1 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         int index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         while (index1 == index2){
+          index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         }
+        added = new Portal(test.noPelletsForSurvival.get(index1)[0], test.noPelletsForSurvival.get(index1)[1], test.noPelletsForSurvival.get(index2)[0], test.noPelletsForSurvival.get(index2)[1]);
+        alreadyPortal = true;
        }
-      added = new Portal(test.noPelletsForSurvival.get(index1)[0], test.noPelletsForSurvival.get(index1)[1], test.noPelletsForSurvival.get(index2)[0], test.noPelletsForSurvival.get(index2)[1]);
-      alreadyPortal = true;
+       if (alreadyPortal && !added.canUse){
+          alreadyPortal = false;
+       }
+       added.displayp1();
+       added.displayp2();
+       added.teleport();
      }
-     if (alreadyPortal && !added.canUse){
-        alreadyPortal = false;
-     }
-     added.displayp1();
-     added.displayp2();
-     added.teleport();
  // *removes portal w creation of new location bcs alr portal = false
    //  }
      //if portal gets used, alr portal = false;
