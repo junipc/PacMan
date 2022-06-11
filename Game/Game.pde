@@ -482,12 +482,12 @@ void draw(){
        screen = 2;
      }
      if (levelUp){
-       g1.speed *= 3.05;
-       g2.speed *= 1.05;
-       g3.speed *= 1.05;
-       g4.speed *= 1.05;
+       g1.speed *= 1.1;
+       g2.speed *= 1.1;
+       g3.speed *= 1.1;
+       g4.speed *= 1.1;
        if (stinky){
-         g5.speed *= 1.05;
+         g5.speed *= 1.1;
        }
        levelUp = false;
      }
@@ -515,13 +515,21 @@ void draw(){
      if(lives > 0){
       arc(110,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
      }
-     if (Math.random() > .95 && !alreadyPortal){
-       
-      //added = new Portal((int)(Math.random()*22)+1, etc -- also check if its a wall or not yk)
-       alreadyPortal = true;
+     if (!alreadyPortal){
+       int index1 = (int)(Math.random() * test.noPelletsForSurvival.size());
+       int index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+       while (index1 == index2){
+        index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+       }
+      added = new Portal(test.noPelletsForSurvival.get(index1)[0], test.noPelletsForSurvival.get(index1)[1], test.noPelletsForSurvival.get(index2)[0], test.noPelletsForSurvival.get(index2)[1]);
+      alreadyPortal = true;
      }
-    // if (alreadyPortal && !added.canUse){
-   //   alreadyPortal = false;
+     if (alreadyPortal && !added.canUse){
+        alreadyPortal = false;
+     }
+     added.displayp1();
+     added.displayp2();
+     added.teleport();
  // *removes portal w creation of new location bcs alr portal = false
    //  }
      //if portal gets used, alr portal = false;
