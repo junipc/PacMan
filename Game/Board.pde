@@ -62,20 +62,6 @@ public class Board{
       map[2][25] = 3;
       */
     }
-    if (mode == 0){//classic
-      map = classicBoard;
-      /*for (int i = 0; i < 12; i++){
-        for (int j = 0; j < 14; j++){
-          map[i][j] = helperFourth[i][j];//only neeed to make 1/4 of map and can copy it 4 times; fix indices
-          map[i][26-j] = helperFourth[i][j];
-          map[22-i][j] = helperFourth[i][j];
-          map[22-i][26-j] = helperFourth[i][j];
-        }
-      }
-      map[2][1] = 3;
-      map[2][25] = 3;
-      */
-    }
     if (mode == 1){//CHANGE TO 1
       ArrayDeque<int[]>currentExpanding = new ArrayDeque<int[]>();
       int[][] tempMap = new int[23][27];
@@ -111,10 +97,10 @@ public class Board{
       int rand14R = (int)(Math.random()*19)+2;
       int rand15R = (int)(Math.random()*19)+2;
       int rand16R = (int)(Math.random()*19)+2;
-      int rand17R = (int)(Math.random()*19)+2;
-      int rand18R = (int)(Math.random()*19)+2;
-      int rand19R = (int)(Math.random()*19)+2;
-      int rand20R = (int)(Math.random()*19)+2;
+      //int rand17R = (int)(Math.random()*19)+2;
+      //int rand18R = (int)(Math.random()*19)+2;
+      //int rand19R = (int)(Math.random()*19)+2;
+      //int rand20R = (int)(Math.random()*19)+2;
       
       int rand1C = (int)(Math.random()*23)+2;
       int rand2C = (int)(Math.random()*23)+2;
@@ -132,10 +118,10 @@ public class Board{
       int rand14C = (int)(Math.random()*23)+2;
       int rand15C = (int)(Math.random()*23)+2;
       int rand16C = (int)(Math.random()*23)+2;
-      int rand17C = (int)(Math.random()*23)+2;
-      int rand18C = (int)(Math.random()*23)+2;
-      int rand19C = (int)(Math.random()*23)+2;
-      int rand20C = (int)(Math.random()*23)+2;
+      //int rand17C = (int)(Math.random()*23)+2;
+      //int rand18C = (int)(Math.random()*23)+2;
+      //int rand19C = (int)(Math.random()*23)+2;
+      //int rand20C = (int)(Math.random()*23)+2;
       
       
       map[rand1R][rand1C] = 1;

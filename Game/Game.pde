@@ -344,35 +344,71 @@ void draw(){
     text("GIVE ME STINKY!", 200, 500);
     text("No Stinky (default)", 600, 500);
     text("Press the Space key to return to the start screen", 160, 800);
-    fill(223, 0, 254);
-    int x = 310;
+    int x;
     int y = 350;
-    arc(x,y,30*3,30*3,PI,2*PI,OPEN);
-    rect(x-15*3,y,30*3,12*3);
-    line(x-15*3,y,x-15*3,y+12*3);
-    line(x+15*3,y,x+15*3,y+12*3);
-    triangle(x-15*3,y+12*3,x-10*3,y+12*3,x-15*3,y+18*3);
-    triangle(x-10*3,y+12*3,x,y+12*3,x-5*3,y+18*3);
-    triangle(x,y+12*3,x+10*3,y+12*3,x+5*3,y+18*3);
-    triangle(x+15*3,y+12*3,x+10*3,y+12*3,x+15*3,y+18*3);
-    x = 740;
-    fill(250,0,0);
-    circle(x, y+10, 130);
-    fill(0);
-    circle(x, y+10, 110);
-    fill(223, 0, 254);
-    arc(x,y,30*3,30*3,PI,2*PI,OPEN);
-    rect(x-15*3,y,30*3,12*3);
-    line(x-15*3,y,x-15*3,y+12*3);
-    line(x+15*3,y,x+15*3,y+12*3);
-    triangle(x-15*3,y+12*3,x-10*3,y+12*3,x-15*3,y+18*3);
-    triangle(x-10*3,y+12*3,x,y+12*3,x-5*3,y+18*3);
-    triangle(x,y+12*3,x+10*3,y+12*3,x+5*3,y+18*3);
-    triangle(x+15*3,y+12*3,x+10*3,y+12*3,x+15*3,y+18*3);
-    fill(250,0,0);
-    translate(width/2, height/2);
-    rotate(PI/3.0);
-    rect(-50, -225, 120, 10);
+    if (stinky){
+      fill(223, 0, 254);
+      x = 310;
+      arc(x,y,30*3,30*3,PI,2*PI,OPEN);
+      rect(x-15*3,y,30*3,12*3);
+      line(x-15*3,y,x-15*3,y+12*3);
+      line(x+15*3,y,x+15*3,y+12*3);
+      triangle(x-15*3,y+12*3,x-10*3,y+12*3,x-15*3,y+18*3);
+      triangle(x-10*3,y+12*3,x,y+12*3,x-5*3,y+18*3);
+      triangle(x,y+12*3,x+10*3,y+12*3,x+5*3,y+18*3);
+      triangle(x+15*3,y+12*3,x+10*3,y+12*3,x+15*3,y+18*3);
+      
+      x = 740;
+      fill(250,0,0,100);
+      circle(x, y+10, 130);
+      fill(0);
+      circle(x, y+10, 110);
+      fill(223, 0, 254, 100);
+      arc(x,y,30*3,30*3,PI,2*PI,OPEN);
+      rect(x-15*3,y,30*3,12*3);
+      line(x-15*3,y,x-15*3,y+12*3);
+      line(x+15*3,y,x+15*3,y+12*3);
+      triangle(x-15*3,y+12*3,x-10*3,y+12*3,x-15*3,y+18*3);
+      triangle(x-10*3,y+12*3,x,y+12*3,x-5*3,y+18*3);
+      triangle(x,y+12*3,x+10*3,y+12*3,x+5*3,y+18*3);
+      triangle(x+15*3,y+12*3,x+10*3,y+12*3,x+15*3,y+18*3);
+      fill(250,0,0,40);
+      translate(width/2, height/2);
+      rotate(PI/3.0);
+      rect(-50, -225, 120, 10);
+    }
+    
+    if (!stinky){
+      fill(223, 0, 254, 100);
+      x = 310;
+      arc(x,y,30*3,30*3,PI,2*PI,OPEN);
+      rect(x-15*3,y,30*3,12*3);
+      line(x-15*3,y,x-15*3,y+12*3);
+      line(x+15*3,y,x+15*3,y+12*3);
+      triangle(x-15*3,y+12*3,x-10*3,y+12*3,x-15*3,y+18*3);
+      triangle(x-10*3,y+12*3,x,y+12*3,x-5*3,y+18*3);
+      triangle(x,y+12*3,x+10*3,y+12*3,x+5*3,y+18*3);
+      triangle(x+15*3,y+12*3,x+10*3,y+12*3,x+15*3,y+18*3);
+      
+      x = 740;
+      fill(250,0,0);
+      circle(x, y+10, 130);
+      fill(0);
+      circle(x, y+10, 110);
+      fill(223, 0, 254);
+      arc(x,y,30*3,30*3,PI,2*PI,OPEN);
+      rect(x-15*3,y,30*3,12*3);
+      line(x-15*3,y,x-15*3,y+12*3);
+      line(x+15*3,y,x+15*3,y+12*3);
+      triangle(x-15*3,y+12*3,x-10*3,y+12*3,x-15*3,y+18*3);
+      triangle(x-10*3,y+12*3,x,y+12*3,x-5*3,y+18*3);
+      triangle(x,y+12*3,x+10*3,y+12*3,x+5*3,y+18*3);
+      triangle(x+15*3,y+12*3,x+10*3,y+12*3,x+15*3,y+18*3);
+      fill(250,0,0);
+      translate(width/2, height/2);
+      rotate(PI/3.0);
+      rect(-50, -225, 120, 10);  
+    }
   }
   if (screen == 6){//SURVIVAL
     if (firstTime == true){
