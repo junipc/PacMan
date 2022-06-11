@@ -146,7 +146,7 @@ public class Board{
       map[rand8R][rand8C] = 1;
       map[rand9R][rand9C] = 1;
       map[rand10R][rand10C] = 1;
-      map[rand11R][rand11C] = 1;
+      //map[rand11R][rand11C] = 1;
       //map[rand12R][rand12C] = 1;
       //map[rand13R][rand13C] = 1;
       //map[rand14R][rand14C] = 1;
@@ -166,7 +166,7 @@ public class Board{
       currentExpanding.addLast(new int[]{rand8R, rand8C});
       currentExpanding.addLast(new int[]{rand9R, rand9C});
       currentExpanding.addLast(new int[]{rand10R, rand10C});
-      currentExpanding.addLast(new int[]{rand11R, rand11C});
+      //currentExpanding.addLast(new int[]{rand11R, rand11C});
       //currentExpanding.addLast(new int[]{rand12R, rand12C});
       //currentExpanding.addLast(new int[]{rand13R, rand13C});
       //currentExpanding.addLast(new int[]{rand14R, rand14C});
@@ -176,59 +176,32 @@ public class Board{
       //currentExpanding.addLast(new int[]{rand18R, rand18C});
       //currentExpanding.addLast(new int[]{rand19R, rand19C});
       //currentExpanding.addLast(new int[]{rand20R, rand20C});
-      //int counter = 0;
-      //while (currentExpanding.size() > 0 && counter < 100){
-      //  int[] currentXY = currentExpanding.getFirst();
 
-      //  //shldnt ever go out bcs boundary is walls so shld never get within 2 of walls
-      //  //2 above so no paths blocked; 1 above shldnt be bad bcs arraydeq only has edge ones
-      //  if (map[currentXY[0]][currentXY[1]+2] != 1 && map[currentXY[0]+1][currentXY[1]+2] != 1 && map[currentXY[0]-1][currentXY[1]+2] != 1){
-      //    if (Math.random() >.4){
-      //      map[currentXY[0]][currentXY[1]+1] = 1;
-      //      currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]+1});
-      //    }
-      //  } 
-      //  if (map[currentXY[0]+2][currentXY[1]] != 1 && map[currentXY[0]+2][currentXY[1]+1] != 1 && map[currentXY[0]+2][currentXY[1]-1] != 1){
-      //    if (Math.random() >.4){ 
-      //      map[currentXY[0]+1][currentXY[1]] = 1;
-      //      currentExpanding.addLast(new int[]{currentXY[0]+1, currentXY[1]});
-      //    }
-      //  } 
-      //  if (map[currentXY[0]][currentXY[1]-2] != 1 && map[currentXY[0]+1][currentXY[1]-2] != 1 && map[currentXY[0]-1][currentXY[1]-2] != 1){
-      //    if (Math.random() >.4){
-      //      map[currentXY[0]][currentXY[1]-1] = 1;
-      //      currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]-1});
-      //    }
-      //  } 
-      //  if (map[currentXY[0]-2][currentXY[1]] != 1 && map[currentXY[0]-2][currentXY[1]+1] != 1 && map[currentXY[0]-2][currentXY[1]-1] != 1){
-      //    if (Math.random() >.4){
-      //      map[currentXY[0]-1][currentXY[1]] = 1;
-      //      currentExpanding.addLast(new int[]{currentXY[0]-1, currentXY[1]});
-      //    }     
-      //  } 
-      //  //if (Math.random() > .8){
-      //  //  currentExpanding.addLast(currentExpanding.getFirst());
-      //  //}
-      //  currentExpanding.removeFirst();
-      //  counter++;
-      //}
       while (currentExpanding.size() > 0){
         int[] currentXY = currentExpanding.getFirst();
         if (map[currentXY[0]][currentXY[1]+2] != 1 && map[currentXY[0]+1][currentXY[1]+2] != 1 && map[currentXY[0]-1][currentXY[1]+2] != 1){
             map[currentXY[0]][currentXY[1]+1] = 1;
-            currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]+1});
+            if (Math.random() > .5){
+              currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]+1});
+            }
         } 
         if (map[currentXY[0]+2][currentXY[1]] != 1 && map[currentXY[0]+2][currentXY[1]+1] != 1 && map[currentXY[0]+2][currentXY[1]-1] != 1){
             map[currentXY[0]+1][currentXY[1]] = 1;
-            currentExpanding.addLast(new int[]{currentXY[0]+1, currentXY[1]});
+            if (Math.random() > .5){
+              currentExpanding.addLast(new int[]{currentXY[0]+1, currentXY[1]});
+            }
         } 
         if (map[currentXY[0]][currentXY[1]-2] != 1 && map[currentXY[0]+1][currentXY[1]-2] != 1 && map[currentXY[0]-1][currentXY[1]-2] != 1){
             map[currentXY[0]][currentXY[1]-1] = 1;
-            currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]-1});
+            if (Math.random() > .5){  
+              currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]-1});
+            }
         } 
         if (map[currentXY[0]-2][currentXY[1]] != 1 && map[currentXY[0]-2][currentXY[1]+1] != 1 && map[currentXY[0]-2][currentXY[1]-1] != 1){
             map[currentXY[0]-1][currentXY[1]] = 1;
-            currentExpanding.addLast(new int[]{currentXY[0]-1, currentXY[1]});
+            if (Math.random() > .5){  
+              currentExpanding.addLast(new int[]{currentXY[0]-1, currentXY[1]});
+            }
         } 
         currentExpanding.removeFirst();
       }

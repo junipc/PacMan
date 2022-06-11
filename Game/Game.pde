@@ -1,5 +1,5 @@
 String playerName;
-int screen = 6;
+int screen = 1;
 public Board test = new Board(0);
 int totalScore = 0;
 int startingPellets = 202; //208 if powerpellets switch back for demo
@@ -37,6 +37,7 @@ float kx;
 float ky;
 int killingTimer;
 Portal added;
+boolean levelUp = false; //for survival
 
 void setup(){
   size(1080,920);
@@ -56,6 +57,7 @@ void draw(){
       killingTimer--;
     }else{
     if (firstTime == true){
+      lives = 4;
       setUpTime = millis();
       firstTime = false;
       scatter = true;
@@ -374,6 +376,7 @@ void draw(){
   }
   if (screen == 6){//SURVIVAL
     if (firstTime == true){
+      lives = 1;
       setUpTime = millis();
       firstTime = false;
       test = new Board(1);
@@ -386,28 +389,31 @@ void draw(){
     }
     background(255);
     int passedTime = millis() - setUpTime;
-     background(255);
-     test.display();
-
-     fill(250,0,0);
+    background(255);
+    test.display();
+    PFont font;
+    font = createFont("emulogic.ttf", 128);
+    textAlign(LEFT);
+    textFont(font);
+    textSize(12);
+    fill(255,128,0);
      if (passedTime <= 1000) {
-       text("READY! " + counter, 490, 385);  
+       text("READY! 5", 490, 385);  
      }
      else if (passedTime <= 2000) {
-       text("READY! " + (counter-1), 490, 385);
+       text("READY! 4", 490, 385);
      }
      else if (passedTime <= 3000) {
-       text("READY! " + (counter-2), 490, 385);
+       text("READY! 3", 490, 385);
      }
      else if (passedTime <= 4000) {
-       text("READY! " + (counter-3), 490, 385);
+       text("READY! 2", 490, 385);
      }
      else if (passedTime <= 5000) {
-       text("READY! " + (counter-4), 490, 385);
+       text("READY! 1", 490, 385);
      }
-     else if (passedTime > 5000) {
+     else if (passedTime > 5000 && lives != 0) {
        ghostsCanMove = true;
-       //passedTime = 6000;
        p.move(test);
        g1.move(p, test);
        g2.move(p, test);
@@ -417,36 +423,80 @@ void draw(){
          g5.move(p, test);
        }
      }
+     int prevLevel = level;
      if (passedTime >= 30*1000+5000 && passedTime < 60*1000+5000){
        level = 2;
+       if (prevLevel != level){
+         levelUp = true;
+       }
      }
      else if (passedTime >= 60*1000+5000 && passedTime < 90*1000+5000){
        level = 3;
+       levelUp = true;
      }
      else if (passedTime >= 90*1000+5000 && passedTime < 120*1000+5000){
        level = 4;
+       if (prevLevel != level){
+         levelUp = true;
+       }       
      }
      else if (passedTime >=120*1000+5000 && passedTime < 150*1000+5000){
        level = 5;
+       if (prevLevel != level){
+         levelUp = true;
+       } 
      }
      else if (passedTime >= 150*1000+5000 && passedTime < 180*1000+5000){
        level = 6;
+       if (prevLevel != level){
+         levelUp = true;
+       } 
      }
      else if (passedTime >= 180*1000+5000 && passedTime < 210*1000+5000){
        level = 7;
+       if (prevLevel != level){
+         levelUp = true;
+       } 
      }
      else if (passedTime >= 210*1000+5000 && passedTime < 240*1000+5000){
        level = 8;
+       if (prevLevel != level){
+         levelUp = true;
+       } 
      }
      else if (passedTime >= 240*1000+5000 && passedTime < 270*1000+5000){
        level = 9;
+       if (prevLevel != level){
+         levelUp = true;
+       } 
      }
      else if (passedTime >= 270*1000+5000 && passedTime < 300*1000+5000){
        level = 10;
+       if (prevLevel != level){
+         levelUp = true;
+       } 
      }
      else if (passedTime > 300*1000+5000){
        level = 0;
+       firstTime = true;
        screen = 2;
+     }
+     if (levelUp){
+       g1.speed *= 3.05;
+       g2.speed *= 1.05;
+       g3.speed *= 1.05;
+       g4.speed *= 1.05;
+       if (stinky){
+         g5.speed *= 1.05;
+       }
+       levelUp = false;
+     }
+     if (p.deathTimer == 0){ //upon death, stuff stops moving?
+       lives--;
+       ghostsCanMove = false;
+       level = 1;
+       firstTime = true;
+       screen = 3;
      }
      p.display();
      g1.display();
@@ -460,19 +510,15 @@ void draw(){
      fill(255);
      text("LEVEL:" + level, 900, 20);
      text("SCORE:" + totalScore, 20, 20);
+     text("LIVES", 20, 900);
+     fill(250,250,0);
+     if(lives > 0){
+      arc(110,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
+     }
      if (Math.random() > .95 && !alreadyPortal){
-       for (int i = 0; i < 23; i++){
-         for (int j = 0; j < 27; j++){
-           if (test.map[i][j] == 2){
-             
-           }
-         }
-       }
+       
       //added = new Portal((int)(Math.random()*22)+1, etc -- also check if its a wall or not yk)
        alreadyPortal = true;
-     }
-     if(p.deathTimer == 0){
-     
      }
     // if (alreadyPortal && !added.canUse){
    //   alreadyPortal = false;
