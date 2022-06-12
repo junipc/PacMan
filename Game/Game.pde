@@ -437,8 +437,9 @@ void draw(){
       lives = 1;
       scatter = false;
       setUpTime = millis();
-      firstTime = false;
+      firstTime = false; 
       test = new Board(1);
+      println(Arrays.deepToString(test.noPelletsForSurvival.toArray()));
       p = new PacMan(color(250,250,0),60,60);
       g1 = new Blinky(color(250,0,0), 1020, 860, p.speed*.95);
       g2 = new Pinky(color(255, 184, 255), 1020, 740, p.speed*.95);
@@ -446,6 +447,7 @@ void draw(){
       g4 = new Clyde(color(255, 184, 82), 1020, 620,  p.speed*.95); // at 60 eaten
       g5 = new Stinky(color(223, 0, 254), 780, 860, p.speed*.95); //at 90
     }
+
     background(255);
     int passedTime = millis() - setUpTime;
     background(255);
@@ -539,9 +541,10 @@ void draw(){
        } 
      }
      else if (passedTime > 300*1000+5000 || level > 10){
-       level = 0;
+       level = 1;
        firstTime = true;
        screen = 2;
+       test.noPelletsForSurvival.clear();
      }
      if (levelUp){
        g1.speed *= 1.1;
@@ -561,6 +564,7 @@ void draw(){
        level = 1;
        firstTime = true;
        screen = 3;
+       test.noPelletsForSurvival.clear();
      }
      p.display();
      g1.display();
@@ -583,9 +587,16 @@ void draw(){
        if (!alreadyPortal){
          int index1 = (int)(Math.random() * test.noPelletsForSurvival.size());
          int index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
-         while (index1 == index2){
-          index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         while(test.map[test.noPelletsForSurvival.get(index1)[0]][test.noPelletsForSurvival.get(index1)[1]] != 2){
+           index1 = (int)(Math.random() * test.noPelletsForSurvival.size());
          }
+         while(test.map[test.noPelletsForSurvival.get(index2)[0]][test.noPelletsForSurvival.get(index2)[1]] != 2 || index1 == index2){
+           index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         }
+         //while (index1 == index2){
+         // index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         //}
+         //PRINTER TESTER CONFIRMS NOPELLETSFORSURV GETS LEGIT SPOTS
         added = new Portal(test.noPelletsForSurvival.get(index1)[0], test.noPelletsForSurvival.get(index1)[1], test.noPelletsForSurvival.get(index2)[0], test.noPelletsForSurvival.get(index2)[1]);
         alreadyPortal = true;
        }
@@ -596,9 +607,6 @@ void draw(){
        added.displayp2();
        added.teleport();
      }
- // *removes portal w creation of new location bcs alr portal = false
-   //  }
-     //if portal gets used, alr portal = false;
   } 
 
   
