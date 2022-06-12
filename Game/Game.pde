@@ -290,7 +290,7 @@ void draw(){
     textFont(font);
     textSize(35);
     fill(255,128,0);
-    text("CONGRATS ON BEATING CLASSIC", 50, 200); 
+    text("CONGRATS ON BEATING THIS", 50, 200); 
     text("MODE WITH A WHOPPING SCORE", 70, 300);
     text("OF " + totalScore + "!", 375, 400);
     textSize(15);
@@ -303,7 +303,7 @@ void draw(){
     textFont(font);
     textSize(35);
     fill(255,128,0);
-    text("G4M3 0V3R!", 370, 200); // BEATING + mode when survival mode exists
+    text("G4M3 0V3R!", 370, 200);
     text("YOUR TOTAL SCORE:" + totalScore, 200, 300);
     textSize(15);
     text("Press the Space key to return to the start screen", 160, 600);
