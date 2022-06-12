@@ -161,6 +161,7 @@ public class PacMan{
       b.map[by][bx] = 2;
       int cherryPoints = 100 * level;
       totalScore += cherryPoints;
+      eatenCherryTimer = 60;
     }
   }
 }

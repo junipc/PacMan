@@ -39,6 +39,7 @@ int killingTimer;
 int cherryTimer;
 boolean firstCherrySpawned;
 boolean secondCherrySpawned;
+int eatenCherryTimer;
 Portal added;
 
 void setup(){
@@ -152,6 +153,14 @@ void draw(){
       test.map[12][13] = 5;
       cherryTimer = 555;
       secondCherrySpawned = true;
+    }
+    if(eatenCherryTimer > 0){
+      eatenCherryTimer--;
+      textAlign(CENTER);
+      fill(255);
+      textSize(12);
+      text(100*level, 13*40+20, 12*40+24);
+      textAlign(LEFT);
     }
     
     p.display();
