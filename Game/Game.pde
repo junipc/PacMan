@@ -7,7 +7,7 @@ Keyboard keyIn = new Keyboard();
 final int readyTime = 5000;
 int setUpTime;
 int counter = 5;
-int level = 10; //1
+int level = 1; //1
 PacMan p = new PacMan(color(250,250,0),540,500);
 Blinky g1 = new Blinky(color(250,0,0), 540, 340, p.speed*.95);
 Pinky g2 = new Pinky(color(255, 184, 255), 500, 420, p.speed*.95);
@@ -485,60 +485,60 @@ void draw(){
      }
      int prevLevel = level;
      if (passedTime >= 30*1000+5000 && passedTime < 60*1000+5000){
-       level = 2;
+       level = Math.max(prevLevel, 2);
        if (prevLevel != level){
          levelUp = true;
        }
      }
      else if (passedTime >= 60*1000+5000 && passedTime < 90*1000+5000){
-       level = 3;
+       level = Math.max(prevLevel,3);
        if (prevLevel != level){
          levelUp = true;
        }     
      }
      else if (passedTime >= 90*1000+5000 && passedTime < 120*1000+5000){
-       level = 4;
+       level = Math.max(prevLevel,4);
        if (prevLevel != level){
          levelUp = true;
        }       
      }
      else if (passedTime >=120*1000+5000 && passedTime < 150*1000+5000){
-       level = 5;
+       level = Math.max(prevLevel,5);
        if (prevLevel != level){
          levelUp = true;
        } 
      }
      else if (passedTime >= 150*1000+5000 && passedTime < 180*1000+5000){
-       level = 6;
+       level = Math.max(prevLevel,6);
        if (prevLevel != level){
          levelUp = true;
        } 
      }
      else if (passedTime >= 180*1000+5000 && passedTime < 210*1000+5000){
-       level = 7;
+       level = Math.max(prevLevel,7);
        if (prevLevel != level){
          levelUp = true;
        } 
      }
      else if (passedTime >= 210*1000+5000 && passedTime < 240*1000+5000){
-       level = 8;
+       level = Math.max(prevLevel,8);
        if (prevLevel != level){
          levelUp = true;
        } 
      }
      else if (passedTime >= 240*1000+5000 && passedTime < 270*1000+5000){
-       level = 9;
+       level = Math.max(prevLevel,9);
        if (prevLevel != level){
          levelUp = true;
        } 
      }
      else if (passedTime >= 270*1000+5000 && passedTime < 300*1000+5000){
-       level = 10;
+       level = Math.max(prevLevel,10);
        if (prevLevel != level){
          levelUp = true;
        } 
      }
-     else if (passedTime > 300*1000+5000){
+     else if (passedTime > 300*1000+5000 || level > 10){
        level = 0;
        firstTime = true;
        screen = 2;
@@ -648,6 +648,18 @@ void keyPressed() {
   }
   if(screen == 0 && (key == 'p' || key == 'P')){
     startingPellets = 0;
+  }
+  if(screen == 6 && (key == 'p' || key == 'P')){
+    level++;
+    g1.speed *= 1.1;
+    g2.speed *= 1.1;
+    g3.speed *= 1.1;
+    g4.speed *= 1.1;
+    if (stinky){
+      g5.speed *= 1.1;
+    }
+    p.speed *= 1.07;
+    levelUp = false;
   }
 }
 
