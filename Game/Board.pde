@@ -223,19 +223,23 @@ public class Board{
             noStroke();
             fill(0,0,0);
             square(j*sideLength, i*sideLength, sideLength);
+            float xPos = j*sideLength + sideLength/2.0;
+            float yPos = i*sideLength + sideLength/2.0;
             if (map[i][j] == 0){ //pellet display
               fill(249,216,203);
-              square(j*sideLength + sideLength/2.0 - 4, i*sideLength+ sideLength/2.0 - 4, 8);
+              square(xPos - 4, yPos - 4, 8);
             }
             if (map[i][j] == 3){ //pellet display
               fill(255,255,0);
-              circle(j*sideLength + sideLength/2.0, i*sideLength+ sideLength/2.0, 25);
+              circle(xPos, yPos, 25);
             }
             if (map[i][j] == 5){
               fill(254,0,0);
               stroke(180,0,0);
-              circle(j*sideLength + sideLength/2.0 - 10, i*sideLength+ sideLength/2.0 + 6, 15);
-              circle(j*sideLength + sideLength/2.0 + 3, i*sideLength+ sideLength/2.0 + 10, 15);
+              circle(xPos - 10, yPos + 6, 15);
+              circle(xPos + 3, yPos + 10, 15);
+              stroke(221,151,81);
+              
             }
           }
           else if (map[i][j] == 1){
