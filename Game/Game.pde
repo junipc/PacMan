@@ -37,7 +37,6 @@ float kx;
 float ky;
 int killingTimer;
 int cherryTimer;
-int cherriesEaten;
 Portal added;
 
 void setup(){
@@ -62,6 +61,8 @@ void draw(){
       firstTime = false;
       scatter = true;
       frightTimer = 0;
+      cherryTimer = -1;
+      test.map[12][13] = 2;
       p = new PacMan(color(250,250,0),540,500);
       g1 = new Blinky(color(250,0,0), 540, 340, p.speed*.95);
       g2 = new Pinky(color(255, 184, 255), 500, 420, p.speed*.95);
@@ -134,8 +135,19 @@ void draw(){
       fright = false;
       frightTimer = -1;
     }
-    if(cherriesEaten == 0 && startingPellets == 202 - 70){
+    if(cherryTimer > 1){
+      cherryTimer--;
+    }
+    if(cherryTimer == 1 && startingPellets > 202 - 70){
+      cherryTimer--;
+    }
+    if(cherryTimer == -1 && startingPellets == 202 - 70){
       test.map[12][13] = 5;
+      cherryTimer = 555;
+    }
+    if(cherryTimer == 0 && startingPellets == 202 - 170){
+      test.map[12][13] = 5;
+      cherryTimer = 555;
     }
     
     p.display();
