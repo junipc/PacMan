@@ -239,7 +239,8 @@ public class Board{
               circle(xPos - 10, yPos + 6, 15);
               circle(xPos + 3, yPos + 10, 15);
               stroke(221,151,81);
-              
+              line(xPos + 6, yPos - 10, xPos - 10, yPos + 2);
+              line(xPos + 6, yPos - 10, xPos + 3, yPos + 6);
             }
           }
           else if (map[i][j] == 1){
