@@ -522,6 +522,29 @@ void keyPressed() {
     totalScore = 0;
     lives = 3;
   }
+  if(screen == 0 && key == 'p'){
+    level++;
+    startingPellets = 202;
+    p = new PacMan(pacManCustom[pcustomIndex],540,500);
+    if(level <= 4)
+      gSpeed = p.speed * .90;
+    else if(level <= 6)
+      gSpeed = p.speed * .95;
+    else
+      gSpeed = p.speed;
+    g1 = new Blinky(color(250,0,0), 540, 340, gSpeed);
+    g2 = new Pinky(color(255, 184, 255), 500, 420, gSpeed);
+    g3 = new Inky(color(0, 255, 255), 580, 420, gSpeed); //at 30
+    g4 = new Clyde(color(255, 184, 82), 620, 420,  gSpeed); // at 60 eaten
+    g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95); //at 90
+    setUpTime = millis();
+    test = new Board(0);
+    scatter = true;
+    frightTimer = 0;
+    cherryTimer = 0;
+    firstCherrySpawned = false;
+    secondCherrySpawned = false;
+  }
 }
 
 void keyReleased() {
