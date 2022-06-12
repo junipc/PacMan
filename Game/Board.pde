@@ -1,10 +1,13 @@
 import java.util.*;
 public class Board{
   int[][] map;
+  ArrayList<int[]> noPelletsForSurvival = new ArrayList<int[]>();
   //int score = 0; //do i need to make static or
+  int mode;
   
   public Board(int mode){
     map = new int[23][27];
+    this.mode = mode;
     int[][]classicBoard = new int[][]{// 0 pellet; 1 wall; 2 place w/ no pellet; 3 powerpellet; 4 cage exit (cool display later); 5 cherry
       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
       {1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -59,7 +62,7 @@ public class Board{
       map[2][25] = 3;
       */
     }
-    if (mode == 1){//survival rng
+    if (mode == 1){//CHANGE TO 1
       ArrayDeque<int[]>currentExpanding = new ArrayDeque<int[]>();
       int[][] tempMap = new int[23][27];
       for (int i = 0; i < 23; i++){
@@ -82,127 +85,148 @@ public class Board{
       int rand2R = (int)(Math.random()*19)+2;
       int rand3R = (int)(Math.random()*19)+2;
       int rand4R = (int)(Math.random()*19)+2;
+      int rand5R = (int)(Math.random()*19)+2;
+      int rand6R = (int)(Math.random()*19)+2;
+      int rand7R = (int)(Math.random()*19)+2;
+      int rand8R = (int)(Math.random()*19)+2;
+      int rand9R = (int)(Math.random()*19)+2;
+      int rand10R = (int)(Math.random()*19)+2;
+      int rand11R = (int)(Math.random()*19)+2;
+      int rand12R = (int)(Math.random()*19)+2;
+      int rand13R = (int)(Math.random()*19)+2;
+      int rand14R = (int)(Math.random()*19)+2;
+      int rand15R = (int)(Math.random()*19)+2;
+      int rand16R = (int)(Math.random()*19)+2;
+      //int rand17R = (int)(Math.random()*19)+2;
+      //int rand18R = (int)(Math.random()*19)+2;
+      //int rand19R = (int)(Math.random()*19)+2;
+      //int rand20R = (int)(Math.random()*19)+2;
+      
       int rand1C = (int)(Math.random()*23)+2;
       int rand2C = (int)(Math.random()*23)+2;
       int rand3C = (int)(Math.random()*23)+2;
       int rand4C = (int)(Math.random()*23)+2;
       int rand5C = (int)(Math.random()*23)+2;
+      int rand6C = (int)(Math.random()*23)+2;
+      int rand7C = (int)(Math.random()*23)+2;
+      int rand8C = (int)(Math.random()*23)+2;
+      int rand9C = (int)(Math.random()*23)+2;
+      int rand10C = (int)(Math.random()*23)+2;
+      int rand11C = (int)(Math.random()*23)+2;
+      int rand12C = (int)(Math.random()*23)+2;
+      int rand13C = (int)(Math.random()*23)+2;
+      int rand14C = (int)(Math.random()*23)+2;
+      int rand15C = (int)(Math.random()*23)+2;
+      int rand16C = (int)(Math.random()*23)+2;
+      //int rand17C = (int)(Math.random()*23)+2;
+      //int rand18C = (int)(Math.random()*23)+2;
+      //int rand19C = (int)(Math.random()*23)+2;
+      //int rand20C = (int)(Math.random()*23)+2;
+      
+      
       map[rand1R][rand1C] = 1;
-      map[rand1R][rand2C] = 1;
-      map[rand1R][rand3C] = 1;
-      map[rand1R][rand4C] = 1;
-      map[rand1R][rand5C] = 1;
-      map[rand2R][rand1C] = 1;
       map[rand2R][rand2C] = 1;
-      map[rand2R][rand3C] = 1;
-      map[rand2R][rand4C] = 1;
-      map[rand2R][rand5C] = 1;
-      map[rand3R][rand1C] = 1;
-      map[rand3R][rand2C] = 1;
       map[rand3R][rand3C] = 1;
-      map[rand3R][rand4C] = 1;
-      map[rand3R][rand5C] = 1;
-      map[rand4R][rand1C] = 1;
-      map[rand4R][rand2C] = 1;
-      map[rand4R][rand3C] = 1;
       map[rand4R][rand4C] = 1;
-      map[rand4R][rand5C] = 1;
+      map[rand5R][rand5C] = 1;
+      map[rand6R][rand6C] = 1;
+      map[rand7R][rand7C] = 1;
+      map[rand8R][rand8C] = 1;
+      map[rand9R][rand9C] = 1;
+      map[rand10R][rand10C] = 1;
+      map[rand11R][rand11C] = 1;
+      map[rand12R][rand12C] = 1;
+      map[rand13R][rand13C] = 1;
+      map[rand14R][rand14C] = 1;
+      map[rand15R][rand15C] = 1;
+      map[rand16R][rand16C] = 1;
+      //map[rand17R][rand17C] = 1;
+      //map[rand18R][rand18C] = 1;
+      //map[rand19R][rand19C] = 1;
+      //map[rand20R][rand20C] = 1;
       currentExpanding.addLast(new int[]{rand1R, rand1C});
-      currentExpanding.addLast(new int[]{rand1R, rand2C});
-      currentExpanding.addLast(new int[]{rand1R, rand3C});
-      currentExpanding.addLast(new int[]{rand1R, rand4C});
-      currentExpanding.addLast(new int[]{rand1R, rand5C});
-      currentExpanding.addLast(new int[]{rand2R, rand1C});
       currentExpanding.addLast(new int[]{rand2R, rand2C});
-      currentExpanding.addLast(new int[]{rand2R, rand3C});
-      currentExpanding.addLast(new int[]{rand2R, rand4C});
-      currentExpanding.addLast(new int[]{rand2R, rand5C});
-      currentExpanding.addLast(new int[]{rand3R, rand1C});
-      currentExpanding.addLast(new int[]{rand3R, rand2C});
       currentExpanding.addLast(new int[]{rand3R, rand3C});
-      currentExpanding.addLast(new int[]{rand3R, rand4C});
-      currentExpanding.addLast(new int[]{rand3R, rand5C});
-      currentExpanding.addLast(new int[]{rand4R, rand1C});
-      currentExpanding.addLast(new int[]{rand4R, rand2C});
-      currentExpanding.addLast(new int[]{rand4R, rand3C});
       currentExpanding.addLast(new int[]{rand4R, rand4C});
-      currentExpanding.addLast(new int[]{rand4R, rand5C});
+      currentExpanding.addLast(new int[]{rand5R, rand5C});
+      currentExpanding.addLast(new int[]{rand6R, rand6C});
+      currentExpanding.addLast(new int[]{rand7R, rand7C});
+      currentExpanding.addLast(new int[]{rand8R, rand8C});
+      currentExpanding.addLast(new int[]{rand9R, rand9C});
+      currentExpanding.addLast(new int[]{rand10R, rand10C});
+      currentExpanding.addLast(new int[]{rand11R, rand11C});
+      currentExpanding.addLast(new int[]{rand12R, rand12C});
+      currentExpanding.addLast(new int[]{rand13R, rand13C});
+      currentExpanding.addLast(new int[]{rand14R, rand14C});
+      currentExpanding.addLast(new int[]{rand15R, rand15C});
+      currentExpanding.addLast(new int[]{rand16R, rand16C});
+      //currentExpanding.addLast(new int[]{rand17R, rand17C});
+      //currentExpanding.addLast(new int[]{rand18R, rand18C});
+      //currentExpanding.addLast(new int[]{rand19R, rand19C});
+      //currentExpanding.addLast(new int[]{rand20R, rand20C});
 
-      //map[(int)(Math.random()*19)+2][(int)(Math.random()*23)+2] = 1;
-      
-      //map[11][13] = 1; //we can add/remove/change centers of 'islands' if wanted 
-      //map[6][7] = 1;
-      //map[6][19] = 1;
-      //map[16][19] = 1;
-      //map[16][7] = 1;
-      //map[11][7] = 1;
-      //map[11][19] = 1;
-      //map[6][13] = 1;
-      //map[16][13] = 1;
-      
-      //map[11][23] = 1; //we can add/remove/change centers of 'islands' if wanted 
-      //map[6][23] = 1;
-      //map[16][23] = 1;
-      //map[6][3] = 1;
-      //map[16][3] = 1;
-      //map[11][3] = 1;
-      
-      //currentExpanding.addLast(new int[]{11, 13});//we can add/remove/change centers of 'islands' if wanted 
-      //currentExpanding.addLast(new int[]{6, 7});
-      //currentExpanding.addLast(new int[]{6, 19});
-      //currentExpanding.addLast(new int[]{16, 19});
-      //currentExpanding.addLast(new int[]{16, 7});
-      //currentExpanding.addLast(new int[]{11, 7});
-      //currentExpanding.addLast(new int[]{11, 19});
-      //currentExpanding.addLast(new int[]{6, 13});
-      //currentExpanding.addLast(new int[]{16, 13});
-      
-      //currentExpanding.addLast(new int[]{11, 23});
-      //currentExpanding.addLast(new int[]{6, 23});
-      //currentExpanding.addLast(new int[]{16, 23});
-      //currentExpanding.addLast(new int[]{6, 3});
-      //currentExpanding.addLast(new int[]{16, 3});
-      //currentExpanding.addLast(new int[]{11, 3});
-      
       while (currentExpanding.size() > 0){
         int[] currentXY = currentExpanding.getFirst();
-
-        //shldnt ever go out bcs boundary is walls so shld never get within 2 of walls
-        //2 above so no paths blocked; 1 above shldnt be bad bcs arraydeq only has edge ones
         if (map[currentXY[0]][currentXY[1]+2] != 1 && map[currentXY[0]+1][currentXY[1]+2] != 1 && map[currentXY[0]-1][currentXY[1]+2] != 1){
-          if (Math.random() >.4){
             map[currentXY[0]][currentXY[1]+1] = 1;
-            currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]+1});
-          }
+            if (Math.random() > .02){
+              currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]+1});
+            }
         } 
         if (map[currentXY[0]+2][currentXY[1]] != 1 && map[currentXY[0]+2][currentXY[1]+1] != 1 && map[currentXY[0]+2][currentXY[1]-1] != 1){
-          if (Math.random() >.4){ 
             map[currentXY[0]+1][currentXY[1]] = 1;
-            currentExpanding.addLast(new int[]{currentXY[0]+1, currentXY[1]});
-          }
+            if (Math.random() > .02){
+              currentExpanding.addLast(new int[]{currentXY[0]+1, currentXY[1]});
+            }
         } 
         if (map[currentXY[0]][currentXY[1]-2] != 1 && map[currentXY[0]+1][currentXY[1]-2] != 1 && map[currentXY[0]-1][currentXY[1]-2] != 1){
-          if (Math.random() >.4){
             map[currentXY[0]][currentXY[1]-1] = 1;
-            currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]-1});
-          }
+            if (Math.random() > .02){  
+              currentExpanding.addLast(new int[]{currentXY[0], currentXY[1]-1});
+            }
         } 
         if (map[currentXY[0]-2][currentXY[1]] != 1 && map[currentXY[0]-2][currentXY[1]+1] != 1 && map[currentXY[0]-2][currentXY[1]-1] != 1){
-          if (Math.random() >.4){
             map[currentXY[0]-1][currentXY[1]] = 1;
-            currentExpanding.addLast(new int[]{currentXY[0]-1, currentXY[1]});
-          }     
+            if (Math.random() > .02){  
+              currentExpanding.addLast(new int[]{currentXY[0]-1, currentXY[1]});
+            }
         } 
-        //if (Math.random() > .8){
-        //  currentExpanding.addLast(currentExpanding.getFirst());
-        //}
         currentExpanding.removeFirst();
       }
-      for (int i = 2; i < 21;i++){
-        for (int j = 2; j < 25; j++){
-          if (map[i][j] == 2 && map[i][j+1] == 2 && map[i+1][j] == 2 && map[i+1][j+1] == 2){
-            map[i][j] = 1;
+      
+      //for (int i = 2; i < 21;i++){
+      //  for (int j = 2; j < 25; j++){
+      //    if (map[i][j] == 2 && map[i][j+1] == 2 && map[i+1][j] == 2 && map[i+1][j+1] == 2){
+      //      map[i][j] = 1;
             
+      //    }
+      //  }
+      //}
+      for (int i = 1; i < 22; i++){
+        for (int j = 1; j < 26; j++){
+          //if (map[i][j] == 2){
+          //  int bad = 0;
+          //  if (map[i+1][j] == 1){
+          //    bad++;
+          //  }
+          //  if (map[i-1][j] == 1){
+          //    bad++;
+          //  }
+          //  if (map[i][j+1] == 1){
+          //    bad++;
+          //  }
+          //  if (map[i][j-1] == 1){ //isnt good is only good if dead end starts from left lol cause checking L to R, so might gotta do all 4 dir of 2d arr checking
+          //    bad++;
+          //  }
+          //  if (bad > 2){
+          //    map[i][j] = 1;
+          //  }
+          //  bad = 0;
+          //  //check other 3 dir
+            
+          //}
+          if (map[i][j] == 2){
+            noPelletsForSurvival.add(new int[]{i, j});
           }
         }
       }

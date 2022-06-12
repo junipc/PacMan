@@ -15,7 +15,7 @@ Inky g3 = new Inky(color(0, 255, 255), 580, 420, p.speed*.95); //at 30
 Clyde g4 = new Clyde(color(255, 184, 82), 620, 420,  p.speed*.95); // at 60 eaten
 Stinky g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95);
  // Stinky at 90 eaten
-boolean firstTime = false;
+boolean firstTime = true;
 int lives = 4;
 boolean ghostsCanMove = true;
 float doIt = 0;
@@ -41,6 +41,7 @@ boolean firstCherrySpawned;
 boolean secondCherrySpawned;
 int eatenCherryTimer;
 Portal added;
+boolean levelUp = false; //for survival
 
 void setup(){
   size(1080,920);
@@ -60,6 +61,7 @@ void draw(){
       killingTimer--;
     }else{
     if (firstTime == true){
+      lives = 4;
       setUpTime = millis();
       firstTime = false;
       scatter = true;
@@ -258,7 +260,7 @@ void draw(){
     fill(110,110,251);
     rect(430, 400, 215, 60);
     fill(250,0,0);
-    text("SURVIVAL *doesnt work yet*", 460, 440);
+    text("SURVIVAL", 460, 440);
     fill(250,250,0);
     arc(670,530,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
     arc(405,530,33,33,QUARTER_PI+PI, 2*PI-QUARTER_PI+PI);
@@ -367,72 +369,113 @@ void draw(){
     text("GIVE ME STINKY!", 200, 500);
     text("No Stinky (default)", 600, 500);
     text("Press the Space key to return to the start screen", 160, 800);
-    fill(223, 0, 254);
-    int x = 310;
+    int x;
     int y = 350;
-    arc(x,y,30*3,30*3,PI,2*PI,OPEN);
-    rect(x-15*3,y,30*3,12*3);
-    line(x-15*3,y,x-15*3,y+12*3);
-    line(x+15*3,y,x+15*3,y+12*3);
-    triangle(x-15*3,y+12*3,x-10*3,y+12*3,x-15*3,y+18*3);
-    triangle(x-10*3,y+12*3,x,y+12*3,x-5*3,y+18*3);
-    triangle(x,y+12*3,x+10*3,y+12*3,x+5*3,y+18*3);
-    triangle(x+15*3,y+12*3,x+10*3,y+12*3,x+15*3,y+18*3);
-    x = 740;
-    fill(250,0,0);
-    circle(x, y+10, 130);
-    fill(0);
-    circle(x, y+10, 110);
-    fill(223, 0, 254);
-    arc(x,y,30*3,30*3,PI,2*PI,OPEN);
-    rect(x-15*3,y,30*3,12*3);
-    line(x-15*3,y,x-15*3,y+12*3);
-    line(x+15*3,y,x+15*3,y+12*3);
-    triangle(x-15*3,y+12*3,x-10*3,y+12*3,x-15*3,y+18*3);
-    triangle(x-10*3,y+12*3,x,y+12*3,x-5*3,y+18*3);
-    triangle(x,y+12*3,x+10*3,y+12*3,x+5*3,y+18*3);
-    triangle(x+15*3,y+12*3,x+10*3,y+12*3,x+15*3,y+18*3);
-    fill(250,0,0);
-    translate(width/2, height/2);
-    rotate(PI/3.0);
-    rect(-50, -225, 120, 10);
+    if (stinky){
+      fill(223, 0, 254);
+      x = 310;
+      arc(x,y,30*3,30*3,PI,2*PI,OPEN);
+      rect(x-15*3,y,30*3,12*3);
+      line(x-15*3,y,x-15*3,y+12*3);
+      line(x+15*3,y,x+15*3,y+12*3);
+      triangle(x-15*3,y+12*3,x-10*3,y+12*3,x-15*3,y+18*3);
+      triangle(x-10*3,y+12*3,x,y+12*3,x-5*3,y+18*3);
+      triangle(x,y+12*3,x+10*3,y+12*3,x+5*3,y+18*3);
+      triangle(x+15*3,y+12*3,x+10*3,y+12*3,x+15*3,y+18*3);
+      
+      x = 740;
+      fill(250,0,0,100);
+      circle(x, y+10, 130);
+      fill(0);
+      circle(x, y+10, 110);
+      fill(223, 0, 254, 100);
+      arc(x,y,30*3,30*3,PI,2*PI,OPEN);
+      rect(x-15*3,y,30*3,12*3);
+      line(x-15*3,y,x-15*3,y+12*3);
+      line(x+15*3,y,x+15*3,y+12*3);
+      triangle(x-15*3,y+12*3,x-10*3,y+12*3,x-15*3,y+18*3);
+      triangle(x-10*3,y+12*3,x,y+12*3,x-5*3,y+18*3);
+      triangle(x,y+12*3,x+10*3,y+12*3,x+5*3,y+18*3);
+      triangle(x+15*3,y+12*3,x+10*3,y+12*3,x+15*3,y+18*3);
+      fill(250,0,0,40);
+      translate(width/2, height/2);
+      rotate(PI/3.0);
+      rect(-50, -225, 120, 10);
+    }
+    
+    if (!stinky){
+      fill(223, 0, 254, 100);
+      x = 310;
+      arc(x,y,30*3,30*3,PI,2*PI,OPEN);
+      rect(x-15*3,y,30*3,12*3);
+      line(x-15*3,y,x-15*3,y+12*3);
+      line(x+15*3,y,x+15*3,y+12*3);
+      triangle(x-15*3,y+12*3,x-10*3,y+12*3,x-15*3,y+18*3);
+      triangle(x-10*3,y+12*3,x,y+12*3,x-5*3,y+18*3);
+      triangle(x,y+12*3,x+10*3,y+12*3,x+5*3,y+18*3);
+      triangle(x+15*3,y+12*3,x+10*3,y+12*3,x+15*3,y+18*3);
+      
+      x = 740;
+      fill(250,0,0);
+      circle(x, y+10, 130);
+      fill(0);
+      circle(x, y+10, 110);
+      fill(223, 0, 254);
+      arc(x,y,30*3,30*3,PI,2*PI,OPEN);
+      rect(x-15*3,y,30*3,12*3);
+      line(x-15*3,y,x-15*3,y+12*3);
+      line(x+15*3,y,x+15*3,y+12*3);
+      triangle(x-15*3,y+12*3,x-10*3,y+12*3,x-15*3,y+18*3);
+      triangle(x-10*3,y+12*3,x,y+12*3,x-5*3,y+18*3);
+      triangle(x,y+12*3,x+10*3,y+12*3,x+5*3,y+18*3);
+      triangle(x+15*3,y+12*3,x+10*3,y+12*3,x+15*3,y+18*3);
+      fill(250,0,0);
+      translate(width/2, height/2);
+      rotate(PI/3.0);
+      rect(-50, -225, 120, 10);  
+    }
   }
   if (screen == 6){//SURVIVAL
     if (firstTime == true){
+      lives = 1;
+      scatter = false;
       setUpTime = millis();
       firstTime = false;
       test = new Board(1);
-     p = new PacMan(color(250,250,0),60,60);
-     g1 = new Blinky(color(250,0,0), 1020, 860, p.speed*.95);
-     g2 = new Pinky(color(255, 184, 255), 1020, 740, p.speed*.95);
-     g3 = new Inky(color(0, 255, 255), 900, 860, p.speed*.95); //at 30
-     g4 = new Clyde(color(255, 184, 82), 1020, 620,  p.speed*.95); // at 60 eaten
-     g5 = new Stinky(color(223, 0, 254), 780, 860, p.speed*.95); //at 90
+      p = new PacMan(color(250,250,0),60,60);
+      g1 = new Blinky(color(250,0,0), 1020, 860, p.speed*.95);
+      g2 = new Pinky(color(255, 184, 255), 1020, 740, p.speed*.95);
+      g3 = new Inky(color(0, 255, 255), 900, 860, p.speed*.95); //at 30
+      g4 = new Clyde(color(255, 184, 82), 1020, 620,  p.speed*.95); // at 60 eaten
+      g5 = new Stinky(color(223, 0, 254), 780, 860, p.speed*.95); //at 90
     }
     background(255);
     int passedTime = millis() - setUpTime;
-     background(255);
-     test.display();
-
-     fill(250,0,0);
+    background(255);
+    test.display();
+    PFont font;
+    font = createFont("emulogic.ttf", 128);
+    textAlign(LEFT);
+    textFont(font);
+    textSize(12);
+    fill(255,128,0);
      if (passedTime <= 1000) {
-       text("READY! " + counter, 490, 385);  
+       text("READY! 5", 490, 385);  
      }
      else if (passedTime <= 2000) {
-       text("READY! " + (counter-1), 490, 385);
+       text("READY! 4", 490, 385);
      }
      else if (passedTime <= 3000) {
-       text("READY! " + (counter-2), 490, 385);
+       text("READY! 3", 490, 385);
      }
      else if (passedTime <= 4000) {
-       text("READY! " + (counter-3), 490, 385);
+       text("READY! 2", 490, 385);
      }
      else if (passedTime <= 5000) {
-       text("READY! " + (counter-4), 490, 385);
+       text("READY! 1", 490, 385);
      }
-     else if (passedTime > 5000) {
+     else if (passedTime > 5000 && lives != 0) {
        ghostsCanMove = true;
-       //passedTime = 6000;
        p.move(test);
        g1.move(p, test);
        g2.move(p, test);
@@ -442,36 +485,83 @@ void draw(){
          g5.move(p, test);
        }
      }
+     int prevLevel = level;
      if (passedTime >= 30*1000+5000 && passedTime < 60*1000+5000){
        level = 2;
+       if (prevLevel != level){
+         levelUp = true;
+       }
      }
      else if (passedTime >= 60*1000+5000 && passedTime < 90*1000+5000){
        level = 3;
+       if (prevLevel != level){
+         levelUp = true;
+       }     
      }
      else if (passedTime >= 90*1000+5000 && passedTime < 120*1000+5000){
        level = 4;
+       if (prevLevel != level){
+         levelUp = true;
+       }       
      }
      else if (passedTime >=120*1000+5000 && passedTime < 150*1000+5000){
        level = 5;
+       if (prevLevel != level){
+         levelUp = true;
+       } 
      }
      else if (passedTime >= 150*1000+5000 && passedTime < 180*1000+5000){
        level = 6;
+       if (prevLevel != level){
+         levelUp = true;
+       } 
      }
      else if (passedTime >= 180*1000+5000 && passedTime < 210*1000+5000){
        level = 7;
+       if (prevLevel != level){
+         levelUp = true;
+       } 
      }
      else if (passedTime >= 210*1000+5000 && passedTime < 240*1000+5000){
        level = 8;
+       if (prevLevel != level){
+         levelUp = true;
+       } 
      }
      else if (passedTime >= 240*1000+5000 && passedTime < 270*1000+5000){
        level = 9;
+       if (prevLevel != level){
+         levelUp = true;
+       } 
      }
      else if (passedTime >= 270*1000+5000 && passedTime < 300*1000+5000){
        level = 10;
+       if (prevLevel != level){
+         levelUp = true;
+       } 
      }
      else if (passedTime > 300*1000+5000){
        level = 0;
+       firstTime = true;
        screen = 2;
+     }
+     if (levelUp){
+       g1.speed *= 1.1;
+       g2.speed *= 1.1;
+       g3.speed *= 1.1;
+       g4.speed *= 1.1;
+       if (stinky){
+         g5.speed *= 1.1;
+       }
+       p.speed *= 1.07;
+       levelUp = false;
+     }
+     if (p.deathTimer == 0){ //upon death, stuff stops moving?
+       lives--;
+       ghostsCanMove = false;
+       level = 1;
+       firstTime = true;
+       screen = 3;
      }
      p.display();
      g1.display();
@@ -485,20 +575,28 @@ void draw(){
      fill(255);
      text("LEVEL:" + level, 900, 20);
      text("SCORE:" + totalScore, 20, 20);
-     //p.move(test);
-     //g1.move(p, test);
-     //g2.move(p, test);
-     //g3.move(p, test);
-     //g4.move(p, test);
-     //if (stinky){
-     //  g5.move(p, test);
-     //}
-     if (Math.random() > .95 && !alreadyPortal){
-      //added = new Portal((int)(Math.random()*22)+1, etc -- also check if its a wall or not yk)
-       alreadyPortal = true;
+     text("LIVES", 20, 900);
+     fill(250,250,0);
+     if(lives > 0){
+      arc(110,900,33,33,QUARTER_PI, 2*PI-QUARTER_PI);
      }
-    // if (alreadyPortal && !added.canUse){
-   //   alreadyPortal = false;
+     if (passedTime >= 5000){
+       if (!alreadyPortal){
+         int index1 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         int index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         while (index1 == index2){
+          index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         }
+        added = new Portal(test.noPelletsForSurvival.get(index1)[0], test.noPelletsForSurvival.get(index1)[1], test.noPelletsForSurvival.get(index2)[0], test.noPelletsForSurvival.get(index2)[1]);
+        alreadyPortal = true;
+       }
+       if (alreadyPortal && !added.canUse){
+          alreadyPortal = false;
+       }
+       added.displayp1();
+       added.displayp2();
+       added.teleport();
+     }
  // *removes portal w creation of new location bcs alr portal = false
    //  }
      //if portal gets used, alr portal = false;
