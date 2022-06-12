@@ -61,7 +61,6 @@ void draw(){
       killingTimer--;
     }else{
     if (firstTime == true){
-      lives = 4;
       setUpTime = millis();
       firstTime = false;
       scatter = true;
