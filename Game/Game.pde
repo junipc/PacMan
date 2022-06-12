@@ -440,7 +440,7 @@ void draw(){
       alreadyPortal = false;
       firstTime = false; 
       test = new Board(1);
-      println(Arrays.deepToString(test.noPelletsForSurvival.toArray()));
+      //println(Arrays.deepToString(test.noPelletsForSurvival.toArray()));
       p = new PacMan(color(250,250,0),60,60);
       g1 = new Blinky(color(250,0,0), 1020, 860, p.speed*.95);
       g2 = new Pinky(color(255, 184, 255), 1020, 740, p.speed*.95);
@@ -588,15 +588,15 @@ void draw(){
        if (!alreadyPortal){
          int index1 = (int)(Math.random() * test.noPelletsForSurvival.size());
          int index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
-         while(test.map[test.noPelletsForSurvival.get(index1)[0]][test.noPelletsForSurvival.get(index1)[1]] != 2){
-           index1 = (int)(Math.random() * test.noPelletsForSurvival.size());
-         }
-         while(test.map[test.noPelletsForSurvival.get(index2)[0]][test.noPelletsForSurvival.get(index2)[1]] != 2 || index1 == index2){
-           index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
-         }
-         //while (index1 == index2){
-         // index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         //while(test.map[test.noPelletsForSurvival.get(index1)[0]][test.noPelletsForSurvival.get(index1)[1]] != 2){
+         //  index1 = (int)(Math.random() * test.noPelletsForSurvival.size());
          //}
+         //while(test.map[test.noPelletsForSurvival.get(index2)[0]][test.noPelletsForSurvival.get(index2)[1]] != 2 || index1 == index2){
+         //  index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         //}
+         while (index1 == index2){
+          index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         }
         added = new Portal(test.noPelletsForSurvival.get(index1)[0], test.noPelletsForSurvival.get(index1)[1], test.noPelletsForSurvival.get(index2)[0], test.noPelletsForSurvival.get(index2)[1]);
         //fill(255);
         //text("" + test.noPelletsForSurvival.get(index1)[0] + " " + test.noPelletsForSurvival.get(index1)[1]  + " " + test.noPelletsForSurvival.get(index2)[0]  + " " + test.noPelletsForSurvival.get(index2)[1], 200, 200);
