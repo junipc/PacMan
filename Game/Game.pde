@@ -146,12 +146,12 @@ void draw(){
     }
     if(cherryTimer == 0 && startingPellets == 202 - 70 && ! firstCherrySpawned){
       test.map[12][13] = 5;
-      cherryTimer = 555;
+      cherryTimer = 999;
       firstCherrySpawned = true;
     }
     if(cherryTimer == 0 && startingPellets == 202 - 170 && ! secondCherrySpawned){
       test.map[12][13] = 5;
-      cherryTimer = 555;
+      cherryTimer = 999;
       secondCherrySpawned = true;
     }
     if(eatenCherryTimer > 0){
