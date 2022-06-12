@@ -2,12 +2,12 @@ String playerName;
 int screen = 1;
 public Board test = new Board(0);
 int totalScore = 0;
-int startingPellets = 202; //208 if powerpellets switch back for demo
+int startingPellets = 203; //203
 Keyboard keyIn = new Keyboard();
 final int readyTime = 5000;
 int setUpTime;
 int counter = 5;
-int level = 1;
+int level = 1; //1
 PacMan p = new PacMan(color(250,250,0),540,500);
 Blinky g1 = new Blinky(color(250,0,0), 540, 340, p.speed*.95);
 Pinky g2 = new Pinky(color(255, 184, 255), 500, 420, p.speed*.95);
@@ -16,13 +16,13 @@ Clyde g4 = new Clyde(color(255, 184, 82), 620, 420,  p.speed*.95); // at 60 eate
 Stinky g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95);
  // Stinky at 90 eaten
 boolean firstTime = true;
-int lives = 4;
+int lives = 4; //4
 boolean ghostsCanMove = true;
 float doIt = 0;
 color[] pacManCustom = new color[]{color(250,250,0), color(250, 120, 0), color(250, 0, 0), color(0, 250, 0), color(0,0,250), color(75,0,130), color(148,0,211)};
 int pcustomIndex = 0;
 PShape triangle1; //pacman customize button 1
-Portal tester = new Portal(4,4,8,8);
+//Portal tester = new Portal(4,4,8,8);
 //int MODE; //(classic/surv)
 boolean fright = false;
 float frightTimer = 0;
@@ -106,15 +106,15 @@ void draw(){
     }
     if (passedTime > 5000 + 3000) {
       g2.move(p,test);
-      if (startingPellets <= 202 - 30){
+      if (startingPellets <= 203 - 30){
         test.map[9][13] = 4; //for some time
         g3.move(p,test);
       }
-      if (startingPellets <= 202 - 60){
+      if (startingPellets <= 203 - 60){
         test.map[9][13] = 4; //for some time
         g4.move(p, test);
       }
-      if (startingPellets <= 202 - 90 && stinky){
+      if (startingPellets <= 203 - 90 && stinky){
         test.map[9][13] = 4; //for some time
         g5.move(p, test);
       }
@@ -122,7 +122,7 @@ void draw(){
     if (passedTime >= 7000 && passedTime < 13000){
       test.map[9][13] = 4;
     }
-    if (passedTime >= 13000 && startingPellets > 202 - 30){
+    if (passedTime >= 13000 && startingPellets > 203 - 30){
       //test.map[9][13] = 1; //not rn worry ab open close timing last
     }
     scatterToggle(passedTime);
@@ -139,12 +139,12 @@ void draw(){
     if(cherryTimer == 0){
       test.map[12][13] = 2;
     }
-    if(cherryTimer == 0 && startingPellets == 202 - 70 && ! firstCherrySpawned){
+    if(cherryTimer == 0 && startingPellets == 203 - 70 && ! firstCherrySpawned){
       test.map[12][13] = 5;
       cherryTimer = 999;
       firstCherrySpawned = true;
     }
-    if(cherryTimer == 0 && startingPellets == 202 - 170 && ! secondCherrySpawned){
+    if(cherryTimer == 0 && startingPellets == 203 - 170 && ! secondCherrySpawned){
       test.map[12][13] = 5;
       cherryTimer = 999;
       secondCherrySpawned = true;
@@ -188,7 +188,7 @@ void draw(){
       }
       else{
         level++;
-        startingPellets = 202;
+        startingPellets = 203;
         p = new PacMan(pacManCustom[pcustomIndex],540,500);
         if(level <= 4)
           gSpeed = p.speed * .90;
@@ -437,8 +437,10 @@ void draw(){
       lives = 1;
       scatter = false;
       setUpTime = millis();
-      firstTime = false;
+      alreadyPortal = false;
+      firstTime = false; 
       test = new Board(1);
+      //println(Arrays.deepToString(test.noPelletsForSurvival.toArray()));
       p = new PacMan(color(250,250,0),60,60);
       g1 = new Blinky(color(250,0,0), 1020, 860, p.speed*.95);
       g2 = new Pinky(color(255, 184, 255), 1020, 740, p.speed*.95);
@@ -446,6 +448,7 @@ void draw(){
       g4 = new Clyde(color(255, 184, 82), 1020, 620,  p.speed*.95); // at 60 eaten
       g5 = new Stinky(color(223, 0, 254), 780, 860, p.speed*.95); //at 90
     }
+
     background(255);
     int passedTime = millis() - setUpTime;
     background(255);
@@ -485,63 +488,64 @@ void draw(){
      }
      int prevLevel = level;
      if (passedTime >= 30*1000+5000 && passedTime < 60*1000+5000){
-       level = 2;
+       level = Math.max(prevLevel, 2);
        if (prevLevel != level){
          levelUp = true;
        }
      }
      else if (passedTime >= 60*1000+5000 && passedTime < 90*1000+5000){
-       level = 3;
+       level = Math.max(prevLevel,3);
        if (prevLevel != level){
          levelUp = true;
        }     
      }
      else if (passedTime >= 90*1000+5000 && passedTime < 120*1000+5000){
-       level = 4;
+       level = Math.max(prevLevel,4);
        if (prevLevel != level){
          levelUp = true;
        }       
      }
      else if (passedTime >=120*1000+5000 && passedTime < 150*1000+5000){
-       level = 5;
+       level = Math.max(prevLevel,5);
        if (prevLevel != level){
          levelUp = true;
        } 
      }
      else if (passedTime >= 150*1000+5000 && passedTime < 180*1000+5000){
-       level = 6;
+       level = Math.max(prevLevel,6);
        if (prevLevel != level){
          levelUp = true;
        } 
      }
      else if (passedTime >= 180*1000+5000 && passedTime < 210*1000+5000){
-       level = 7;
+       level = Math.max(prevLevel,7);
        if (prevLevel != level){
          levelUp = true;
        } 
      }
      else if (passedTime >= 210*1000+5000 && passedTime < 240*1000+5000){
-       level = 8;
+       level = Math.max(prevLevel,8);
        if (prevLevel != level){
          levelUp = true;
        } 
      }
      else if (passedTime >= 240*1000+5000 && passedTime < 270*1000+5000){
-       level = 9;
+       level = Math.max(prevLevel,9);
        if (prevLevel != level){
          levelUp = true;
        } 
      }
      else if (passedTime >= 270*1000+5000 && passedTime < 300*1000+5000){
-       level = 10;
+       level = Math.max(prevLevel,10);
        if (prevLevel != level){
          levelUp = true;
        } 
      }
-     else if (passedTime > 300*1000+5000){
-       level = 0;
+     if (passedTime > 300*1000+5000 || level > 10){
+       level = 1;
        firstTime = true;
        screen = 2;
+       test.noPelletsForSurvival.clear();
      }
      if (levelUp){
        g1.speed *= 1.1;
@@ -561,6 +565,7 @@ void draw(){
        level = 1;
        firstTime = true;
        screen = 3;
+       test.noPelletsForSurvival.clear();
      }
      p.display();
      g1.display();
@@ -583,10 +588,18 @@ void draw(){
        if (!alreadyPortal){
          int index1 = (int)(Math.random() * test.noPelletsForSurvival.size());
          int index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         //while(test.map[test.noPelletsForSurvival.get(index1)[0]][test.noPelletsForSurvival.get(index1)[1]] != 2){
+         //  index1 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         //}
+         //while(test.map[test.noPelletsForSurvival.get(index2)[0]][test.noPelletsForSurvival.get(index2)[1]] != 2 || index1 == index2){
+         //  index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
+         //}
          while (index1 == index2){
           index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
          }
         added = new Portal(test.noPelletsForSurvival.get(index1)[0], test.noPelletsForSurvival.get(index1)[1], test.noPelletsForSurvival.get(index2)[0], test.noPelletsForSurvival.get(index2)[1]);
+        //fill(255);
+        //text("" + test.noPelletsForSurvival.get(index1)[0] + " " + test.noPelletsForSurvival.get(index1)[1]  + " " + test.noPelletsForSurvival.get(index2)[0]  + " " + test.noPelletsForSurvival.get(index2)[1], 200, 200);
         alreadyPortal = true;
        }
        if (alreadyPortal && !added.canUse){
@@ -596,9 +609,6 @@ void draw(){
        added.displayp2();
        added.teleport();
      }
- // *removes portal w creation of new location bcs alr portal = false
-   //  }
-     //if portal gets used, alr portal = false;
   } 
 
   
@@ -644,10 +654,22 @@ void keyPressed() {
   if ((screen == 2 || screen == 3 || screen == 4 || screen == 5) && key == ' '){
     screen = 1;
     totalScore = 0;
-    lives = 3;
+    lives = 4;
   }
   if(screen == 0 && (key == 'p' || key == 'P')){
     startingPellets = 0;
+  }
+  if(screen == 6 && (key == 'p' || key == 'P')){
+    level++;
+    g1.speed *= 1.1;
+    g2.speed *= 1.1;
+    g3.speed *= 1.1;
+    g4.speed *= 1.1;
+    if (stinky){
+      g5.speed *= 1.1;
+    }
+    p.speed *= 1.07;
+    levelUp = false;
   }
 }
 
@@ -661,7 +683,7 @@ void mouseClicked(){
     firstTime = true;
     lives = 4;
     screen = 0;
-    startingPellets = 202;
+    startingPellets = 203;
     p = new PacMan(pacManCustom[pcustomIndex],540,500);
     if(level <= 4)
       gSpeed = p.speed * .90;
@@ -705,8 +727,9 @@ void mouseClicked(){
     p = new PacMan(pacManCustom[pcustomIndex],540,500);
   }
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 400 && mouseY < 400+60){
-    //MODE = 1; //surv
-    screen = 6; //or 0
+    firstTime = true;
+    lives = 1;
+    screen = 6;  
   }
   
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 600 && mouseY < 600+60){
