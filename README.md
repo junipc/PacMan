@@ -175,11 +175,29 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - All four ghosts spawn and work
 - All four ghosts release at the right times (same as PacMan, a bit after, 30 pellets eaten, 60 eaten)
 
-
 6/8:
 - Fixed spawning bugs w/ new board
 - Finished ghost customization with a symbol
 - Portals disappear/stop working upon usage
+
+6/9:
+- scoring for survival works
+- level incrementation each 30 sec works (no speed modifications yet)
+
+6/10:
+- portal idea expanded, arrayList of good spots for portal made
+
+6/11:
+- Finished survival mode
+- Portals spawn rng on board, one time use only by PacMan
+- Leveling up = speeding up for PacMan and ghosts (ghosts a bit faster)
+- rng board works with loops; purposeful rare deadends in board to make it seem glitchy like old PacMan (glitches removable)
+
+6/12:
+- fixed classic mode starting pellets
+- fixed bugs ab resetting survival mode after certain other prior actions (such as after playing classic and winning, then survival)
+- fixed portal spawning in walls rarely
+- added survival cheat key that just increments level (still takes 300 seconds to win, though, but can progress through all levels and win with key fast)
 
 
 ## Design Document:

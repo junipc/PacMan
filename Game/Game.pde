@@ -13,24 +13,19 @@ Blinky g1 = new Blinky(color(250,0,0), 540, 340, p.speed*.95);
 Pinky g2 = new Pinky(color(255, 184, 255), 500, 420, p.speed*.95);
 Inky g3 = new Inky(color(0, 255, 255), 580, 420, p.speed*.95); //at 30
 Clyde g4 = new Clyde(color(255, 184, 82), 620, 420,  p.speed*.95); // at 60 eaten
-Stinky g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95);
- // Stinky at 90 eaten
+Stinky g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95);// Stinky at 90 eaten
 boolean firstTime = true;
 int lives = 4; //4
 boolean ghostsCanMove = true;
-float doIt = 0;
 color[] pacManCustom = new color[]{color(250,250,0), color(250, 120, 0), color(250, 0, 0), color(0, 250, 0), color(0,0,250), color(75,0,130), color(148,0,211)};
 int pcustomIndex = 0;
-PShape triangle1; //pacman customize button 1
-//Portal tester = new Portal(4,4,8,8);
-//int MODE; //(classic/surv)
 boolean fright = false;
 float frightTimer = 0;
 boolean scatter = true;
 float gSpeed;
 float tempTimer = 0;
 boolean stinky = false;
-boolean alreadyPortal = false; //survival; if theres alr a portal dont spawn lol
+boolean alreadyPortal = false; //survival
 int eatStreak = 0;
 int kp;
 float kx;
@@ -41,12 +36,11 @@ boolean firstCherrySpawned;
 boolean secondCherrySpawned;
 int eatenCherryTimer;
 Portal added;
-boolean levelUp = false; //for survival
+boolean levelUp = false; //survival
 
 void setup(){
   size(1080,920);
   setUpTime = millis();
-  // start screen shenanigans
 }
 
 void draw(){
@@ -68,7 +62,7 @@ void draw(){
       cherryTimer = 0;
       test.map[12][13] = 2;
       test.map[9][13] = 1;
-      p = new PacMan(color(250,250,0),540,500);
+      p = new PacMan(pacManCustom[pcustomIndex],540,500);
       g1 = new Blinky(color(250,0,0), 540, 340, p.speed*.95);
       g2 = new Pinky(color(255, 184, 255), 500, 420, p.speed*.95);
       g3 = new Inky(color(0, 255, 255), 580, 420, p.speed*.95); //at 30
@@ -121,9 +115,6 @@ void draw(){
     }
     if (passedTime >= 7000 && passedTime < 13000){
       test.map[9][13] = 4;
-    }
-    if (passedTime >= 13000 && startingPellets > 203 - 30){
-      //test.map[9][13] = 1; //not rn worry ab open close timing last
     }
     scatterToggle(passedTime);
     if(frightTimer > 0){
@@ -232,9 +223,6 @@ void draw(){
      firstTime = true;
      ghostsCanMove = true;
    }
-   //tester.displayp1();
-   //tester.displayp2();
-   //tester.teleport();
   }
   }
   if (screen == 1){//START
@@ -244,7 +232,7 @@ void draw(){
     textFont(font);
     textSize(65);
     fill(255,255,0);
-    text("pac-man", 360, 200); // BEATING + mode when survival mode exists
+    text("pac-man", 360, 200); 
     font = createFont("emulogic.ttf", 128);
     textFont(font);
     textSize(20);
@@ -302,7 +290,7 @@ void draw(){
     textFont(font);
     textSize(35);
     fill(255,128,0);
-    text("CONGRATS ON BEATING CLASSIC", 50, 200); // BEATING + mode when survival mode exists
+    text("CONGRATS ON BEATING THIS", 50, 200); 
     text("MODE WITH A WHOPPING SCORE", 70, 300);
     text("OF " + totalScore + "!", 375, 400);
     textSize(15);
@@ -315,27 +303,14 @@ void draw(){
     textFont(font);
     textSize(35);
     fill(255,128,0);
-    text("G4M3 0V3R!", 370, 200); // BEATING + mode when survival mode exists
+    text("G4M3 0V3R!", 370, 200);
     text("YOUR TOTAL SCORE:" + totalScore, 200, 300);
     textSize(15);
     text("Press the Space key to return to the start screen", 160, 600);
   }
   if (screen == 4){ //CUSTOMIZE PACMAN
-    // take color here, tell them red is default; use triangle on screen keys to switch between colors yk
-    // to switch colors, pacman goes big in mid of screen then smaller as it switches to next, which becomes bigger
     background(0);
     fill(152,152,156);
-    //triangle1 = new PShape(PShape.PATH);
-    ////add it's vertices
-    //triangle1.vertex(200+580,400);
-    //triangle1.vertex(200+580+87,450);
-    //triangle1.vertex(200+580,500);
-    //fill(152,152,156);
-    //beginShape(TRIANGLE);
-    //vertex(triangle1.getVertex(0).x, triangle1.getVertex(0).y);
-    //vertex(triangle1.getVertex(1).x, triangle1.getVertex(1).y);
-    //vertex(triangle1.getVertex(2).x, triangle1.getVertex(2).y);
-    //endShape(CLOSE);
     rect(200+580, 400, 100, 100);
     rect(180, 400, 100, 100);
     fill(pacManCustom[pcustomIndex]);
@@ -440,8 +415,7 @@ void draw(){
       alreadyPortal = false;
       firstTime = false; 
       test = new Board(1);
-      //println(Arrays.deepToString(test.noPelletsForSurvival.toArray()));
-      p = new PacMan(color(250,250,0),60,60);
+      p = new PacMan(pacManCustom[pcustomIndex],60,60);
       g1 = new Blinky(color(250,0,0), 1020, 860, p.speed*.95);
       g2 = new Pinky(color(255, 184, 255), 1020, 740, p.speed*.95);
       g3 = new Inky(color(0, 255, 255), 900, 860, p.speed*.95); //at 30
@@ -560,7 +534,7 @@ void draw(){
      }
      if (p.deathTimer > 0)
        ghostsCanMove = false;
-     if (p.deathTimer == 0){ //upon death, stuff stops moving?
+     if (p.deathTimer == 0){ 
        lives--;
        level = 1;
        firstTime = true;
@@ -588,18 +562,10 @@ void draw(){
        if (!alreadyPortal){
          int index1 = (int)(Math.random() * test.noPelletsForSurvival.size());
          int index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
-         //while(test.map[test.noPelletsForSurvival.get(index1)[0]][test.noPelletsForSurvival.get(index1)[1]] != 2){
-         //  index1 = (int)(Math.random() * test.noPelletsForSurvival.size());
-         //}
-         //while(test.map[test.noPelletsForSurvival.get(index2)[0]][test.noPelletsForSurvival.get(index2)[1]] != 2 || index1 == index2){
-         //  index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
-         //}
          while (index1 == index2){
           index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
          }
         added = new Portal(test.noPelletsForSurvival.get(index1)[0], test.noPelletsForSurvival.get(index1)[1], test.noPelletsForSurvival.get(index2)[0], test.noPelletsForSurvival.get(index2)[1]);
-        //fill(255);
-        //text("" + test.noPelletsForSurvival.get(index1)[0] + " " + test.noPelletsForSurvival.get(index1)[1]  + " " + test.noPelletsForSurvival.get(index2)[0]  + " " + test.noPelletsForSurvival.get(index2)[1], 200, 200);
         alreadyPortal = true;
        }
        if (alreadyPortal && !added.canUse){
@@ -742,11 +708,4 @@ void mouseClicked(){
     if (screen == 5 && mouseX > 590 && mouseX < 590+300 && mouseY > 465 && mouseY < 465+60){
     stinky = false;
   }
-  
-  
-  //if(screen == 4 && triangle1.contains(mouseX,mouseY)){
-  //  fill(152,152,156);
-  //}else{
-  //  fill(255,0,0);
-  //}
 }

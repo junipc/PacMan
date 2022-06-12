@@ -6,7 +6,6 @@ public class Portal{
   float p2x;
   float p2y;
   int[] sizes = new int[]{32,26,20};
-  float add = 1;
   boolean canUse = true;
   
   Portal(int r1, int c1, int r2, int c2){
@@ -60,10 +59,8 @@ public class Portal{
       canUse = false;
       noStroke();
       fill(54, 17, 102);
-      //circle(40 * p2[1] + 20,40 * p2[0] + 20, 32); //remove portal
       alreadyPortal = false;
     }
-    //if canUse = false then it self destructs LOL
   }
 
 
