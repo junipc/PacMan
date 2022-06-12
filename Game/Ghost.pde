@@ -4,7 +4,7 @@ public abstract class Ghost{
   float y;
   float dx = 1;
   float dy = 0;
-  float speed; //starts same speed as pacman, gets faster than him (dspeed/dlevel_ghosts > dspeed/dlevel_pac)?
+  float speed; 
   int bx;
   int by;
   boolean atCenter = true;
@@ -24,7 +24,7 @@ public abstract class Ghost{
     if(fright){
       x *= .63;
       y *= .63;
-    }else if(by == 10 && (bx <= 4 || bx >= 22) && test.mode == 0){ //SHOULD NOT SLOW DOWN IN SURVIVAL!, test.mode checks for that
+    }else if(by == 10 && (bx <= 4 || bx >= 22) && test.mode == 0){ 
       x *= .5;
       y *= .5;
     }
@@ -218,8 +218,6 @@ public abstract class Ghost{
       line(x,y+7,x+4,y+9);
       line(x+4,y+9,x+8,y+7);
       line(x+8,y+7,x+12,y+9);
-      //line(x+6,y+9,x+9,y+7);
-      //line(x+9,y+7,x+12,y+9);
       strokeWeight(1);
       noStroke();
     }
