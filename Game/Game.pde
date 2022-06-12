@@ -67,6 +67,7 @@ void draw(){
       frightTimer = 0;
       cherryTimer = 0;
       test.map[12][13] = 2;
+      test.map[9][13] = 1;
       p = new PacMan(color(250,250,0),540,500);
       g1 = new Blinky(color(250,0,0), 540, 340, p.speed*.95);
       g2 = new Pinky(color(255, 184, 255), 500, 420, p.speed*.95);
