@@ -18,7 +18,7 @@ public class PacMan{
     y = y_;
     bx = (int)(x/40);
     by = (int)(y/40);
-    speed = 1.05 * (level/2.0) + 2.15;
+    speed = 1.05 * (level/5.0) + 2.15;
   }
   void die(){
     alive = false;
