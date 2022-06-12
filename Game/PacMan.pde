@@ -157,5 +157,10 @@ public class PacMan{
         else
           frightTimer = 180;
     }
+    if(b.map[by][bx] == 5){
+      b.map[by][bx] = 2;
+      int cherryPoints = 100 * level;
+      totalScore += cherryPoints;
+    }
   }
 }
