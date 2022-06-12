@@ -18,7 +18,7 @@ public class PacMan{
     y = y_;
     bx = (int)(x/40);
     by = (int)(y/40);
-    speed = 1.05 * (level/2.0) + 2.15;
+    speed = 1.05 * (level/5.0) + 2.15;
   }
   void die(){
     alive = false;
@@ -156,6 +156,12 @@ public class PacMan{
           frightTimer = 300;
         else
           frightTimer = 180;
+    }
+    if(b.map[by][bx] == 5){
+      b.map[by][bx] = 2;
+      int cherryPoints = 100 * level;
+      totalScore += cherryPoints;
+      eatenCherryTimer = 60;
     }
   }
 }

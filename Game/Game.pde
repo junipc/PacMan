@@ -36,6 +36,10 @@ int kp;
 float kx;
 float ky;
 int killingTimer;
+int cherryTimer;
+boolean firstCherrySpawned;
+boolean secondCherrySpawned;
+int eatenCherryTimer;
 Portal added;
 boolean levelUp = false; //for survival
 
@@ -57,11 +61,13 @@ void draw(){
       killingTimer--;
     }else{
     if (firstTime == true){
-      lives = 4;
       setUpTime = millis();
       firstTime = false;
       scatter = true;
       frightTimer = 0;
+      cherryTimer = 0;
+      test.map[12][13] = 2;
+      test.map[9][13] = 1;
       p = new PacMan(color(250,250,0),540,500);
       g1 = new Blinky(color(250,0,0), 540, 340, p.speed*.95);
       g2 = new Pinky(color(255, 184, 255), 500, 420, p.speed*.95);
@@ -119,14 +125,7 @@ void draw(){
     if (passedTime >= 13000 && startingPellets > 202 - 30){
       //test.map[9][13] = 1; //not rn worry ab open close timing last
     }
-    if(scatter){
-      if(level == 1 && passedTime >= 20000)
-        scatter = false;
-      else if(level >= 2 && level <= 5 && passedTime >= 15000)
-        scatter = false;
-      else if(level >= 6 && passedTime >= 8000)
-        scatter = false;
-    }
+    scatterToggle(passedTime);
     if(frightTimer > 0){
       frightTimer--;
     }
@@ -134,6 +133,31 @@ void draw(){
       fright = false;
       frightTimer = -1;
     }
+    if(cherryTimer > 0){
+      cherryTimer--;
+    }
+    if(cherryTimer == 0){
+      test.map[12][13] = 2;
+    }
+    if(cherryTimer == 0 && startingPellets == 202 - 70 && ! firstCherrySpawned){
+      test.map[12][13] = 5;
+      cherryTimer = 999;
+      firstCherrySpawned = true;
+    }
+    if(cherryTimer == 0 && startingPellets == 202 - 170 && ! secondCherrySpawned){
+      test.map[12][13] = 5;
+      cherryTimer = 999;
+      secondCherrySpawned = true;
+    }
+    if(eatenCherryTimer > 0){
+      eatenCherryTimer--;
+      textAlign(CENTER);
+      fill(255);
+      textSize(12);
+      text(100*level, 13*40+20, 12*40+24);
+      textAlign(LEFT);
+    }
+    
     p.display();
     textSize(12);
     fill(255);
@@ -159,7 +183,7 @@ void draw(){
     }
     if (startingPellets == 0){
       if (level == 10){
-        level = 0;
+        level = 1;
         screen = 2;
       }
       else{
@@ -181,6 +205,9 @@ void draw(){
         test = new Board(0);
         scatter = true;
         frightTimer = 0;
+        cherryTimer = 0;
+        firstCherrySpawned = false;
+        secondCherrySpawned = false;
       }
    }else if(p.deathTimer == 0){
      if(lives == 0){
@@ -200,11 +227,6 @@ void draw(){
      g4 = new Clyde(color(255, 184, 82), 620, 420,  gSpeed); // at 60 eaten
      g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95); //at 90
      setUpTime = millis();
-     if(lives==0){
-       startingPellets = 202;
-     }else{
-       test.map[9][13] = 1;
-     }
      scatter = true;
      frightTimer = 0;
      firstTime = true;
@@ -450,7 +472,8 @@ void draw(){
        text("READY! 1", 490, 385);
      }
      else if (passedTime > 5000 && lives != 0) {
-       ghostsCanMove = true;
+       if(passedTime < 5500)
+         ghostsCanMove = true;
        p.move(test);
        g1.move(p, test);
        g2.move(p, test);
@@ -531,9 +554,10 @@ void draw(){
        p.speed *= 1.07;
        levelUp = false;
      }
+     if (p.deathTimer > 0)
+       ghostsCanMove = false;
      if (p.deathTimer == 0){ //upon death, stuff stops moving?
        lives--;
-       ghostsCanMove = false;
        level = 1;
        firstTime = true;
        screen = 3;
@@ -581,12 +605,49 @@ void draw(){
   
 }
 
+void scatterToggle(int passedTime){
+  if(level == 1){
+    if(passedTime < 7000+5000 ||
+      (passedTime >= 27000+5000 && passedTime < 34000+5000) ||
+      (passedTime >= 54000+5000 && passedTime < 59000+5000) ||
+      (passedTime >= 79000+5000 && passedTime < 84000+5000))
+    {
+      scatter = true;
+    }else{
+      scatter = false;
+    }
+  }
+  if(level >= 2 && level <= 4){
+    if(passedTime < 7000+5000 ||
+      (passedTime >= 27000+5000 && passedTime < 34000+5000) ||
+      (passedTime >= 54000+5000 && passedTime < 59000+5000))
+    {
+      scatter = true;
+    }else{
+      scatter = false;
+    }
+  }
+  if(level >= 5){
+    if(passedTime < 5000+5000 ||
+      (passedTime >= 25000+5000 && passedTime < 30000+5000) ||
+      (passedTime >= 50000+5000 && passedTime < 55000+5000))
+    {
+      scatter = true;
+    }else{
+      scatter = false;
+    }
+  }
+}
+
 void keyPressed() {
   keyIn.press(keyCode);
   if ((screen == 2 || screen == 3 || screen == 4 || screen == 5) && key == ' '){
     screen = 1;
     totalScore = 0;
     lives = 3;
+  }
+  if(screen == 0 && (key == 'p' || key == 'P')){
+    startingPellets = 0;
   }
 }
 
@@ -598,9 +659,29 @@ void keyReleased() {
 void mouseClicked(){
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 300 && mouseY < 300+60){ //to CLASSIC
     firstTime = true;
-    //MODE = 0;
+    lives = 4;
     screen = 0;
+    startingPellets = 202;
+    p = new PacMan(pacManCustom[pcustomIndex],540,500);
+    if(level <= 4)
+      gSpeed = p.speed * .90;
+    else if(level <= 6)
+      gSpeed = p.speed * .95;
+    else
+      gSpeed = p.speed;
+    g1 = new Blinky(color(250,0,0), 540, 340, gSpeed);
+    g2 = new Pinky(color(255, 184, 255), 500, 420, gSpeed);
+    g3 = new Inky(color(0, 255, 255), 580, 420, gSpeed); //at 30
+    g4 = new Clyde(color(255, 184, 82), 620, 420,  gSpeed); // at 60 eaten
+    g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95); //at 90
+    setUpTime = millis();
     test = new Board(0);
+    scatter = true;
+    frightTimer = 0;
+    cherryTimer = 0;
+    firstCherrySpawned = false;
+    secondCherrySpawned = false;
+    ghostsCanMove = true;
   }
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 500 && mouseY < 500+60){//to PACMAN CUSTOMIZE
     screen = 4;
