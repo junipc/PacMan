@@ -472,7 +472,8 @@ void draw(){
        text("READY! 1", 490, 385);
      }
      else if (passedTime > 5000 && lives != 0) {
-       ghostsCanMove = true;
+       if(passedTime < 5500)
+         ghostsCanMove = true;
        p.move(test);
        g1.move(p, test);
        g2.move(p, test);
@@ -553,6 +554,8 @@ void draw(){
        p.speed *= 1.07;
        levelUp = false;
      }
+     if (p.deathTimer > 0)
+       ghostsCanMove = false;
      if (p.deathTimer == 0){ //upon death, stuff stops moving?
        lives--;
        level = 1;
