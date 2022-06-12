@@ -123,14 +123,7 @@ void draw(){
     if (passedTime >= 13000 && startingPellets > 202 - 30){
       //test.map[9][13] = 1; //not rn worry ab open close timing last
     }
-    if(scatter){
-      if(level == 1 && passedTime >= 20000)
-        scatter = false;
-      else if(level >= 2 && level <= 5 && passedTime >= 15000)
-        scatter = false;
-      else if(level >= 6 && passedTime >= 8000)
-        scatter = false;
-    }
+    scatterToggle(passedTime);
     if(frightTimer > 0){
       frightTimer--;
     }
@@ -513,6 +506,40 @@ void draw(){
 
   
   
+}
+
+void scatterToggle(int passedTime){
+  if(level == 1){
+    if(passedTime < 7000+5000 ||
+      (passedTime >= 27000+5000 && passedTime < 34000+5000) ||
+      (passedTime >= 54000+5000 && passedTime < 59000+5000) ||
+      (passedTime >= 79000+5000 && passedTime < 84000+5000))
+    {
+      scatter = true;
+    }else{
+      scatter = false;
+    }
+  }
+  if(level >= 2 && level <= 4){
+    if(passedTime < 7000+5000 ||
+      (passedTime >= 27000+5000 && passedTime < 34000+5000) ||
+      (passedTime >= 54000+5000 && passedTime < 59000+5000))
+    {
+      scatter = true;
+    }else{
+      scatter = false;
+    }
+  }
+  if(level >= 5){
+    if(passedTime < 5000+5000 ||
+      (passedTime >= 25000+5000 && passedTime < 30000+5000) ||
+      (passedTime >= 50000+5000 && passedTime < 55000+5000))
+    {
+      scatter = true;
+    }else{
+      scatter = false;
+    }
+  }
 }
 
 void keyPressed() {
