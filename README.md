@@ -87,6 +87,15 @@ Our project begins on a start screen with the title of the game, “PacMan!”. 
 - pellets no longer reset upon death, as per the original game
 - extra life
 
+6/11
+- no new commits
+
+6/12
+- added cherry, an edible item that's just like the original game's bonus symbols
+- cheat code: pressing the key 'p' in a level advances a level
+- speed is now slower, especially on higher levels, so it's playable
+- scatter/chase order and length have been adjusted to match original game
+
 ### Maya
 5/23:
 - tested merge conflict with Juniper in class

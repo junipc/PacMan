@@ -8,7 +8,7 @@ public class Board{
   public Board(int mode){
     map = new int[23][27];
     this.mode = mode;
-    int[][]classicBoard = new int[][]{// 0 pellet; 1 wall; 2 place w/ no pellet; 3 powerpellet; 4 cage exit (cool display later)
+    int[][]classicBoard = new int[][]{// 0 pellet; 1 wall; 2 place w/ no pellet; 3 powerpellet; 4 cage exit (cool display later); 5 cherry
       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
       {1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1},
       {1,3,1,1,1,0,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,0,1,1,1,3,1},
@@ -243,16 +243,28 @@ public class Board{
       int sideLength = height/23; //shld be 40
       for (int i = 0; i < 23; i++){
         for (int j = 0; j < 27; j++){
-          if (map[i][j] == 0 || map[i][j] == 2 || map[i][j] == 3 || map[i][j] == 4){
+          if (map[i][j] == 0 || map[i][j] == 2 || map[i][j] == 3 || map[i][j] == 4 || map[i][j] == 5){
+            noStroke();
             fill(0,0,0);
             square(j*sideLength, i*sideLength, sideLength);
+            float xPos = j*sideLength + sideLength/2.0;
+            float yPos = i*sideLength + sideLength/2.0;
             if (map[i][j] == 0){ //pellet display
               fill(249,216,203);
-              square(j*sideLength + sideLength/2.0 - 4, i*sideLength+ sideLength/2.0 - 4, 8);
+              square(xPos - 4, yPos - 4, 8);
             }
             if (map[i][j] == 3){ //pellet display
               fill(255,255,0);
-              circle(j*sideLength + sideLength/2.0, i*sideLength+ sideLength/2.0, 25);
+              circle(xPos, yPos, 25);
+            }
+            if (map[i][j] == 5){
+              fill(254,0,0);
+              stroke(180,0,0);
+              circle(xPos - 10, yPos + 6, 15);
+              circle(xPos + 3, yPos + 10, 15);
+              stroke(221,151,81);
+              line(xPos + 6, yPos - 10, xPos - 10, yPos + 2);
+              line(xPos + 6, yPos - 10, xPos + 3, yPos + 6);
             }
           }
           else if (map[i][j] == 1){
