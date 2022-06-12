@@ -226,9 +226,6 @@ void draw(){
      g4 = new Clyde(color(255, 184, 82), 620, 420,  gSpeed); // at 60 eaten
      g5 = new Stinky(color(223, 0, 254), 460, 420, p.speed*.95); //at 90
      setUpTime = millis();
-     if(lives!=0){
-       test.map[9][13] = 1;
-     }
      scatter = true;
      frightTimer = 0;
      firstTime = true;
