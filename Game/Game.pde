@@ -2,7 +2,7 @@ String playerName;
 int screen = 1;
 public Board test = new Board(0);
 int totalScore = 0;
-int startingPellets = 202; //208 if powerpellets switch back for demo
+int startingPellets = 203; //208 if powerpellets switch back for demo
 Keyboard keyIn = new Keyboard();
 final int readyTime = 5000;
 int setUpTime;
@@ -106,15 +106,15 @@ void draw(){
     }
     if (passedTime > 5000 + 3000) {
       g2.move(p,test);
-      if (startingPellets <= 202 - 30){
+      if (startingPellets <= 203 - 30){
         test.map[9][13] = 4; //for some time
         g3.move(p,test);
       }
-      if (startingPellets <= 202 - 60){
+      if (startingPellets <= 203 - 60){
         test.map[9][13] = 4; //for some time
         g4.move(p, test);
       }
-      if (startingPellets <= 202 - 90 && stinky){
+      if (startingPellets <= 203 - 90 && stinky){
         test.map[9][13] = 4; //for some time
         g5.move(p, test);
       }
@@ -122,7 +122,7 @@ void draw(){
     if (passedTime >= 7000 && passedTime < 13000){
       test.map[9][13] = 4;
     }
-    if (passedTime >= 13000 && startingPellets > 202 - 30){
+    if (passedTime >= 13000 && startingPellets > 203 - 30){
       //test.map[9][13] = 1; //not rn worry ab open close timing last
     }
     scatterToggle(passedTime);
@@ -139,12 +139,12 @@ void draw(){
     if(cherryTimer == 0){
       test.map[12][13] = 2;
     }
-    if(cherryTimer == 0 && startingPellets == 202 - 70 && ! firstCherrySpawned){
+    if(cherryTimer == 0 && startingPellets == 203 - 70 && ! firstCherrySpawned){
       test.map[12][13] = 5;
       cherryTimer = 999;
       firstCherrySpawned = true;
     }
-    if(cherryTimer == 0 && startingPellets == 202 - 170 && ! secondCherrySpawned){
+    if(cherryTimer == 0 && startingPellets == 203 - 170 && ! secondCherrySpawned){
       test.map[12][13] = 5;
       cherryTimer = 999;
       secondCherrySpawned = true;
@@ -188,7 +188,7 @@ void draw(){
       }
       else{
         level++;
-        startingPellets = 202;
+        startingPellets = 203;
         p = new PacMan(pacManCustom[pcustomIndex],540,500);
         if(level <= 4)
           gSpeed = p.speed * .90;
@@ -661,7 +661,7 @@ void mouseClicked(){
     firstTime = true;
     lives = 4;
     screen = 0;
-    startingPellets = 202;
+    startingPellets = 203;
     p = new PacMan(pacManCustom[pcustomIndex],540,500);
     if(level <= 4)
       gSpeed = p.speed * .90;
