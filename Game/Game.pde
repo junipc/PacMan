@@ -437,6 +437,7 @@ void draw(){
       lives = 1;
       scatter = false;
       setUpTime = millis();
+      alreadyPortal = false;
       firstTime = false; 
       test = new Board(1);
       println(Arrays.deepToString(test.noPelletsForSurvival.toArray()));
@@ -540,7 +541,7 @@ void draw(){
          levelUp = true;
        } 
      }
-     else if (passedTime > 300*1000+5000 || level > 10){
+     if (passedTime > 300*1000+5000 || level > 10){
        level = 1;
        firstTime = true;
        screen = 2;
@@ -596,8 +597,9 @@ void draw(){
          //while (index1 == index2){
          // index2 = (int)(Math.random() * test.noPelletsForSurvival.size());
          //}
-         //PRINTER TESTER CONFIRMS NOPELLETSFORSURV GETS LEGIT SPOTS
         added = new Portal(test.noPelletsForSurvival.get(index1)[0], test.noPelletsForSurvival.get(index1)[1], test.noPelletsForSurvival.get(index2)[0], test.noPelletsForSurvival.get(index2)[1]);
+        //fill(255);
+        //text("" + test.noPelletsForSurvival.get(index1)[0] + " " + test.noPelletsForSurvival.get(index1)[1]  + " " + test.noPelletsForSurvival.get(index2)[0]  + " " + test.noPelletsForSurvival.get(index2)[1], 200, 200);
         alreadyPortal = true;
        }
        if (alreadyPortal && !added.canUse){
