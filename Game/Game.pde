@@ -36,6 +36,8 @@ int kp;
 float kx;
 float ky;
 int killingTimer;
+int cherryTimer;
+int cherriesEaten;
 Portal added;
 
 void setup(){
@@ -132,6 +134,10 @@ void draw(){
       fright = false;
       frightTimer = -1;
     }
+    if(cherriesEaten == 0 && startingPellets == 202 - 70){
+      test.map[12][13] = 5;
+    }
+    
     p.display();
     textSize(12);
     fill(255);
