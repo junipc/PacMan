@@ -37,6 +37,8 @@ float kx;
 float ky;
 int killingTimer;
 int cherryTimer;
+boolean firstCherrySpawned;
+boolean secondCherrySpawned;
 Portal added;
 
 void setup(){
@@ -61,7 +63,7 @@ void draw(){
       firstTime = false;
       scatter = true;
       frightTimer = 0;
-      cherryTimer = -1;
+      cherryTimer = 0;
       test.map[12][13] = 2;
       p = new PacMan(color(250,250,0),540,500);
       g1 = new Blinky(color(250,0,0), 540, 340, p.speed*.95);
@@ -135,19 +137,21 @@ void draw(){
       fright = false;
       frightTimer = -1;
     }
-    if(cherryTimer > 1){
+    if(cherryTimer > 0){
       cherryTimer--;
     }
-    if(cherryTimer == 1 && startingPellets > 202 - 70){
-      cherryTimer--;
+    if(cherryTimer == 0){
+      test.map[12][13] = 2;
     }
-    if(cherryTimer == -1 && startingPellets == 202 - 70){
+    if(cherryTimer == 0 && startingPellets == 202 - 70 && ! firstCherrySpawned){
       test.map[12][13] = 5;
       cherryTimer = 555;
+      firstCherrySpawned = true;
     }
-    if(cherryTimer == 0 && startingPellets == 202 - 170){
+    if(cherryTimer == 0 && startingPellets == 202 - 170 && ! secondCherrySpawned){
       test.map[12][13] = 5;
       cherryTimer = 555;
+      secondCherrySpawned = true;
     }
     
     p.display();
@@ -197,6 +201,9 @@ void draw(){
         test = new Board(0);
         scatter = true;
         frightTimer = 0;
+        cherryTimer = 0;
+        firstCherrySpawned = false;
+        secondCherrySpawned = false;
       }
    }else if(p.deathTimer == 0){
      if(lives == 0){
