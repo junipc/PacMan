@@ -681,6 +681,7 @@ void keyReleased() {
 void mouseClicked(){
   if (screen == 1 && mouseX > 430 && mouseX < 430+215 && mouseY > 300 && mouseY < 300+60){ //to CLASSIC
     firstTime = true;
+    lives = 4;
     //MODE = 0;
     screen = 0;
     test = new Board(0);
