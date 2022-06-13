@@ -1,7 +1,7 @@
 # PacMan
 Our project begins on a start screen with the title of the game, “PacMan!”. The player (user) has the option to design a custom character (the PacMan) and choose whether or not to include a more difficult custom ghost. There are two modes: Classic mode and Survival mode. Classic mode is identical to the original PacMan, with a few simplifications or modifications; Survival mode has no collectible Pellets (or Cherries or PowerPellets), and rather has a goal to simply survive for the longest time possible as speed increases.
 
-Compiling/Running notes: Run on Processing (3.5.4 is the version we used) simply by hitting the run button; our game is accommodating to WASD or arrow keys
+Compiling/Running notes: Run on Processing (3.5.4 is the version we used) simply by hitting the run button; our game is accommodating to WASD or arrow keys. Press the p key to advance a level in either classic or survival mode.
 
 ## Development Log
 ### Juniper
